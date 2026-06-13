@@ -52,59 +52,154 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($featured as $p)
-            <div class="card group" data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
-                {{-- Product Visual --}}
-                <div class="relative overflow-hidden" style="height: 240px; background: linear-gradient(135deg, {{ $p['color_start'] }}, {{ $p['color_end'] }});">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-                        <div class="font-bebas text-7xl opacity-20 absolute">TE</div>
-                        <i class="fas fa-bolt text-5xl opacity-70 drop-shadow-lg relative z-10"></i>
-                        <span class="font-bebas text-2xl mt-2 tracking-wider relative z-10">{{ $p['name'] }}</span>
-                        <span class="text-xs opacity-70 relative z-10 font-rajdhani">{{ $p['flavor'] }}</span>
-                    </div>
+            @if($featuredProducts->count() > 0)
+                @foreach($featuredProducts as $p)
+                <div class="card group" data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
+                    {{-- Product Visual --}}
+                    <div class="relative overflow-hidden" style="height: 260px; background: {{ $p->color }};">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                            <div class="font-bebas text-8xl opacity-10 absolute top-1/2 -translate-y-1/2">TE</div>
+                            <i class="fas fa-bolt text-6xl opacity-60 drop-shadow-2xl relative z-10"></i>
+                            <span class="font-bebas text-xl mt-3 tracking-wider relative z-10">{{ $p->name }}</span>
+                            <span class="text-xs opacity-60 relative z-10 font-rajdhani">{{ $p->flavor }}</span>
+                        </div>
 
-                    {{-- Tag --}}
-                    <div class="absolute top-4 left-4 product-tag text-white"
-                         style="background: rgba(0,0,0,0.5); border-left: 2px solid #FF6B00;">
-                        {{ $p['tag'] }}
-                    </div>
+                        {{-- Tags --}}
+                        <div class="absolute top-3 left-3 flex flex-col gap-2">
+                            @if($p->is_new)
+                            <div class="product-tag text-white bg-green-600/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">
+                                New
+                            </div>
+                            @endif
+                            @if($p->is_sale)
+                            <div class="product-tag text-white bg-red-600/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">
+                                Sale
+                            </div>
+                            @endif
+                            @if($p->is_featured)
+                            <div class="product-tag text-white bg-[#FF6B00]/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">
+                                Featured
+                            </div>
+                            @endif
+                        </div>
 
-                    {{-- Quick Add --}}
-                    <div class="absolute bottom-0 inset-x-0 bg-[#FF6B00] py-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-center">
-                        <button class="font-rajdhani font-700 text-sm tracking-wider uppercase text-white w-full"
-                                x-on:click="add({
-                                    id: {{ $p['id'] }},
-                                    name: '{{ $p['name'] }}',
-                                    flavor: '{{ $p['flavor'] }}',
-                                    price: {{ $p['price'] }},
-                                    cs: '{{ $p['color_start'] }}',
-                                    ce: '{{ $p['color_end'] }}'
-                                })">
-                            <i class="fas fa-shopping-bag mr-2"></i> Add to Cart
+                        {{-- Wishlist --}}
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 flex items-center justify-center text-white/60 hover:text-[#FF6B00] hover:bg-black/70 transition-all text-sm backdrop-blur-sm">
+                            <i class="fas fa-heart"></i>
                         </button>
-                    </div>
-                </div>
 
-                <div class="p-5">
-                    <div class="flex items-start justify-between mb-2">
-                        <div>
-                            <h3 class="font-rajdhani font-700 text-base">{{ $p['name'] }}</h3>
-                            <p class="text-gray-500 text-xs">{{ $p['flavor'] }} · {{ $p['size'] }}</p>
+                        {{-- Quick Add --}}
+                        <div class="absolute bottom-0 inset-x-0 bg-[#FF6B00] py-3.5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-center">
+                            <button class="font-rajdhani font-700 text-sm tracking-wider uppercase text-white w-full">
+                                <i class="fas fa-shopping-bag mr-2"></i> Add to Cart
+                            </button>
                         </div>
-                        <span class="font-bebas text-2xl text-[#FF6B00]">${{ number_format($p['price'], 2) }}</span>
                     </div>
-                    <div class="flex items-center gap-2 mt-3">
-                        <div class="stars">
-                            @for($s = 0; $s < 5; $s++)
-                                <i class="fas fa-star{{ $p['rating'] < $s + 1 && $p['rating'] > $s ? '-half-alt' : '' }}"
-                                   style="{{ $p['rating'] >= $s + 1 ? '' : 'opacity:0.2' }}"></i>
-                            @endfor
+
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-1">
+                            <div>
+                                <h3 class="font-rajdhani font-700 text-base leading-tight">{{ $p->name }}</h3>
+                                <p class="text-gray-500 text-xs mt-0.5">{{ $p->flavor }}</p>
+                            </div>
+                            <div class="text-right">
+                                @if($p->original_price)
+                                <span class="font-bebas text-sm text-gray-500 line-through block">${{ number_format($p->original_price, 2) }}</span>
+                                @endif
+                                <span class="font-bebas text-2xl text-[#FF6B00]">${{ number_format($p->price, 2) }}</span>
+                            </div>
                         </div>
-                        <span class="text-gray-500 text-xs">({{ number_format($p['reviews']) }})</span>
+                        <p class="text-gray-600 text-xs font-rajdhani font-600 tracking-wider uppercase mt-1">{{ $p->size }}</p>
+                        <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#1A1A1A]">
+                            <div class="flex items-center gap-1.5">
+                                <div class="stars text-[11px]">
+                                    @for($s = 0; $s < 5; $s++)
+                                    <i class="fas fa-star" style="{{ $p->rating >= $s + 1 ? '' : 'opacity:0.2' }}"></i>
+                                    @endfor
+                                </div>
+                                <span class="text-gray-500 text-[11px]">{{ $p->reviews }}</span>
+                            </div>
+                            <button class="w-8 h-8 flex items-center justify-center bg-[#1A1A1A] hover:bg-[#FF6B00] transition-colors text-gray-400 hover:text-white text-sm rounded">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            @else
+                {{-- Fallback featured products --}}
+                @php
+                $fallbackProducts = [
+                    ['name' => 'Tribute Pro', 'flavor' => 'Orange', 'size' => '12oz', 'price' => 4.99, 'original_price' => null, 'rating' => 5, 'reviews' => 24, 'color' => 'linear-gradient(135deg, #FF6B00, #FFB800)', 'is_new' => false, 'is_sale' => false, 'is_featured' => true],
+                    ['name' => 'Tribute Zero', 'flavor' => 'Citrus', 'size' => '12oz', 'price' => 4.99, 'original_price' => null, 'rating' => 5, 'reviews' => 18, 'color' => 'linear-gradient(135deg, #00D4FF, #0099CC)', 'is_new' => true, 'is_sale' => false, 'is_featured' => true],
+                    ['name' => 'Tribute Powder', 'flavor' => 'Orange', 'size' => '30 Servings', 'price' => 29.99, 'original_price' => 39.99, 'rating' => 5, 'reviews' => 32, 'color' => 'linear-gradient(135deg, #FF6B00, #FF4500)', 'is_new' => false, 'is_sale' => true, 'is_featured' => true],
+                    ['name' => 'Performance Bundle', 'flavor' => 'Variety', 'size' => 'Bundle', 'price' => 79.99, 'original_price' => 99.99, 'rating' => 5, 'reviews' => 45, 'color' => 'linear-gradient(135deg, #1A1A2E, #16213E)', 'is_new' => false, 'is_sale' => true, 'is_featured' => true],
+                ];
+                @endphp
+                @foreach($fallbackProducts as $i => $p)
+                <div class="card group" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
+                    <div class="relative overflow-hidden" style="height: 260px; background: {{ $p['color'] }};">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                            <div class="font-bebas text-8xl opacity-10 absolute top-1/2 -translate-y-1/2">TE</div>
+                            <i class="fas fa-bolt text-6xl opacity-60 drop-shadow-2xl relative z-10"></i>
+                            <span class="font-bebas text-xl mt-3 tracking-wider relative z-10">{{ $p['name'] }}</span>
+                            <span class="text-xs opacity-60 relative z-10 font-rajdhani">{{ $p['flavor'] }}</span>
+                        </div>
+
+                        <div class="absolute top-3 left-3 flex flex-col gap-2">
+                            @if($p['is_new'])
+                            <div class="product-tag text-white bg-green-600/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">New</div>
+                            @endif
+                            @if($p['is_sale'])
+                            <div class="product-tag text-white bg-red-600/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">Sale</div>
+                            @endif
+                            @if($p['is_featured'])
+                            <div class="product-tag text-white bg-[#FF6B00]/80 backdrop-blur-sm px-3 py-1 text-xs font-rajdhani font-700 tracking-wider uppercase rounded">Featured</div>
+                            @endif
+                        </div>
+
+                        <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 flex items-center justify-center text-white/60 hover:text-[#FF6B00] hover:bg-black/70 transition-all text-sm backdrop-blur-sm">
+                            <i class="fas fa-heart"></i>
+                        </button>
+
+                        <div class="absolute bottom-0 inset-x-0 bg-[#FF6B00] py-3.5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-center">
+                            <button class="font-rajdhani font-700 text-sm tracking-wider uppercase text-white w-full">
+                                <i class="fas fa-shopping-bag mr-2"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex items-start justify-between mb-1">
+                            <div>
+                                <h3 class="font-rajdhani font-700 text-base leading-tight">{{ $p['name'] }}</h3>
+                                <p class="text-gray-500 text-xs mt-0.5">{{ $p['flavor'] }}</p>
+                            </div>
+                            <div class="text-right">
+                                @if($p['original_price'])
+                                <span class="font-bebas text-sm text-gray-500 line-through block">${{ number_format($p['original_price'], 2) }}</span>
+                                @endif
+                                <span class="font-bebas text-2xl text-[#FF6B00]">${{ number_format($p['price'], 2) }}</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-xs font-rajdhani font-600 tracking-wider uppercase mt-1">{{ $p['size'] }}</p>
+                        <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#1A1A1A]">
+                            <div class="flex items-center gap-1.5">
+                                <div class="stars text-[11px]">
+                                    @for($s = 0; $s < 5; $s++)
+                                    <i class="fas fa-star" style="{{ $p['rating'] >= $s + 1 ? '' : 'opacity:0.2' }}"></i>
+                                    @endfor
+                                </div>
+                                <span class="text-gray-500 text-[11px]">{{ $p['reviews'] }}</span>
+                            </div>
+                            <button class="w-8 h-8 flex items-center justify-center bg-[#1A1A1A] hover:bg-[#FF6B00] transition-colors text-gray-400 hover:text-white text-sm rounded">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @endif
         </div>
 
         <div class="text-center mt-12" data-aos="fade-up">

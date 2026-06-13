@@ -26,7 +26,7 @@
     <section class="py-8 max-w-7xl mx-auto px-5 lg:px-8" x-data="shopFilters()">
         <div class="flex flex-col lg:flex-row gap-6">
             {{-- Sidebar Filters --}}
-            <div class="lg:w-56 flex-shrink-0">
+            <aside class="lg:w-56 flex-shrink-0">
                 <div class="bg-[#0D0D0D] border border-[#1E1E1E] rounded-lg p-5 sticky top-20">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="font-rajdhani font-700 text-base text-white">Filters</h3>
@@ -114,10 +114,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </aside>
 
             {{-- Products Grid --}}
-            <div class="flex-1">
+            <main class="flex-1 min-w-0">
                 {{-- Sort Bar --}}
                 <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#1E1E1E]">
                     <div class="text-xs text-gray-500">

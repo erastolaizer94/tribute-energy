@@ -148,6 +148,16 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{heroSection}', [App\Http\Controllers\Admin\HeroSectionController::class, 'destroy'])->name('destroy');
         });
 
+        // Features management
+        Route::prefix('features')->name('features.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\FeatureController::class, 'index'])->name('index');
+            Route::get('/create', [App\Http\Controllers\Admin\FeatureController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\FeatureController::class, 'store'])->name('store');
+            Route::get('/{feature}/edit', [App\Http\Controllers\Admin\FeatureController::class, 'edit'])->name('edit');
+            Route::put('/{feature}', [App\Http\Controllers\Admin\FeatureController::class, 'update'])->name('update');
+            Route::delete('/{feature}', [App\Http\Controllers\Admin\FeatureController::class, 'destroy'])->name('destroy');
+        });
+
         // Gallery management
         Route::prefix('gallery')->name('gallery.')->group(function () {
             Route::get('/', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('index');

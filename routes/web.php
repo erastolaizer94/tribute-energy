@@ -158,6 +158,16 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{feature}', [App\Http\Controllers\Admin\FeatureController::class, 'destroy'])->name('destroy');
         });
 
+        // Testimonials management
+        Route::prefix('testimonials')->name('testimonials.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\TestimonialController::class, 'index'])->name('index');
+            Route::get('/create', [App\Http\Controllers\Admin\TestimonialController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\TestimonialController::class, 'store'])->name('store');
+            Route::get('/{testimonial}/edit', [App\Http\Controllers\Admin\TestimonialController::class, 'edit'])->name('edit');
+            Route::put('/{testimonial}', [App\Http\Controllers\Admin\TestimonialController::class, 'update'])->name('update');
+            Route::delete('/{testimonial}', [App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])->name('destroy');
+        });
+
         // Gallery management
         Route::prefix('gallery')->name('gallery.')->group(function () {
             Route::get('/', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('index');

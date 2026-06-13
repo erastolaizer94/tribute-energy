@@ -42,7 +42,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Tribute Zero',
-            'slug' => 'tribute-zero',
             'description' => 'Zero-calorie energy drink with clean caffeine and no artificial sweeteners. Perfect for fasting and keto diets.',
             'price' => 4.99,
             'original_price' => null,
@@ -70,7 +69,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Tribute Powder',
-            'slug' => 'tribute-powder',
             'description' => 'Concentrated energy powder that mixes with water. Portable and customizable strength for your perfect energy boost.',
             'price' => 29.99,
             'original_price' => 39.99,
@@ -98,7 +96,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Tribute Berry',
-            'slug' => 'tribute-berry',
             'description' => 'Fruity energy drink with natural berry flavors and the same powerful energy formula as Tribute Pro.',
             'price' => 4.99,
             'original_price' => null,
@@ -126,7 +123,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Tribute Citrus',
-            'slug' => 'tribute-citrus',
             'description' => 'Refreshing citrus energy drink with lemon-lime flavor and electrolytes for hydration.',
             'price' => 4.99,
             'original_price' => null,
@@ -154,7 +150,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Performance Bundle',
-            'slug' => 'performance-bundle',
             'description' => 'Complete performance pack: 12 cans of Tribute Pro + 1 tub of Tribute Powder. Everything you need for peak performance.',
             'price' => 79.99,
             'original_price' => 99.99,
@@ -182,7 +177,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Starter Pack',
-            'slug' => 'starter-pack',
             'description' => 'Perfect introduction to Tribute Energy: 4 cans each of Pro, Zero, Berry, and Citrus flavors.',
             'price' => 19.99,
             'original_price' => null,
@@ -210,7 +204,6 @@ class ProductSeeder extends Seeder
 
         \App\Models\Product::create([
             'name' => 'Tribute Night',
-            'slug' => 'tribute-night',
             'description' => 'Recovery drink with magnesium, zinc, and melatonin for post-workout recovery and better sleep.',
             'price' => 5.99,
             'original_price' => null,

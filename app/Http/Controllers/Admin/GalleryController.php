@@ -84,6 +84,11 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery)
     {
+        // Delete image file
+        if ($gallery->image && file_exists(public_path($gallery->image))) {
+            unlink(public_path($gallery->image));
+        }
+
         $gallery->delete();
 
         return redirect()->route('admin.gallery.index')->with('success', 'Gallery item deleted successfully.');

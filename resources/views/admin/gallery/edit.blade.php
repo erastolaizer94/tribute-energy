@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<form action="{{ route('admin.gallery.update', $gallery) }}" method="POST">
+<form action="{{ route('admin.gallery.update', $gallery) }}" method="POST" enctype="multipart/form-data">
     @csrf @method('PUT')
     <div class="form-layout">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
@@ -93,10 +93,17 @@
                         <label class="form-label">Description</label>
                         <textarea name="description" class="form-textarea">{{ old('description', $gallery->description) }}</textarea>
                     </div>
+                    @if($gallery->image)
                     <div class="form-group">
-                        <label class="form-label">Image URL <span class="req">*</span></label>
-                        <input type="text" name="image" class="form-input" value="{{ old('image', $gallery->image) }}" required
-                               oninput="updatePreview(this.value)">
+                        <label class="form-label">Current Image</label>
+                        <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}" class="w-32 h-32 rounded-lg object-cover">
+                    </div>
+                    @endif
+                    <div class="form-group">
+                        <label class="form-label">Replace Image</label>
+                        <input type="file" name="image" class="form-input" accept="image/*">
+                        <div class="form-hint">Leave empty to keep current image</div>
+                    </div>
                     </div>
                     <div class="form-grid-2">
                         <div class="form-group">

@@ -14,7 +14,10 @@ class AddMissingColumnsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->string('color_start')->nullable()->after('color');
+            $table->string('color_end')->nullable()->after('color_start');
+            $table->string('flavor')->nullable()->after('color_end');
+            $table->string('size')->nullable()->after('flavor');
         });
     }
 
@@ -26,7 +29,7 @@ class AddMissingColumnsToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn(['color_start', 'color_end', 'flavor', 'size']);
         });
     }
 }

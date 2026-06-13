@@ -10,9 +10,47 @@ Route::get('/', function () {
 })->name('home');
 
 // Products page
-Route::get('/products', function () {
-    $products = \App\Models\Product::where('is_active', true)->get();
-    return view('products', compact('products'));
+Route::get('/products', function (Illuminate\Http\Request $request) {
+    $query = \App\Models\Product::where('is_active', true);
+    
+    // Category filter
+    if ($request->has('category') && $request->category) {
+        $query->where('category', $request->category);
+    }
+    
+    // Search filter
+    if ($request->has('search') && $request->search) {
+        $query->where('name', 'like', '%' . $request->search . '%')
+              ->orWhere('description', 'like', '%' . $request->search . '%');
+    }
+    
+    // Price range filter
+    if ($request->has('min_price') && $request->min_price) {
+        $query->where('price', '>=', $request->min_price);
+    }
+    if ($request->has('max_price') && $request->max_price) {
+        $query->where('price', '<=', $request->max_price);
+    }
+    
+    // Featured filter
+    if ($request->has('featured') && $request->featured) {
+        $query->where('is_featured', true);
+    }
+    
+    // Sale filter
+    if ($request->has('sale') && $request->sale) {
+        $query->where('is_sale', true);
+    }
+    
+    // New filter
+    if ($request->has('new') && $request->new) {
+        $query->where('is_new', true);
+    }
+    
+    $products = $query->get();
+    $categories = \App\Models\Product::where('is_active', true)->distinct()->pluck('category')->filter();
+    
+    return view('products', compact('products', 'categories'));
 })->name('products');
 
 // Gallery page

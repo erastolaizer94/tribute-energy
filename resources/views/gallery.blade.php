@@ -124,99 +124,30 @@
         <section class="py-16">
             <div class="max-w-screen-2xl mx-auto px-4 lg:px-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    
-                    {{-- Gallery Item 1 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
+                    @foreach($gallery as $item)
+                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square relative">
+                        @if($item->image)
+                            <img src="{{ asset($item->image) }}" alt="{{ $item->title }}" class="w-full h-full object-cover">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Solar Panel Installation</p>
+                            <p class="text-white font-semibold">{{ $item->title }}</p>
+                            @if($item->category)
+                                <p class="text-white/80 text-sm">{{ $item->category }}</p>
+                            @endif
                         </div>
                     </div>
-
-                    {{-- Gallery Item 2 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Water Pump System</p>
-                        </div>
-                    </div>
-
-                    {{-- Gallery Item 3 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Inverter Installation</p>
-                        </div>
-                    </div>
-
-                    {{-- Gallery Item 4 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Battery Storage</p>
-                        </div>
-                    </div>
-
-                    {{-- Gallery Item 5 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Solar Controller</p>
-                        </div>
-                    </div>
-
-                    {{-- Gallery Item 6 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                            <p class="text-white font-semibold">Commercial Project</p>
-                        </div>
-                    </div>
-
-                    {{-- Gallery Item 7 --}}
-                    <div class="gallery-item rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
                         </div>
                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                             <p class="text-white font-semibold">Residential Installation</p>

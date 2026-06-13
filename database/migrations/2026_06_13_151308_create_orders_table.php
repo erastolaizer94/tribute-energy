@@ -18,11 +18,17 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('order_number')->unique();
             $table->decimal('total_amount', 10, 2);
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('shipping_cost', 10, 2)->default(0);
+            $table->decimal('tax', 10, 2)->default(0);
             $table->string('status')->default('pending');
             $table->string('payment_status')->default('pending');
             $table->string('shipping_address');
             $table->string('phone');
+            $table->string('email');
             $table->text('notes')->nullable();
+            $table->timestamp('shipped_at')->nullable();
+            $table->timestamp('delivered_at')->nullable();
             $table->timestamps();
         });
     }

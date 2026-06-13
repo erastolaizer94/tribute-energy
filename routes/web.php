@@ -131,6 +131,13 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/{order}/payment-status', [App\Http\Controllers\Admin\OrderController::class, 'updatePaymentStatus'])->name('update-payment-status');
         });
 
+        // Payments management
+        Route::prefix('payments')->name('payments.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\PaymentController::class, 'index'])->name('index');
+            Route::get('/{payment}', [App\Http\Controllers\Admin\PaymentController::class, 'show'])->name('show');
+            Route::put('/{payment}/confirm', [App\Http\Controllers\Admin\PaymentController::class, 'confirm'])->name('confirm');
+        });
+
         // Gallery management
         Route::prefix('gallery')->name('gallery.')->group(function () {
             Route::get('/', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('index');

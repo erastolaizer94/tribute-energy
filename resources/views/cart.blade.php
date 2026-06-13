@@ -147,9 +147,20 @@
                                     </div>
                                 </div>
                                 @if(count($cart) > 0)
-                                    <a href="{{ route('checkout') }}" class="mt-6 block w-full px-6 py-3 text-center text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                        Proceed to Checkout
-                                    </a>
+                                    @auth
+                                        <a href="{{ route('checkout') }}" class="mt-6 block w-full px-6 py-3 text-center text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                            Proceed to Checkout
+                                        </a>
+                                    @else
+                                        <div class="mt-6 space-y-3">
+                                            <a href="{{ route('checkout') }}" class="block w-full px-6 py-3 text-center text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                                Checkout as Guest
+                                            </a>
+                                            <a href="{{ route('register') }}" class="block w-full px-6 py-3 text-center text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+                                                Register for Better Experience
+                                            </a>
+                                        </div>
+                                    @endif
                                 @endif
                                 <a href="{{ route('products') }}" class="mt-4 block w-full px-6 py-3 text-center text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
                                     Continue Shopping

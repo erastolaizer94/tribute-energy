@@ -119,6 +119,8 @@
                             </button>
                         </div>
 
+                        <form id="filterForm" action="{{ route('products') }}" method="GET">
+
                         {{-- Category Filter --}}
                         <div class="mb-6">
                             <h3 class="text-sm font-semibold text-gray-900 mb-3">Category</h3>
@@ -187,9 +189,10 @@
                             </div>
                         </div>
 
-                        <button class="w-full py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                        <button type="submit" class="w-full py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
                             Apply Filters
                         </button>
+                        </form>
                     </div>
                 </aside>
 

@@ -248,95 +248,46 @@
 
                     {{-- Products Grid --}}
                     <div id="productsContainer" class="product-grid-view">
-                        
-                        {{-- Product 1 --}}
-                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="1" data-product-name="Solar Panel 300W" data-product-price="450000" data-product-color="linear-gradient(135deg, #fff7ed, #ffedd5)">
-                            <div class="relative h-56 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
-                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fff7ed, #ffedd5);">
+                        @foreach($products as $product)
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}" data-product-price="{{ $product->price }}" data-product-color="{{ $product->color ?? 'linear-gradient(135deg, #fff7ed, #ffedd5)' }}">
+                            <div class="relative h-56 flex items-center justify-center" style="background: {{ $product->color ?? 'linear-gradient(135deg, #fff7ed, #ffedd5)' }};">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: {{ $product->color ?? 'linear-gradient(135deg, #fff7ed, #ffedd5)' }};">
                                     <svg class="w-16 h-16" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                                     </svg>
                                 </div>
-                                <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">New</span>
+                                @if($product->is_new)
+                                    <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">New</span>
+                                @endif
+                                @if($product->is_featured)
+                                    <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-green-500">Featured</span>
+                                @endif
+                                @if($product->is_sale)
+                                    <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-red-500">Sale</span>
+                                @endif
                             </div>
                             <div class="p-5">
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Panel 300W</h3>
-                                <p class="text-sm text-gray-600 mb-3">High-efficiency monocrystalline solar panel for residential and commercial use.</p>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $product->name }}</h3>
+                                <p class="text-sm text-gray-600 mb-3">{{ Str::limit($product->description, 80) }}</p>
                                 <div class="flex items-center mb-3">
-                                    <span class="text-yellow-400">★★★★★</span>
-                                    <span class="text-sm text-gray-500 ml-2">(24 reviews)</span>
+                                    <span class="text-yellow-400">{{ $product->rating ?? '★★★★★' }}</span>
+                                    <span class="text-sm text-gray-500 ml-2">{{ $product->reviews ?? '(0 reviews)' }}</span>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 450,000</span>
+                                    <div>
+                                        @if($product->is_sale && $product->original_price)
+                                            <span class="text-sm text-gray-400 line-through mr-2">TZS {{ number_format($product->original_price) }}</span>
+                                        @endif
+                                        <span class="text-xl font-bold" style="color: #FF8C00;">TZS {{ number_format($product->price) }}</span>
+                                    </div>
                                     <button class="add-to-cart-btn px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-
-                        {{-- Product 2 --}}
-                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="2" data-product-name="Solar Water Pump 2HP" data-product-price="1200000" data-product-color="linear-gradient(135deg, #dbeafe, #bfdbfe)">
-                            <div class="relative h-56 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">
-                                    <svg class="w-16 h-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Water Pump 2HP</h3>
-                                <p class="text-sm text-gray-600 mb-3">Efficient solar-powered water pump for irrigation and domestic water supply.</p>
-                                <div class="flex items-center mb-3">
-                                    <span class="text-yellow-400">★★★★★</span>
-                                    <span class="text-sm text-gray-500 ml-2">(18 reviews)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 1,200,000</span>
-                                    <button class="add-to-cart-btn px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                        Add to Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Product 3 --}}
-                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="3" data-product-name="Hybrid Inverter 5kW" data-product-price="2500000" data-product-color="linear-gradient(135deg, #dcfce7, #bbf7d0)">
-                            <div class="relative h-56 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dcfce7, #bbf7d0);">
-                                    <svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                    </svg>
-                                </div>
-                                <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-green-500">Best Seller</span>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">Hybrid Inverter 5kW</h3>
-                                <p class="text-sm text-gray-600 mb-3">Hybrid inverter for seamless switching between solar and grid power.</p>
-                                <div class="flex items-center mb-3">
-                                    <span class="text-yellow-400">★★★★★</span>
-                                    <span class="text-sm text-gray-500 ml-2">(32 reviews)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 2,500,000</span>
-                                    <button class="add-to-cart-btn px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                        Add to Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Product 4 --}}
-                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="4" data-product-name="Solar Battery 200Ah" data-product-price="850000" data-product-color="linear-gradient(135deg, #f3e8ff, #e9d5ff)">
-                            <div class="relative h-56 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">
-                                    <svg class="w-16 h-16 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Battery 200Ah</h3>
+                        @endforeach
+                    </div>
                                 <p class="text-sm text-gray-600 mb-3">Deep cycle solar battery for energy storage and backup power.</p>
                                 <div class="flex items-center mb-3">
                                     <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>

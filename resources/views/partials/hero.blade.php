@@ -1,18 +1,36 @@
 <section class="relative min-h-screen flex items-center overflow-hidden">
+    {{-- Hero Carousel --}}
+    @if($heroSections->count() > 0)
+    <div id="hero-carousel" class="absolute inset-0 w-full h-full z-0">
+        @foreach($heroSections as $index => $hero)
+        <div class="hero-slide absolute inset-0 transition-opacity duration-1000 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}" data-index="{{ $index }}">
+            {{-- Video Background if available --}}
+            @if($hero->video_url)
+            <video autoplay muted loop playsinline
+                   class="absolute inset-0 w-full h-full object-cover opacity-25">
+                <source src="{{ $hero->video_url }}" type="video/mp4">
+            </video>
+            @endif
 
-    {{-- Video Background --}}
-    <video autoplay muted loop playsinline
-           class="absolute inset-0 w-full h-full object-cover opacity-25 z-0">
-        <source src="{{ asset('video/hero-bg.mp4') }}" type="video/mp4">
-    </video>
+            {{-- Background Image --}}
+            @if($hero->background_image)
+            <div class="absolute inset-0 z-0"
+                 style="background: url('{{ asset($hero->background_image) }}') center/cover no-repeat; opacity: 0.3;"></div>
+            @endif
 
-    {{-- Hero background image fallback --}}
+            {{-- Animated gradient overlay --}}
+            <div class="absolute inset-0 z-[1]"
+                 style="background: linear-gradient(135deg, #0A0A0A 0%, rgba(20,8,0,0.97) 40%, rgba(255,107,0,0.06) 100%);"></div>
+        </div>
+        @endforeach
+    </div>
+    @else
+    {{-- Fallback background --}}
     <div class="absolute inset-0 z-0"
          style="background: url('{{ asset('hero-bg.jpg') }}') center/cover no-repeat; opacity: 0.2;"></div>
-
-    {{-- Animated gradient overlay --}}
     <div class="absolute inset-0 z-[1]"
          style="background: linear-gradient(135deg, #0A0A0A 0%, rgba(20,8,0,0.97) 40%, rgba(255,107,0,0.06) 100%);"></div>
+    @endif
 
     {{-- Particle canvas --}}
     <canvas id="hero-canvas" class="absolute inset-0 z-[2] pointer-events-none"></canvas>
@@ -24,7 +42,35 @@
     {{-- Content --}}
     <div class="relative z-[4] max-w-7xl mx-auto px-5 lg:px-8 pt-32 pb-20">
         <div class="max-w-3xl">
+            @if($heroSections->count() > 0)
+            <div id="hero-content" class="transition-all duration-500">
+                @foreach($heroSections as $index => $hero)
+                <div class="hero-content-item {{ $index === 0 ? 'block' : 'hidden' }}" data-index="{{ $index }}">
+                    <div class="section-label mb-5 animate__animated animate__fadeInDown" style="animation-delay:0.1s">
+                        {{ $hero->title }}
+                    </div>
 
+                    <h1 class="font-bebas leading-[0.9] mb-6 text-glow animate__animated animate__fadeInUp" style="animation-delay:0.2s; font-size: clamp(72px, 12vw, 150px);">
+                        {!! nl2br($hero->subtitle) !!}
+                    </h1>
+
+                    <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp" style="animation-delay:0.5s">
+                        @if($hero->button_link)
+                        <a href="{{ $hero->button_link }}" class="btn-primary">
+                            <span>{{ $hero->button_text }}</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        @endif
+                        <a href="{{ route('products') }}" class="btn-outline">
+                            Shop Products
+                            <i class="fas fa-shopping-bag"></i>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @else
+            {{-- Fallback content --}}
             <div class="section-label mb-5 animate__animated animate__fadeInDown" style="animation-delay:0.1s">
                 Premium Energy Supplements
             </div>
@@ -50,6 +96,7 @@
                     <i class="fas fa-flask"></i>
                 </a>
             </div>
+            @endif
 
             {{-- Stats --}}
             <div class="flex flex-wrap gap-10 mt-16 pt-10 border-t border-white/10 animate__animated animate__fadeInUp" style="animation-delay:0.65s">
@@ -73,11 +120,28 @@
         </div>
     </div>
 
+    {{-- Carousel Navigation --}}
+    @if($heroSections->count() > 1)
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-[4] flex items-center gap-4">
+        <button id="hero-prev" class="w-10 h-10 rounded-full border border-[#FF6B00]/30 flex items-center justify-center text-[#FF6B00] hover:bg-[#FF6B00]/20 transition-colors">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div id="hero-dots" class="flex gap-2">
+            @foreach($heroSections as $index => $hero)
+            <button class="hero-dot w-2 h-2 rounded-full {{ $index === 0 ? 'bg-[#FF6B00]' : 'bg-gray-600' }} transition-colors" data-index="{{ $index }}"></button>
+            @endforeach
+        </div>
+        <button id="hero-next" class="w-10 h-10 rounded-full border border-[#FF6B00]/30 flex items-center justify-center text-[#FF6B00] hover:bg-[#FF6B00]/20 transition-colors">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+    @else
     {{-- Scroll indicator --}}
     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-[4] flex flex-col items-center gap-2 animate-bounce">
         <div class="w-px h-12 bg-gradient-to-b from-[#FF6B00] to-transparent"></div>
         <i class="fas fa-chevron-down text-[#FF6B00] text-xs"></i>
     </div>
+    @endif
 
     {{-- Right decorative element --}}
     <div class="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-10 z-[2] pointer-events-none"

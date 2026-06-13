@@ -726,6 +726,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             attachLinkListeners();
             attachFormListeners();
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 50
+            });
         });
 
         // Handle browser back/forward buttons
@@ -733,5 +741,6 @@
             window.location.reload();
         });
     </script>
+    <script src="{{ asset('node_modules/aos/dist/aos.js') }}"></script>
 </body>
 </html>

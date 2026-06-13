@@ -21,8 +21,12 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 15, 2);
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('color')->nullable();
-            $table->string('rating', 10)->default('★★★★★');
-            $table->string('reviews')->default('(0 reviews)');
+            $table->string('color_start')->nullable();
+            $table->string('color_end')->nullable();
+            $table->string('flavor')->nullable();
+            $table->string('size')->nullable();
+            $table->integer('rating')->default(5);
+            $table->integer('reviews')->default(0);
             $table->json('specs')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_new')->default(false);

@@ -232,32 +232,63 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @php
-                $reviews = [
-                    ['name' => 'Jordan M.', 'role' => 'Marathon Runner', 'text' => "I've tried every energy supplement out there. Tribute Pro is the only one that gets me through 20-mile training runs without a single crash. Game changer.", 'stars' => 5],
-                    ['name' => 'Aisha K.', 'role' => 'Competitive Gamer', 'text' => "My reaction times improved noticeably in the first week. The focus from Tribute Zero is unreal — no jitters, just clean, locked-in energy for hours.", 'stars' => 5],
-                    ['name' => 'Marcus T.', 'role' => 'CrossFit Coach', 'text' => "I recommend Tribute Energy to all my athletes. The ingredient transparency is what sold me — you know exactly what you're putting in your body.", 'stars' => 5],
-                ];
-                @endphp
-                @foreach($reviews as $i => $r)
-                <div class="card p-7" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                    <div class="stars mb-4">
-                        @for($s = 0; $s < $r['stars']; $s++)
-                            <i class="fas fa-star"></i>
-                        @endfor
-                    </div>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"{{ $r['text'] }}"</p>
-                    <div class="flex items-center gap-3 pt-5 border-t border-[#1E1E1E]">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center font-bold text-sm">
-                            {{ strtoupper(substr($r['name'], 0, 1)) }}
+                @if($testimonials->count() > 0)
+                    @foreach($testimonials as $i => $t)
+                    <div class="card p-7" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
+                        <div class="stars mb-4">
+                            @for($s = 0; $s < $t->rating; $s++)
+                                <i class="fas fa-star"></i>
+                            @endfor
                         </div>
-                        <div>
-                            <div class="font-rajdhani font-700 text-sm">{{ $r['name'] }}</div>
-                            <div class="text-gray-500 text-xs">{{ $r['role'] }}</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"{{ $t->content }}"</p>
+                        <div class="flex items-center gap-3 pt-5 border-t border-[#1E1E1E]">
+                            @if($t->avatar)
+                            <img src="{{ asset($t->avatar) }}" alt="{{ $t->name }}" class="w-10 h-10 rounded-full object-cover">
+                            @else
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center font-bold text-sm">
+                                {{ strtoupper(substr($t->name, 0, 1)) }}
+                            </div>
+                            @endif
+                            <div>
+                                <div class="font-rajdhani font-700 text-sm">{{ $t->name }}</div>
+                                <div class="text-gray-500 text-xs">
+                                    @if($t->role){{ $t->role }}@endif
+                                    @if($t->role && $t->company) · @endif
+                                    @if($t->company){{ $t->company }}@endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @else
+                    {{-- Fallback testimonials --}}
+                    @php
+                    $fallbackReviews = [
+                        ['name' => 'Jordan M.', 'role' => 'Marathon Runner', 'text' => "I've tried every energy supplement out there. Tribute Pro is the only one that gets me through 20-mile training runs without a single crash. Game changer.", 'stars' => 5],
+                        ['name' => 'Aisha K.', 'role' => 'Competitive Gamer', 'text' => "My reaction times improved noticeably in the first week. The focus from Tribute Zero is unreal — no jitters, just clean, locked-in energy for hours.", 'stars' => 5],
+                        ['name' => 'Marcus T.', 'role' => 'CrossFit Coach', 'text' => "I recommend Tribute Energy to all my athletes. The ingredient transparency is what sold me — you know exactly what you're putting in your body.", 'stars' => 5],
+                    ];
+                    @endphp
+                    @foreach($fallbackReviews as $i => $r)
+                    <div class="card p-7" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
+                        <div class="stars mb-4">
+                            @for($s = 0; $s < $r['stars']; $s++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"{{ $r['text'] }}"</p>
+                        <div class="flex items-center gap-3 pt-5 border-t border-[#1E1E1E]">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center font-bold text-sm">
+                                {{ strtoupper(substr($r['name'], 0, 1)) }}
+                            </div>
+                            <div>
+                                <div class="font-rajdhani font-700 text-sm">{{ $r['name'] }}</div>
+                                <div class="text-gray-500 text-xs">{{ $r['role'] }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

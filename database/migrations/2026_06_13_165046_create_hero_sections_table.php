@@ -15,6 +15,13 @@ class CreateHeroSectionsTable extends Migration
     {
         Schema::create('hero_sections', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('subtitle');
+            $table->string('button_text');
+            $table->string('button_link');
+            $table->string('background_image')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

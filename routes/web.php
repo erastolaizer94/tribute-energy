@@ -123,6 +123,14 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{category}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('destroy');
         });
 
+        // Orders management
+        Route::prefix('orders')->name('orders.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('index');
+            Route::get('/{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('show');
+            Route::put('/{order}/status', [App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('update-status');
+            Route::put('/{order}/payment-status', [App\Http\Controllers\Admin\OrderController::class, 'updatePaymentStatus'])->name('update-payment-status');
+        });
+
         // Gallery management
         Route::prefix('gallery')->name('gallery.')->group(function () {
             Route::get('/', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('index');

@@ -123,26 +123,12 @@
                         <div class="mb-6">
                             <h3 class="text-sm font-semibold text-gray-900 mb-3">Category</h3>
                             <div class="space-y-2">
+                                @foreach($categories as $category)
                                 <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
-                                    <span class="ml-3 text-sm text-gray-700">Solar Panels</span>
+                                    <input type="checkbox" name="category" value="{{ $category }}" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" {{ request('category') == $category ? 'checked' : '' }} onchange="document.getElementById('filterForm').submit()">
+                                    <span class="ml-3 text-sm text-gray-700">{{ $category }}</span>
                                 </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
-                                    <span class="ml-3 text-sm text-gray-700">Water Pumps</span>
-                                </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
-                                    <span class="ml-3 text-sm text-gray-700">Inverters</span>
-                                </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
-                                    <span class="ml-3 text-sm text-gray-700">Batteries</span>
-                                </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
-                                    <span class="ml-3 text-sm text-gray-700">Accessories</span>
-                                </label>
+                                @endforeach
                             </div>
                         </div>
 
@@ -213,19 +199,27 @@
                 {{-- Right Column - Products --}}
                 <div class="flex-1">
                     {{-- Search and View Toggle --}}
-                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <form id="filterForm" action="{{ route('products') }}" method="GET" class="flex flex-col sm:flex-row gap-4 mb-6">
                         <div class="flex-1 relative">
-                            <input type="text" placeholder="Search products..." class="w-full px-4 py-3 pl-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
+                            <svg class="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products..." class="w-full px-4 py-3 pl-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button id="gridViewBtn" class="p-3 rounded-lg border-2 transition-all duration-200" style="border-color: #FF8C00; background: #fff7ed;">
-                                <svg class="w-5 h-5" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                                </svg>
-                            </button>
+                        <div class="flex gap-2">
+                            <select name="category" class="px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" onchange="this.form.submit()">
+                                <option value="">All Categories</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>{{ $category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                    
+                    <div class="flex items-center gap-2">
+                        <button id="gridViewBtn" class="p-3 rounded-lg border-2 transition-all duration-200" style="border-color: #FF8C00; background: #fff7ed;">
+                            <svg class="w-5 h-5" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            </svg>
+                        </button>
                             <button id="cardViewBtn" class="p-3 rounded-lg border-2 border-gray-200 text-gray-400 hover:border-gray-300 transition-all duration-200">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>

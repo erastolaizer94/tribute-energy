@@ -1,4 +1,19 @@
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    @if(session('success'))
+        <div class="bg-green-500 text-white px-4 py-2 text-center text-sm font-semibold">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="bg-red-500 text-white px-4 py-2 text-center text-sm font-semibold">
+            {{ session('error') }}
+        </div>
+    @endif
+    @if(session('info'))
+        <div class="bg-blue-500 text-white px-4 py-2 text-center text-sm font-semibold">
+            {{ session('info') }}
+        </div>
+    @endif
     <nav class="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div class="flex items-center justify-between h-16 lg:h-[68px]">
 

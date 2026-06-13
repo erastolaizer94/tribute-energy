@@ -80,6 +80,16 @@
 
             <form action="{{ route('checkout.place') }}" method="POST">
                 @csrf
+                @error('shipping_address')
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {{ $message }}
+                    </div>
+                @enderror
+                @error('phone')
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {{ $message }}
+                    </div>
+                @enderror
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div class="lg:col-span-2">

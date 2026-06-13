@@ -1,0 +1,25 @@
+diff --git a/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js b/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js
+index 241a2ed..4ed90ad 100644
+--- a/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js
++++ b/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js
+@@ -3,9 +3,19 @@ const chalk = require('chalk');
+ const Table = require('cli-table3');
+ const readline = require('readline');
+ const stripAnsi = require('strip-ansi');
+-const { formatSize } = require('webpack/lib/SizeFormatHelpers');
+ const { version } = require('../../package.json');
+ 
++// Polyfill for webpack 5 which removed SizeFormatHelpers
++function formatSize(size) {
++    if (size < 1000) {
++        return size + ' B';
++    }
++    if (size < 1000000) {
++        return (size / 1000).toFixed(2) + ' kB';
++    }
++    return (size / 1000000).toFixed(2) + ' MB';
++}
++
+ /**
+  * @typedef {object} BuildOutputOptions
+  * @property {boolean} clearConsole

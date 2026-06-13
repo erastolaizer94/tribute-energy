@@ -156,13 +156,13 @@
 @section('content')
 
 {{-- Page header --}}
-<div class="page-header">
+<div class="page-header animate__animated animate__fadeInDown">
     <div>
         <h1 class="page-title">Dashboard</h1>
         <p class="page-description">{{ now()->format('l, F j, Y') }} — Welcome back, {{ auth()->user()->name ?? 'Admin' }}</p>
     </div>
     <div class="quick-actions">
-        <a href="{{ route('admin.products.create') }}" class="quick-btn quick-btn-primary">
+        <a href="{{ route('admin.products.create') }}" class="quick-btn quick-btn-primary animate__animated animate__pulse">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
             Add Product
         </a>
@@ -175,7 +175,7 @@
 
 {{-- Stats --}}
 <div class="stats-grid">
-    <div class="stat-card" style="--stat-color:#FF8C00;--stat-bg:rgba(255,140,0,0.08);">
+    <div class="stat-card animate__animated animate__fadeInUp" style="--stat-color:#FF8C00;--stat-bg:rgba(255,140,0,0.08); animation-delay: 0.1s;">
         <div class="stat-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
         </div>
@@ -188,7 +188,7 @@
         </div>
     </div>
 
-    <div class="stat-card" style="--stat-color:#6366f1;--stat-bg:rgba(99,102,241,0.08);">
+    <div class="stat-card animate__animated animate__fadeInUp" style="--stat-color:#6366f1;--stat-bg:rgba(99,102,241,0.08); animation-delay: 0.2s;">
         <div class="stat-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         </div>
@@ -199,7 +199,7 @@
         </div>
     </div>
 
-    <div class="stat-card" style="--stat-color:#0ea5e9;--stat-bg:rgba(14,165,233,0.08);">
+    <div class="stat-card animate__animated animate__fadeInUp" style="--stat-color:#0ea5e9;--stat-bg:rgba(14,165,233,0.08); animation-delay: 0.3s;">
         <div class="stat-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
         </div>
@@ -216,7 +216,7 @@
         </div>
     </div>
 
-    <div class="stat-card" style="--stat-color:#10b981;--stat-bg:rgba(16,185,129,0.08);">
+    <div class="stat-card animate__animated animate__fadeInUp" style="--stat-color:#10b981;--stat-bg:rgba(16,185,129,0.08); animation-delay: 0.4s;">
         <div class="stat-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
@@ -229,9 +229,9 @@
 </div>
 
 {{-- Charts row --}}
-<div class="content-row content-row-2" style="margin-bottom:1rem;">
+<div class="content-row content-row-2" style="margin-bottom:1.25rem;">
     {{-- Revenue line chart --}}
-    <div class="card">
+    <div class="card animate__animated animate__fadeInLeft" style="animation-delay: 0.5s;">
         <div class="card-header">
             <div>
                 <div class="card-title">Revenue &amp; Orders Overview</div>
@@ -248,7 +248,7 @@
     </div>
 
     {{-- Doughnut chart --}}
-    <div class="card">
+    <div class="card animate__animated animate__fadeInRight" style="animation-delay: 0.6s;">
         <div class="card-header">
             <div>
                 <div class="card-title">Product Categories</div>
@@ -265,7 +265,7 @@
 {{-- Tables row --}}
 <div class="content-row content-row-2">
     {{-- Recent Users --}}
-    <div class="card">
+    <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.7s;">
         <div class="card-header">
             <div>
                 <div class="card-title">Recent Users</div>
@@ -290,8 +290,8 @@
                             <div style="display:flex;align-items:center;gap:0.75rem;">
                                 <div class="avatar">{{ strtoupper(substr($u->name, 0, 1)) }}</div>
                                 <div>
-                                    <div style="font-weight:600;color:#1e293b;font-size:0.8125rem;">{{ $u->name }}</div>
-                                    <div style="font-size:0.6875rem;color:#94a3b8;">{{ $u->email }}</div>
+                                    <div style="font-weight:700;color:#1e293b;font-size:0.875rem;">{{ $u->name }}</div>
+                                    <div style="font-size:0.75rem;color:#94a3b8;">{{ $u->email }}</div>
                                 </div>
                             </div>
                         </td>
@@ -302,9 +302,9 @@
                                 <span class="badge badge-gray">User</span>
                             @endif
                         </td>
-                        <td style="color:#94a3b8;font-size:0.75rem;white-space:nowrap;">{{ $u->created_at->format('M d') }}</td>
+                        <td style="color:#94a3b8;font-size:0.8125rem;white-space:nowrap;">{{ $u->created_at->format('M d') }}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $u) }}" style="color:#FF8C00;font-size:0.75rem;font-weight:600;text-decoration:none;">Edit</a>
+                            <a href="{{ route('admin.users.edit', $u) }}" style="color:#FF8C00;font-size:0.8125rem;font-weight:700;text-decoration:none;">Edit</a>
                         </td>
                     </tr>
                     @empty
@@ -316,7 +316,7 @@
     </div>
 
     {{-- Recent Products --}}
-    <div class="card">
+    <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
         <div class="card-header">
             <div>
                 <div class="card-title">Recent Products</div>

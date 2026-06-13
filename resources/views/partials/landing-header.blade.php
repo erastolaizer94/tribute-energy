@@ -3,9 +3,8 @@
         <div class="flex items-center justify-between h-16 lg:h-[68px]">
 
             {{-- Logo --}}
-            <a href="/" class="flex items-center space-x-2.5 flex-shrink-0">
-                <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="h-12 w-auto object-contain" style="filter: brightness(0);">
-                <span class="text-xl font-bold text-gray-900 tracking-tight">Tribute Energy</span>
+            <a href="/" class="flex items-center flex-shrink-0">
+                <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="h-12 w-auto object-contain">
             </a>
 
             {{-- Center Nav Links --}}

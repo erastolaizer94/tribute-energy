@@ -13,16 +13,26 @@ class Order extends Model
         'user_id',
         'order_number',
         'total_amount',
+        'subtotal',
+        'shipping_cost',
+        'tax',
         'status',
         'payment_status',
         'shipping_address',
         'phone',
+        'email',
         'notes',
-        'tracking_number',
-        'estimated_delivery',
         'shipped_at',
         'delivered_at',
-        'carrier',
+    ];
+
+    protected $casts = [
+        'total_amount' => 'float',
+        'subtotal' => 'float',
+        'shipping_cost' => 'float',
+        'tax' => 'float',
+        'shipped_at' => 'datetime',
+        'delivered_at' => 'datetime',
     ];
 
     public function user()
@@ -33,5 +43,16 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_items')
+            ->withPivot('quantity', 'price', 'subtotal');
     }
 }

@@ -10,9 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'price', 'original_price',
-        'color', 'rating', 'reviews', 'specs', 'category',
-        'image', 'is_featured', 'is_new', 'is_sale', 'is_active',
+        'name', 'slug', 'description', 'price', 'original_price',
+        'category_id', 'color', 'rating', 'reviews', 'specs',
+        'image', 'images', 'stock', 'is_featured', 'is_new', 'is_sale', 'is_active',
     ];
 
     protected $casts = [
@@ -22,5 +22,22 @@ class Product extends Model
         'is_active'   => 'boolean',
         'price'       => 'float',
         'original_price' => 'float',
+        'specs'       => 'array',
+        'images'      => 'array',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items');
+    }
 }

@@ -38,11 +38,7 @@
             padding: 0;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%), url('{{ asset('hero-bg.jpg') }}');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background: #ffffff;
         }
 
         .auth-brand-side::before {

@@ -160,30 +160,25 @@
     @include('partials.landing-footer')
 
     {{-- Mobile Menu Button --}}
-    <button id="mobileMenuBtn" class="lg:hidden fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <button id="mobileMenuBtn" class="lg:hidden fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
 
     {{-- Mobile Sidebar --}}
     <div id="mobileSidebar" class="lg:hidden fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/50" id="mobileSidebarOverlay"></div>
-        <div class="absolute left-0 top-0 bottom-0 w-64 bg-white">
+        <div class="absolute left-0 top-0 bottom-0 w-72 mobile-sidebar shadow-2xl">
             <div class="p-6">
-                {{-- User Profile Card --}}
-                <div class="bg-white rounded-2xl p-6 shadow-lg mb-6 border border-orange-100">
-                    <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                            {{ substr(auth()->user()->name, 0, 1) }}
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900 text-lg">{{ auth()->user()->name }}</div>
-                            <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
-                            <div class="text-xs text-orange-600 font-semibold mt-1">Customer</div>
-                        </div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                        {{ substr(auth()->user()->name, 0, 1) }}
+                    </div>
+                    <div>
+                        <div class="font-bold text-gray-900 text-lg">{{ auth()->user()->name }}</div>
+                        <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 
-                {{-- Navigation --}}
                 <nav class="space-y-2">
                     <a href="{{ route('user.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ request()->is('user/dashboard') ? 'nav-item-active' : 'text-gray-700 hover:bg-orange-50 hover:text-orange-600' }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -204,10 +199,10 @@
                 </nav>
             </div>
 
-            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200">
+            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-orange-100 bg-white/50">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 w-full">
+                    <button type="submit" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 w-full transition-all duration-200 font-semibold">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
                         <span>Logout</span>
                     </button>

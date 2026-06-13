@@ -81,6 +81,7 @@
     @include('partials.landing-hero')
     @include('partials.landing-features')
     @include('partials.landing-why-choose-us')
+    @include('partials.landing-footer')
 
     <script>
         // Smooth scroll for anchor links

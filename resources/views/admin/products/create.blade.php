@@ -126,20 +126,20 @@
                     <div class="form-grid-2">
                         <div class="form-group">
                             <label class="form-label">Category</label>
-                            <select name="category" class="form-select">
+                            <select name="category_id" class="form-select">
                                 <option value="">— Select category —</option>
-                                @foreach(['energy-drinks','powders','bundles','supplements','accessories','general'] as $cat)
-                                    <option value="{{ $cat }}" {{ old('category') === $cat ? 'selected' : '' }}>
-                                        {{ ucwords(str_replace('-', ' ', $cat)) }}
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Rating</label>
-                            <input type="text" name="rating" class="form-input"
-                                   value="{{ old('rating', '4.5') }}" placeholder="e.g. 4.8">
-                            <div class="form-hint">Out of 5.0</div>
+                            <label class="form-label">Stock</label>
+                            <input type="number" name="stock" class="form-input"
+                                   value="{{ old('stock', 0) }}" placeholder="0" min="0">
+                            <div class="form-hint">Available quantity</div>
                         </div>
                     </div>
 

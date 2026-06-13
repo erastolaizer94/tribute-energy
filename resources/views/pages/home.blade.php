@@ -138,24 +138,46 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5" data-aos="fade-left" data-aos-delay="100">
-                    @php
-                    $features = [
-                        ['icon' => 'fa-flask',        'title' => 'Clinical Formula',   'desc' => 'Every ingredient dosed at clinical levels — not proprietary blends hiding under-dosed actives.'],
-                        ['icon' => 'fa-seedling',     'title' => 'Clean Ingredients',  'desc' => 'Zero artificial dyes, no synthetic sweeteners. Just clean energy from nature-identical compounds.'],
-                        ['icon' => 'fa-dna',          'title' => 'Third-Party Tested', 'desc' => 'Every batch independently tested for purity, potency, and banned substances. No shortcuts.'],
-                        ['icon' => 'fa-tachometer-alt','title' => 'Sustained Energy',  'desc' => 'Engineered release formula keeps you sharp for 6+ hours without jitters or the dreaded crash.'],
-                    ];
-                    @endphp
-
-                    @foreach($features as $i => $f)
-                    <div class="card p-6" data-aos="fade-up" data-aos-delay="{{ 100 + $i * 80 }}">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center mb-4">
-                            <i class="fas {{ $f['icon'] }} text-white text-lg"></i>
+                    @if($features->count() > 0)
+                        @foreach($features as $i => $f)
+                        <div class="card p-6" data-aos="fade-up" data-aos-delay="{{ 100 + $i * 80 }}">
+                            @if($f->image)
+                            <div class="w-12 h-12 rounded-xl overflow-hidden mb-4">
+                                <img src="{{ asset($f->image) }}" alt="{{ $f->title }}" class="w-full h-full object-cover">
+                            </div>
+                            @elseif($f->icon)
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center mb-4">
+                                <span class="text-2xl">{{ $f->icon }}</span>
+                            </div>
+                            @else
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center mb-4">
+                                <i class="fas fa-bolt text-white text-lg"></i>
+                            </div>
+                            @endif
+                            <h4 class="font-rajdhani font-700 text-base mb-2">{{ $f->title }}</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">{{ $f->description }}</p>
                         </div>
-                        <h4 class="font-rajdhani font-700 text-base mb-2">{{ $f['title'] }}</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">{{ $f['desc'] }}</p>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        {{-- Fallback features --}}
+                        @php
+                        $fallbackFeatures = [
+                            ['icon' => '⚡', 'title' => 'Clinical Formula',   'desc' => 'Every ingredient dosed at clinical levels — not proprietary blends hiding under-dosed actives.'],
+                            ['icon' => '🌿', 'title' => 'Clean Ingredients',  'desc' => 'Zero artificial dyes, no synthetic sweeteners. Just clean energy from nature-identical compounds.'],
+                            ['icon' => '🔬', 'title' => 'Third-Party Tested', 'desc' => 'Every batch independently tested for purity, potency, and banned substances. No shortcuts.'],
+                            ['icon' => '⚙️', 'title' => 'Sustained Energy',  'desc' => 'Engineered release formula keeps you sharp for 6+ hours without jitters or the dreaded crash.'],
+                        ];
+                        @endphp
+                        @foreach($fallbackFeatures as $i => $f)
+                        <div class="card p-6" data-aos="fade-up" data-aos-delay="{{ 100 + $i * 80 }}">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FFB800] flex items-center justify-center mb-4">
+                                <span class="text-2xl">{{ $f['icon'] }}</span>
+                            </div>
+                            <h4 class="font-rajdhani font-700 text-base mb-2">{{ $f['title'] }}</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">{{ $f['desc'] }}</p>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

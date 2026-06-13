@@ -29,10 +29,18 @@ Route::get('/product/{id}', function ($id) {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home')->middleware('auth');
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    
+    // User routes
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/dashboard', [App\Http\Controllers\User\UserController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
+        Route::put('/profile', [App\Http\Controllers\User\UserController::class, 'updateProfile'])->name('profile.update');
+        Route::get('/orders', [App\Http\Controllers\User\UserController::class, 'orders'])->name('orders.index');
+        Route::get('/orders/{id}', [App\Http\Controllers\User\UserController::class, 'showOrder'])->name('orders.show');
+        Route::get('/offers', [App\Http\Controllers\User\UserController::class, 'offers'])->name('offers');
+    });
     
     // Admin routes
     Route::prefix('admin')->name('admin.')->group(function () {

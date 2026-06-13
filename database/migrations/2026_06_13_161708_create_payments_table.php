@@ -15,6 +15,16 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('payment_method');
+            $table->string('transaction_id')->nullable();
+            $table->decimal('amount', 10, 2);
+            $table->string('status')->default('pending');
+            $table->string('payment_proof')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamp('confirmed_at')->nullable();
+            $table->foreignId('confirmed_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

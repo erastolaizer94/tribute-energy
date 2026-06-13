@@ -216,5 +216,101 @@
     window.addEventListener('resize', resize);
     resize();
     draw();
+
+    // Hero Carousel Functionality
+    const heroCarousel = document.getElementById('hero-carousel');
+    const heroContent = document.getElementById('hero-content');
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroContentItems = document.querySelectorAll('.hero-content-item');
+    const heroDots = document.querySelectorAll('.hero-dot');
+    const heroPrev = document.getElementById('hero-prev');
+    const heroNext = document.getElementById('hero-next');
+
+    if (heroCarousel && heroSlides.length > 1) {
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Update slides
+            heroSlides.forEach((slide, i) => {
+                slide.classList.remove('opacity-100');
+                slide.classList.add('opacity-0');
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                }
+            });
+
+            // Update content
+            heroContentItems.forEach((item, i) => {
+                item.classList.add('hidden');
+                item.classList.remove('block');
+                if (i === index) {
+                    item.classList.remove('hidden');
+                    item.classList.add('block');
+                    // Re-trigger animations
+                    item.classList.remove('animate__fadeInDown', 'animate__fadeInUp');
+                    void item.offsetWidth; // Trigger reflow
+                    item.querySelectorAll('.animate__animated').forEach(el => {
+                        el.classList.add('animate__fadeInDown', 'animate__fadeInUp');
+                    });
+                }
+            });
+
+            // Update dots
+            heroDots.forEach((dot, i) => {
+                dot.classList.remove('bg-[#FF6B00]');
+                dot.classList.add('bg-gray-600');
+                if (i === index) {
+                    dot.classList.remove('bg-gray-600');
+                    dot.classList.add('bg-[#FF6B00]');
+                }
+            });
+
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentIndex + 1) % heroSlides.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            const prevIndex = (currentIndex - 1 + heroSlides.length) % heroSlides.length;
+            showSlide(prevIndex);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event listeners
+        if (heroPrev) heroPrev.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        if (heroNext) heroNext.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+
+        // Start auto-slide
+        startAutoSlide();
+    }
 })();
 </script>

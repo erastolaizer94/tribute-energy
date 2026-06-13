@@ -585,7 +585,7 @@
         <div class="auth-form-side">
             <div class="auth-form-header" data-aos="fade-left" data-aos-duration="1000">
                 <div class="mobile-logo">
-                    <img src="{{ asset('icons8-dynamics-365-96.png') }}" alt="Tribute Energy Logo" class="logo-image">
+                    <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="logo-image">
                     <span>{{ config('app.name', 'Tribute Energy Limited') }}</span>
                 </div>
                 @yield('form-header')

@@ -561,12 +561,12 @@
     <div class="auth-wrapper">
         <div class="auth-brand-side">
             <div class="auth-brand-inner">
-                <div class="auth-brand-top">
-                    <div class="brand-icon">
+                <div class="auth-brand-top" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="brand-icon" data-aos="zoom-in" data-aos-delay="200">
                         <img src="{{ asset('icons8-dynamics-365-96.png') }}" alt="Tribute Energy Logo" class="brand-logo-image">
                     </div>
-                    <span class="brand-name">{{ config('app.name', 'Tribute Energy Limited') }}</span>
-                    <span class="brand-slogan">Smart Energy Everywhere</span>
+                    <span class="brand-name" data-aos="fade-up" data-aos-delay="400">{{ config('app.name', 'Tribute Energy Limited') }}</span>
+                    <span class="brand-slogan" data-aos="fade-up" data-aos-delay="600">Smart Energy Everywhere</span>
                 </div>
 
                 <div class="auth-brand-bottom">
@@ -583,14 +583,14 @@
         </div>
 
         <div class="auth-form-side">
-            <div class="auth-form-header">
+            <div class="auth-form-header" data-aos="fade-left" data-aos-duration="1000">
                 <div class="mobile-logo">
                     <img src="{{ asset('icons8-dynamics-365-96.png') }}" alt="Tribute Energy Logo" class="logo-image">
                     <span>{{ config('app.name', 'Tribute Energy Limited') }}</span>
                 </div>
                 @yield('form-header')
             </div>
-            <div class="auth-form-body">
+            <div class="auth-form-body" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                 @yield('form-content')
             </div>
         </div>

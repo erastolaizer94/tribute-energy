@@ -12,6 +12,11 @@ Route::get('/products', function () {
     return view('products');
 })->name('products');
 
+// Gallery page
+Route::get('/gallery', function () {
+    return view('gallery');
+})->name('gallery');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home')->middleware('auth');

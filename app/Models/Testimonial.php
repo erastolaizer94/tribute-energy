@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Testimonial extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'role',
+        'company',
+        'content',
+        'avatar',
+        'rating',
+        'is_active',
+        'sort_order',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'rating' => 'integer',
+    ];
 }

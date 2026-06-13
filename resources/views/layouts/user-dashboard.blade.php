@@ -101,6 +101,20 @@
         .mobile-sidebar {
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.98);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-sidebar.open {
+            transform: translateX(0);
+        }
+        .mobile-sidebar-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .mobile-sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
@@ -166,18 +180,23 @@
     </button>
 
     {{-- Mobile Sidebar --}}
-    <div id="mobileSidebar" class="lg:hidden fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-black/50" id="mobileSidebarOverlay"></div>
+    <div id="mobileSidebar" class="lg:hidden fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/50 mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
         <div class="absolute left-0 top-0 bottom-0 w-72 mobile-sidebar shadow-2xl">
             <div class="p-6">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                        {{ substr(auth()->user()->name, 0, 1) }}
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                            {{ substr(auth()->user()->name, 0, 1) }}
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-900 text-lg">{{ auth()->user()->name }}</div>
+                            <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="font-bold text-gray-900 text-lg">{{ auth()->user()->name }}</div>
-                        <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
-                    </div>
+                    <button id="closeMobileSidebar" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
                 </div>
 
                 <nav class="space-y-2">

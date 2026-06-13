@@ -312,11 +312,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border-radius: calc(var(--radius) - 2px);
-            border: 1px solid var(--border);
-            background: var(--card);
+            border: none;
+            background: transparent;
             color: var(--muted-foreground);
             cursor: pointer;
             transition: all 0.15s ease;
@@ -325,16 +325,11 @@
         .header-toggle:hover {
             background: var(--accent);
             color: var(--accent-foreground);
-            border-color: var(--primary);
-        }
-
-        .header-toggle:active {
-            transform: scale(0.95);
         }
 
         .header-toggle svg {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
         }
 
         @media (min-width: 768px) {
@@ -534,63 +529,46 @@
             left: 0;
             top: 0;
             height: 100%;
-            width: 280px;
+            width: 260px;
             background: var(--sidebar);
             border-right: 1px solid var(--sidebar-border);
             z-index: 51;
-            box-shadow: 8px 0 32px rgba(0, 0, 0, 0.15);
-            transform: translateX(-100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
         }
 
         .mobile-sidebar.open {
             display: flex;
-            transform: translateX(0);
         }
 
         .mobile-overlay.open {
             display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .mobile-close {
             position: absolute;
-            right: 1rem;
-            top: 1rem;
+            right: 0.75rem;
+            top: 0.75rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--border);
-            background: var(--card);
+            width: 20px;
+            height: 20px;
+            border: none;
+            background: transparent;
             color: var(--muted-foreground);
             cursor: pointer;
-            border-radius: var(--radius);
+            border-radius: 4px;
             transition: all 0.15s ease;
         }
 
         .mobile-close:hover {
             background: var(--accent);
             color: var(--foreground);
-            border-color: var(--primary);
         }
 
         .mobile-close svg {
             width: 20px;
             height: 20px;
-        }
-
-        @media (max-width: 767px) {
-            .mobile-sidebar {
-                width: 100%;
-                max-width: 320px;
-            }
         }
     </style>
 </head>

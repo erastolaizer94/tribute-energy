@@ -132,7 +132,7 @@
                 <div class="card-body">
                     <div class="form-group" style="margin-bottom:0;">
                         <label class="form-label">Specs / Features</label>
-                        <textarea name="specs" class="form-textarea" rows="5">{{ old('specs', $product->specs) }}</textarea>
+                        <textarea name="specs" class="form-textarea" rows="5">{{ old('specs', is_array($product->specs) ? implode("\n", $product->specs) : $product->specs) }}</textarea>
                         <div class="form-hint">One per line</div>
                     </div>
                 </div>

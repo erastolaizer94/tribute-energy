@@ -92,10 +92,20 @@
                 <a href="/gallery" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Gallery</a>
                 <a href="#partnerships" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Partners</a>
                 <a href="#contact" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Contact</a>
-                <div class="pt-2 border-t border-gray-100 flex items-center space-x-3 px-1">
-                    <a href="{{ route('login') }}" class="flex-1 text-center py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">Login</a>
-                    <a href="{{ route('register') }}" class="flex-1 text-center py-2.5 text-sm font-semibold text-white rounded-lg transition-colors" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">Sign up</a>
-                </div>
+                @auth
+                    <div class="pt-2 border-t border-gray-100 space-y-1">
+                        <a href="{{ route('user.dashboard') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Dashboard</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full text-left px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">Logout</button>
+                        </form>
+                    </div>
+                @else
+                    <div class="pt-2 border-t border-gray-100 flex items-center space-x-3 px-1">
+                        <a href="{{ route('login') }}" class="flex-1 text-center py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">Login</a>
+                        <a href="{{ route('register') }}" class="flex-1 text-center py-2.5 text-sm font-semibold text-white rounded-lg transition-colors" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">Sign up</a>
+                    </div>
+                @endauth
             </div>
         </div>
     </nav>

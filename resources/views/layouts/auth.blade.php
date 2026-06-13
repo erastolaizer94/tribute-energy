@@ -38,7 +38,11 @@
             padding: 0;
             position: relative;
             overflow: hidden;
-            background: #ffffff;
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%), url('{{ asset('hero-bg.jpg') }}');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .auth-brand-side::before {
@@ -536,7 +540,7 @@
         <div class="auth-brand-side">
             <div class="auth-brand-inner">
                 <div class="auth-brand-top" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="h-20 w-auto object-contain">
+                    <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);">
                 </div>
 
                 <div class="auth-brand-bottom">

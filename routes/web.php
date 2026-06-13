@@ -4,17 +4,21 @@ use Illuminate\Support\Facades\Route;
 
 // Landing page
 Route::get('/', function () {
-    return view('landing');
+    $featuredProducts = \App\Models\Product::where('is_featured', true)->where('is_active', true)->take(4)->get();
+    $featuredGallery = \App\Models\Gallery::where('is_featured', true)->where('is_active', true)->orderBy('order')->take(6)->get();
+    return view('landing', compact('featuredProducts', 'featuredGallery'));
 })->name('home');
 
 // Products page
 Route::get('/products', function () {
-    return view('products');
+    $products = \App\Models\Product::where('is_active', true)->get();
+    return view('products', compact('products'));
 })->name('products');
 
 // Gallery page
 Route::get('/gallery', function () {
-    return view('gallery');
+    $gallery = \App\Models\Gallery::where('is_active', true)->orderBy('order')->get();
+    return view('gallery', compact('gallery'));
 })->name('gallery');
 
 // Product detail page (SEO-friendly)

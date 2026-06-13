@@ -250,7 +250,7 @@
                     <div id="productsContainer" class="product-grid-view">
                         
                         {{-- Product 1 --}}
-                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-product-id="1" data-product-name="Solar Panel 300W" data-product-price="450000" data-product-color="linear-gradient(135deg, #fff7ed, #ffedd5)">
                             <div class="relative h-56 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
                                 <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fff7ed, #ffedd5);">
                                     <svg class="w-16 h-16" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,7 +268,7 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-xl font-bold" style="color: #FF8C00;">TZS 450,000</span>
-                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                    <button class="add-to-cart-btn px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
                                         Add to Cart
                                     </button>
                                 </div>

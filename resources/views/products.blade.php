@@ -574,9 +574,13 @@
                         </div>
                     </div>
                     
-                    <button id="productModalAddToCart" class="w-full py-4 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg mb-6" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                    <button id="productModalAddToCart" class="w-full py-4 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg mb-4" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
                         Add to Cart
                     </button>
+                    
+                    <a id="productModalViewDetails" href="#" class="block w-full py-4 text-center font-semibold rounded-xl border-2 transition-all duration-200 hover:shadow-lg" style="border-color: #FF8C00; color: #FF8C00;">
+                        View Full Details
+                    </a>
                     
                     {{-- Social Media Sharing --}}
                     <div>
@@ -958,12 +962,13 @@
                     specsList.innerHTML = product.specs.map(spec => `<li>• ${spec}</li>`).join('');
                     
                     // Update social sharing links
-                    const productUrl = window.location.href + '?product=' + productId;
+                    const productUrl = window.location.origin + '/product/' + productId;
                     const shareText = `Check out ${product.name} at Tribute Energy - TZS ${product.price.toLocaleString()}`;
                     
                     document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`;
                     document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(productUrl)}`;
                     document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + productUrl)}`;
+                    document.getElementById('productModalViewDetails').href = productUrl;
                     
                     // Show modal
                     productModal.classList.remove('hidden');

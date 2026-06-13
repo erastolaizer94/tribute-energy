@@ -7,7 +7,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "postinstall": "patch-package"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
@@ -15,6 +16,7 @@
         "bootstrap": "^5.1.3",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
+        "patch-package": "^8.0.0",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",

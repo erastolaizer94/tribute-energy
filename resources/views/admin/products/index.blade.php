@@ -65,24 +65,24 @@
 @section('content')
 
 @if(session('success'))
-<div class="alert alert-success">
+<div class="alert alert-success animate__animated animate__fadeInDown">
     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
     {{ session('success') }}
 </div>
 @endif
 
-<div class="page-header">
+<div class="page-header animate__animated animate__fadeInDown">
     <div>
         <h1 class="page-title">Products</h1>
         <p class="page-description">{{ $products->count() }} products total — manage your inventory</p>
     </div>
-    <a href="{{ route('admin.products.create') }}" class="btn-primary">
+    <a href="{{ route('admin.products.create') }}" class="btn-primary animate__animated animate__pulse">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
         Add Product
     </a>
 </div>
 
-<div class="card">
+<div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
     {{-- Toolbar --}}
     <div class="card-toolbar">
         <div class="search-box">

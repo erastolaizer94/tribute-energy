@@ -10,58 +10,70 @@
 
         <div class="feat-header">
             <span class="feat-eyebrow">Everything You Need</span>
-            <h2 class="feat-title">Powerful Features for<br>Your <span class="feat-title-accent">Growing Business</span></h2>
-            <p class="feat-subtitle">From inventory to analytics — Tribute Energy gives you the complete toolkit to run smarter, sell faster, and grow stronger.</p>
+            <h2 class="feat-title">Powerful Solutions for<br>Your <span class="feat-title-accent">Energy Needs</span></h2>
+            <p class="feat-subtitle">From solar water pumping to hybrid power systems — Tribute Energy delivers complete energy and water solutions for communities across Tanzania.</p>
         </div>
 
         <div class="feat-grid">
 
             <div class="feat-card" data-color="blue">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3588/3588592.png" alt="Inventory" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">Energy Management</h3>
-                <p class="feat-card-desc">Track energy consumption in real-time, set smart alerts, and manage multiple suppliers — all from one dashboard.</p>
+                <h3 class="feat-card-title">Solar Water Pumping</h3>
+                <p class="feat-card-desc">Reliable solar-powered water pumping systems for irrigation and domestic use. Sustainable energy for clean water access.</p>
             </div>
 
             <div class="feat-card" data-color="violet">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2645/2645890.png" alt="Payments" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">Payment Processing</h3>
-                <p class="feat-card-desc">Accept cash, card, mobile money, and bank transfers. Fast checkouts with zero transaction headaches.</p>
+                <h3 class="feat-card-title">Hybrid Power Systems</h3>
+                <p class="feat-card-desc">Combined solar and grid power solutions ensuring reliable energy supply 24/7 for homes and businesses.</p>
             </div>
 
             <div class="feat-card" data-color="cyan">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Customers" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">Customer Management</h3>
-                <p class="feat-card-desc">Build rich customer profiles, track purchase history, and run loyalty programs that keep buyers coming back.</p>
+                <h3 class="feat-card-title">Water Supply Projects</h3>
+                <p class="feat-card-desc">Complete water supply solutions including pump installation, commissioning, and testing for communities.</p>
             </div>
 
             <div class="feat-card" data-color="orange">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Analytics" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">Sales Analytics</h3>
-                <p class="feat-card-desc">Deep-dive reports on revenue, product performance, and trends. Make decisions backed by real data.</p>
+                <h3 class="feat-card-title">Installation & Maintenance</h3>
+                <p class="feat-card-desc">Professional installation and ongoing maintenance services for all energy and water systems.</p>
             </div>
 
             <div class="feat-card" data-color="green">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/9195/9195785.png" alt="Support" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">24/7 Support</h3>
-                <p class="feat-card-desc">Our dedicated team is always on standby. Live chat, phone, and email — we're here whenever you need us.</p>
+                <h3 class="feat-card-title">Rural Water Solutions</h3>
+                <p class="feat-card-desc">Specialized solutions for rural communities through partnerships with RUWASA and NGOs.</p>
             </div>
 
             <div class="feat-card" data-color="rose">
                 <div class="feat-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Security" class="feat-icon-img">
+                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
-                <h3 class="feat-card-title">Secure & Reliable</h3>
-                <p class="feat-card-desc">Bank-grade encryption, role-based access, and automatic backups. Your data is safe — always.</p>
+                <h3 class="feat-card-title">Expert Consultation</h3>
+                <p class="feat-card-desc">15+ years of experience in renewable energy and water management. Expert guidance for your projects.</p>
             </div>
 
         </div>

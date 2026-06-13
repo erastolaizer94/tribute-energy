@@ -15,6 +15,14 @@ class CreateActivityHistoriesTable extends Migration
     {
         Schema::create('activity_histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('activity_type');
+            $table->text('description');
+            $table->string('related_type')->nullable();
+            $table->unsignedBigInteger('related_id')->nullable();
+            $table->json('metadata')->nullable();
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('user_agent')->nullable();
             $table->timestamps();
         });
     }

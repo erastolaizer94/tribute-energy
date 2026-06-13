@@ -14,9 +14,9 @@
             <div class="hidden md:flex items-center space-x-1" id="navbar-sticky">
                 <a href="/" class="px-4 py-2 text-sm font-medium rounded-lg hover:bg-orange-50 transition-colors" style="color: #FF8C00;">Home</a>
                 <a href="#features" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Features</a>
-                <a href="#why-choose-us" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Why Us</a>
-                <a href="#pricing" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Pricing</a>
-                <a href="#testimonials" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Reviews</a>
+                <a href="#projects" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Projects</a>
+                <a href="#partnerships" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Partners</a>
+                <a href="#contact" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Contact</a>
             </div>
 
             {{-- Right Actions --}}

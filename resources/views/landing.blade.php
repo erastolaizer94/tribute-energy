@@ -80,7 +80,13 @@
     @include('partials.landing-header')
     @include('partials.landing-hero')
     @include('partials.landing-features')
-    @include('partials.landing-why-choose-us')
+    @include('partials.landing-projects')
+    @include('partials.landing-partnerships')
+    @include('partials.landing-target-market')
+    @include('partials.landing-advantage')
+    @include('partials.landing-csr')
+    @include('partials.landing-future')
+    @include('partials.landing-contact')
     @include('partials.landing-footer')
 
     <script>

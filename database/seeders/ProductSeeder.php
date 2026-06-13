@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Solar Water Pump 2HP',
             'description' => 'Efficient solar-powered water pump perfect for irrigation and domestic water supply. Works directly with solar panels without batteries, making it cost-effective and environmentally friendly.',
-            'price' => 1200000,
+            'price' => 1200000.00,
             'color' => 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
             'rating' => '★★★★★',
             'reviews' => '(18 reviews)',
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Hybrid Inverter 5kW',
             'description' => 'Advanced hybrid inverter for seamless switching between solar and grid power. Features MPPT technology for maximum solar harvest and pure sine wave output for sensitive electronics.',
-            'price' => 2500000,
+            'price' => 2500000.00,
             'color' => 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
             'rating' => '★★★★★',
             'reviews' => '(32 reviews)',
@@ -75,7 +75,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Solar Battery 200Ah',
             'description' => 'Deep cycle solar battery designed for energy storage and backup power. Features long cycle life and maintenance-free operation for reliable performance.',
-            'price' => 850000,
+            'price' => 850000.00,
             'color' => 'linear-gradient(135deg, #f3e8ff, #e9d5ff)',
             'rating' => '★★★★',
             'reviews' => '(15 reviews)',
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Solar Controller 30A',
             'description' => 'MPPT solar charge controller for optimal battery charging efficiency. Maximizes power harvest from solar panels and protects batteries from overcharging.',
-            'price' => 350000,
+            'price' => 350000.00,
             'color' => 'linear-gradient(135deg, #fef9c3, #fef08a)',
             'rating' => '★★★★',
             'reviews' => '(12 reviews)',
@@ -113,8 +113,8 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Complete Solar Kit',
             'description' => 'All-in-one solar kit with everything you need for a complete solar installation. Includes panels, inverter, battery, controller, and mounting hardware.',
-            'price' => 4200000,
-            'original_price' => 5000000,
+            'price' => 4200000.00,
+            'original_price' => 5000000.00,
             'color' => 'linear-gradient(135deg, #fee2e2, #fecaca)',
             'rating' => '★★★★★',
             'reviews' => '(45 reviews)',
@@ -135,7 +135,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Submersible Pump 3HP',
             'description' => 'Deep well submersible pump designed for agricultural and domestic water supply. Highly efficient and reliable for deep water extraction.',
-            'price' => 1800000,
+            'price' => 1800000.00,
             'color' => 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
             'rating' => '★★★★',
             'reviews' => '(21 reviews)',
@@ -154,7 +154,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::create([
             'name' => 'Mounting Structure',
             'description' => 'Durable aluminum mounting structure for solar panel installation. Corrosion-resistant and designed for easy installation on various roof types.',
-            'price' => 280000,
+            'price' => 280000.00,
             'color' => 'linear-gradient(135deg, #fce7f3, #fbcfe8)',
             'rating' => '★★★★',
             'reviews' => '(9 reviews)',

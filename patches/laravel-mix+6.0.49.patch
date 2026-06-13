@@ -1,3 +1,21 @@
+diff --git a/node_modules/laravel-mix/src/builder/webpack-plugins.js b/node_modules/laravel-mix/src/builder/webpack-plugins.js
+index 264eb09..9222be9 100644
+--- a/node_modules/laravel-mix/src/builder/webpack-plugins.js
++++ b/node_modules/laravel-mix/src/builder/webpack-plugins.js
+@@ -49,9 +49,10 @@ module.exports = function (mix) {
+         })
+     );
+ 
+-    if (process.env.NODE_ENV !== 'test') {
+-        plugins.push(new WebpackBar({ name: 'Mix' }));
+-    }
++    // Disabled WebpackBar due to webpack 5 ProgressPlugin compatibility issues
++    // if (process.env.NODE_ENV !== 'test') {
++    //     plugins.push(new WebpackBar({ name: 'Mix' }));
++    // }
+ 
+     return plugins;
+ };
 diff --git a/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js b/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js
 index 241a2ed..4ed90ad 100644
 --- a/node_modules/laravel-mix/src/webpackPlugins/BuildOutputPlugin.js

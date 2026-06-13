@@ -68,7 +68,7 @@
     </div>
 </div>
 
-<form action="{{ route('admin.gallery.store') }}" method="POST">
+<form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-layout">
         <div style="display:flex;flex-direction:column;gap:1.25rem;">
@@ -87,10 +87,9 @@
                         <textarea name="description" class="form-textarea">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Image URL <span class="req">*</span></label>
-                        <input type="text" name="image" class="form-input" value="{{ old('image') }}" required
-                               oninput="previewImage(this.value)" placeholder="https://…/photo.jpg">
-                        <div class="form-hint">Paste a direct image URL</div>
+                        <label class="form-label">Image <span class="req">*</span></label>
+                        <input type="file" name="image" class="form-input" accept="image/*" required>
+                        <div class="form-hint">Upload image (JPEG, PNG, GIF - Max 2MB)</div>
                     </div>
                     <div class="form-grid-2">
                         <div class="form-group">

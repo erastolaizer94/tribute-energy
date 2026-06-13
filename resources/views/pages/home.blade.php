@@ -389,6 +389,96 @@
     </section>
 
     {{-- ═══════════════════════════════════════════
+         PRODUCT REQUEST
+    ═══════════════════════════════════════════ --}}
+    <section class="py-24 bg-[#0D0D0D] border-y border-[#1A1A1A]">
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="section-label mb-4">Product Request</div>
+                    <h2 class="font-bebas text-6xl lg:text-7xl leading-none mb-6">
+                        CAN'T FIND<br>
+                        <span class="text-gradient">WHAT YOU NEED?</span>
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed mb-10">
+                        Looking for a specific product or flavor? Let us know what you're interested in and we'll do our best to make it available. Your feedback helps us improve our product lineup.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#FF6B00]/20 flex items-center justify-center">
+                                <i class="fas fa-check text-[#FF6B00]"></i>
+                            </div>
+                            <span class="text-gray-300">We'll notify you when your requested product is available</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#FF6B00]/20 flex items-center justify-center">
+                                <i class="fas fa-check text-[#FF6B00]"></i>
+                            </div>
+                            <span class="text-gray-300">Get exclusive early access to new products</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#FF6B00]/20 flex items-center justify-center">
+                                <i class="fas fa-check text-[#FF6B00]"></i>
+                            </div>
+                            <span class="text-gray-300">Special discounts for requested products</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-8" data-aos="fade-left" data-aos-delay="100">
+                    <form x-data="{ submitted: false }" @submit.prevent="submitted = true">
+                        <div x-show="!submitted" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-rajdhani font-700 tracking-wider uppercase text-gray-500 mb-2">Product Name</label>
+                                    <input type="text" placeholder="e.g., Tribute Watermelon" 
+                                           class="w-full bg-[#111] border border-[#252525] text-white px-4 py-3 focus:outline-none focus:border-[#FF6B00] transition-colors rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-rajdhani font-700 tracking-wider uppercase text-gray-500 mb-2">Product Type</label>
+                                    <select class="w-full bg-[#111] border border-[#252525] text-gray-300 px-4 py-3 focus:outline-none focus:border-[#FF6B00] transition-colors rounded-lg cursor-pointer">
+                                        <option value="">Select type...</option>
+                                        <option value="drink">Energy Drink</option>
+                                        <option value="powder">Energy Powder</option>
+                                        <option value="bundle">Bundle Pack</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-rajdhani font-700 tracking-wider uppercase text-gray-500 mb-2">Preferred Flavor</label>
+                                    <input type="text" placeholder="e.g., Watermelon, Grape, etc." 
+                                           class="w-full bg-[#111] border border-[#252525] text-white px-4 py-3 focus:outline-none focus:border-[#FF6B00] transition-colors rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-rajdhani font-700 tracking-wider uppercase text-gray-500 mb-2">Your Email</label>
+                                    <input type="email" placeholder="your@email.com" 
+                                           class="w-full bg-[#111] border border-[#252525] text-white px-4 py-3 focus:outline-none focus:border-[#FF6B00] transition-colors rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-rajdhani font-700 tracking-wider uppercase text-gray-500 mb-2">Additional Notes</label>
+                                    <textarea rows="3" placeholder="Any specific requirements or suggestions..." 
+                                              class="w-full bg-[#111] border border-[#252525] text-white px-4 py-3 focus:outline-none focus:border-[#FF6B00] transition-colors rounded-lg resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary">
+                                    <span>Submit Request</span>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div x-show="submitted" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="text-center py-12">
+                            <div class="w-16 h-16 rounded-full bg-green-600/20 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-check text-green-500 text-2xl"></i>
+                            </div>
+                            <h3 class="font-rajdhani font-700 text-xl text-white mb-2">Request Submitted!</h3>
+                            <p class="text-gray-400">We'll notify you when this product becomes available.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ═══════════════════════════════════════════
          CTA BANNER
     ═══════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">

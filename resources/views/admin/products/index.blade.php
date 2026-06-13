@@ -132,7 +132,7 @@
                     </td>
                     <td>
                         @if($product->category)
-                        <span style="text-transform:capitalize;color:#64748b;">{{ $product->category->name }}</span>
+                        <span style="text-transform:capitalize;color:#64748b;">{{ is_object($product->category) ? $product->category->name : $product->category }}</span>
                         @else
                         <span style="color:#94a3b8;">—</span>
                         @endif

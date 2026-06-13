@@ -531,6 +531,196 @@
     </div>
 
     <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+                cartTotal.textContent = 'TZS 0';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `
+                    <div class="flex items-center gap-4 mb-4 pb-4 border-b border-gray-100">
+                        <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: ${item.color};">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900 text-sm">${item.name}</h4>
+                            <p class="text-sm" style="color: #FF8C00;">TZS ${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQuantity(${index}, -1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">-</button>
+                            <span class="w-8 text-center font-semibold">${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = html;
+            cartTotal.textContent = `TZS ${total.toLocaleString()}`;
+        }
+        
+        // Add to cart
+        function addToCart(name, price, color) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, color, quantity: 1 });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Animation feedback
+            const cartBtn = document.getElementById('floatingCartBtn');
+            cartBtn.classList.add('scale-125');
+            setTimeout(() => cartBtn.classList.remove('scale-125'), 200);
+        }
+        
+        // Update quantity
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        // Cart sidebar toggle
+        const floatingCartBtn = document.getElementById('floatingCartBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartOverlay = document.getElementById('cartOverlay');
+        
+        floatingCartBtn.addEventListener('click', () => {
+            cartSidebar.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('hidden');
+            updateCartDisplay();
+        });
+        
+        closeCartBtn.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+        });
+        
+        cartOverlay.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+        });
+        
+        // Order modal
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        const orderModal = document.getElementById('orderModal');
+        const closeOrderModal = document.getElementById('closeOrderModal');
+        const orderModalOverlay = document.getElementById('orderModalOverlay');
+        const orderForm = document.getElementById('orderForm');
+        
+        placeOrderBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            orderModal.classList.remove('hidden');
+            orderModal.classList.add('flex');
+        });
+        
+        closeOrderModal.addEventListener('click', () => {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        });
+        
+        orderModalOverlay.addEventListener('click', () => {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        });
+        
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('orderEmail').value;
+            const phone = document.getElementById('orderPhone').value;
+            
+            // Here you would typically send the order to your backend
+            console.log('Order submitted:', { email, phone, cart });
+            
+            alert('Order submitted successfully! We will contact you soon.');
+            
+            // Clear cart
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Close modals
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.add('hidden');
+            
+            // Reset form
+            orderForm.reset();
+        });
+        
+        // Add event listeners to all "Add to Cart" buttons
+        document.querySelectorAll('.product-card button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.product-card');
+                const name = card.querySelector('h3').textContent;
+                const priceText = card.querySelector('.text-xl.font-bold').textContent.replace('TZS ', '').replace(/,/g, '');
+                const price = parseInt(priceText);
+                const color = card.querySelector('.relative > div').style.background;
+                
+                addToCart(name, price, color);
+            });
+        });
+        
+        // Initialize cart on page load
+        updateCartCount();
+        updateCartDisplay();
+
         // Mobile filter sidebar toggle
         const mobileFilterBtn = document.getElementById('mobileFilterBtn');
         const filterSidebar = document.getElementById('filterSidebar');

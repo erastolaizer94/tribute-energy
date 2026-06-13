@@ -30,11 +30,14 @@
 
                 <div class="hidden md:block w-px h-5 bg-gray-200 mx-1"></div>
 
-                <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Login</a>
-
-                <a href="{{ route('register') }}" class="px-4 py-2 text-sm font-semibold text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 ml-1" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                    Sign up
-                </a>
+                @auth
+                    <a href="{{ route('user.dashboard') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">Login</a>
+                    <a href="{{ route('register') }}" class="px-4 py-2 text-sm font-semibold text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 ml-1" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                        Sign up
+                    </a>
+                @endauth
 
                 {{-- Mobile menu toggle --}}
                 <button id="mobileMenuToggle" type="button" class="md:hidden p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors ml-1">

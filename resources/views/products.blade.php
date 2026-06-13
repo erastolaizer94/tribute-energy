@@ -74,250 +74,444 @@
         html {
             scroll-behavior: smooth;
         }
+        .filter-sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .filter-sidebar.open {
+            transform: translateX(0);
+        }
+        .product-grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card-view {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     @include('partials.landing-header')
 
-    <main class="pt-20">
-        {{-- Hero Section --}}
-        <section class="relative py-20 overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255, 140, 0, 0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
-            </div>
-            <div class="max-w-screen-xl mx-auto px-4 lg:px-8 relative z-10">
-                <div class="text-center">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Our Products</h1>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">Discover our range of solar energy and water pumping solutions designed for efficiency and sustainability.</p>
-                    
-                    {{-- Search Bar --}}
-                    <div class="max-w-2xl mx-auto">
-                        <div class="relative">
-                            <input type="text" placeholder="Search products..." class="w-full px-6 py-4 rounded-xl border border-gray-600 bg-white/10 backdrop-blur-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                            <button class="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-2 rounded-lg text-white font-semibold" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                Search
+    <main class="pt-20 min-h-screen">
+        <div class="max-w-screen-2xl mx-auto px-4 lg:px-8 py-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                {{-- Mobile Filter Button --}}
+                <button id="mobileFilterBtn" class="lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                    </svg>
+                </button>
+
+                {{-- Left Sidebar - Filters --}}
+                <aside id="filterSidebar" class="filter-sidebar lg:transform-none lg:translate-x-0 fixed inset-y-0 left-0 z-40 w-80 bg-white shadow-2xl lg:static lg:shadow-none lg:w-72 overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-gray-900">Filters</h2>
+                            <button id="closeFilterBtn" class="lg:hidden p-2 text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        {{-- Category Filter --}}
+                        <div class="mb-6">
+                            <h3 class="text-sm font-semibold text-gray-900 mb-3">Category</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">Solar Panels</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">Water Pumps</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">Inverters</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">Batteries</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">Accessories</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {{-- Price Range --}}
+                        <div class="mb-6">
+                            <h3 class="text-sm font-semibold text-gray-900 mb-3">Price Range</h3>
+                            <div class="space-y-3">
+                                <input type="range" min="0" max="5000000" value="5000000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-600">
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>TZS 0</span>
+                                    <span>TZS 5,000,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Rating --}}
+                        <div class="mb-6">
+                            <h3 class="text-sm font-semibold text-gray-900 mb-3">Rating</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="rating" class="w-4 h-4 border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    <span class="ml-3 text-sm text-gray-700 flex items-center">
+                                        <span class="text-yellow-400">★★★★★</span>
+                                        <span class="ml-2">& up</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="rating" class="w-4 h-4 border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    <span class="ml-3 text-sm text-gray-700 flex items-center">
+                                        <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>
+                                        <span class="ml-2">& up</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="rating" class="w-4 h-4 border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    <span class="ml-3 text-sm text-gray-700 flex items-center">
+                                        <span class="text-yellow-400">★★★</span><span class="text-gray-300">★★</span>
+                                        <span class="ml-2">& up</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {{-- Availability --}}
+                        <div class="mb-6">
+                            <h3 class="text-sm font-semibold text-gray-900 mb-3">Availability</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" checked>
+                                    <span class="ml-3 text-sm text-gray-700">In Stock</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    <span class="ml-3 text-sm text-gray-700">Out of Stock</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="w-full py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                            Apply Filters
+                        </button>
+                    </div>
+                </aside>
+
+                {{-- Overlay for mobile filter --}}
+                <div id="filterOverlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"></div>
+
+                {{-- Right Column - Products --}}
+                <div class="flex-1">
+                    {{-- Search and View Toggle --}}
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div class="flex-1 relative">
+                            <input type="text" placeholder="Search products..." class="w-full px-4 py-3 pl-12 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="gridViewBtn" class="p-3 rounded-lg border-2 transition-all duration-200" style="border-color: #FF8C00; background: #fff7ed;">
+                                <svg class="w-5 h-5" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                                </svg>
+                            </button>
+                            <button id="cardViewBtn" class="p-3 rounded-lg border-2 border-gray-200 text-gray-400 hover:border-gray-300 transition-all duration-200">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        {{-- Categories --}}
-        <section class="py-12 bg-white border-b border-gray-200">
-            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%); color: white;">All Products</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600 transition-all duration-200">Solar Panels</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600 transition-all duration-200">Water Pumps</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600 transition-all duration-200">Inverters</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600 transition-all duration-200">Batteries</button>
-                    <button class="px-6 py-2.5 rounded-full text-sm font-semibold text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600 transition-all duration-200">Accessories</button>
-                </div>
-            </div>
-        </section>
-
-        {{-- Products Grid --}}
-        <section class="py-16">
-            <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    
-                    {{-- Product Card 1 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fff7ed, #ffedd5);">
-                                <svg class="w-12 h-12" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                </svg>
-                            </div>
-                            <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">New</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Panel 300W</h3>
-                            <p class="text-sm text-gray-600 mb-3">High-efficiency monocrystalline solar panel for residential and commercial use.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 450,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
+                    {{-- Results Count --}}
+                    <div class="flex items-center justify-between mb-6">
+                        <p class="text-sm text-gray-600">Showing <span class="font-semibold text-gray-900">8</span> products</p>
+                        <select class="px-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            <option>Sort by: Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest</option>
+                            <option>Best Selling</option>
+                        </select>
                     </div>
 
-                    {{-- Product Card 2 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">
-                                <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Water Pump 2HP</h3>
-                            <p class="text-sm text-gray-600 mb-3">Efficient solar-powered water pump for irrigation and domestic water supply.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 1,200,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Product Card 3 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dcfce7, #bbf7d0);">
-                                <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                            <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-green-500">Best Seller</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Hybrid Inverter 5kW</h3>
-                            <p class="text-sm text-gray-600 mb-3">Hybrid inverter for seamless switching between solar and grid power.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 2,500,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Product Card 4 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">
-                                <svg class="w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Battery 200Ah</h3>
-                            <p class="text-sm text-gray-600 mb-3">Deep cycle solar battery for energy storage and backup power.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 850,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Product Card 5 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fef9c3, #fef08a);">
-                                <svg class="w-12 h-12 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Controller 30A</h3>
-                            <p class="text-sm text-gray-600 mb-3">MPPT solar charge controller for optimal battery charging efficiency.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 350,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Product Card 6 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fee2e2, #fecaca);">
-                                <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                </svg>
-                            </div>
-                            <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-red-500">Sale</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Complete Solar Kit</h3>
-                            <p class="text-sm text-gray-600 mb-3">All-in-one solar kit with panels, inverter, battery and mounting hardware.</p>
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span class="text-sm text-gray-400 line-through">TZS 5,000,000</span>
-                                    <span class="text-xl font-bold ml-2" style="color: #FF8C00;">TZS 4,200,000</span>
+                    {{-- Products Grid --}}
+                    <div id="productsContainer" class="product-grid-view">
+                        
+                        {{-- Product 1 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fff7ed, #ffedd5);">
+                                    <svg class="w-16 h-16" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                    </svg>
                                 </div>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
+                                <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">New</span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Panel 300W</h3>
+                                <p class="text-sm text-gray-600 mb-3">High-efficiency monocrystalline solar panel for residential and commercial use.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(24 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 450,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- Product Card 7 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe);">
-                                <svg class="w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
+                        {{-- Product 2 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">
+                                    <svg class="w-16 h-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Water Pump 2HP</h3>
+                                <p class="text-sm text-gray-600 mb-3">Efficient solar-powered water pump for irrigation and domestic water supply.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(18 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 1,200,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Submersible Pump 3HP</h3>
-                            <p class="text-sm text-gray-600 mb-3">Deep well submersible pump for agricultural and domestic water supply.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 1,800,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                    {{-- Product Card 8 --}}
-                    <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="relative h-48 bg-gradient-to-br from-pink-50 to-pink-100 flex items-center justify-center">
-                            <div class="w-24 h-24 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">
-                                <svg class="w-12 h-12 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-                                </svg>
+                        {{-- Product 3 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #dcfce7, #bbf7d0);">
+                                    <svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                                <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-green-500">Best Seller</span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Hybrid Inverter 5kW</h3>
+                                <p class="text-sm text-gray-600 mb-3">Hybrid inverter for seamless switching between solar and grid power.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(32 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 2,500,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2">Mounting Structure</h3>
-                            <p class="text-sm text-gray-600 mb-3">Durable aluminum mounting structure for solar panel installation.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl font-bold" style="color: #FF8C00;">TZS 280,000</span>
-                                <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
+                        {{-- Product 4 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">
+                                    <svg class="w-16 h-16 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Battery 200Ah</h3>
+                                <p class="text-sm text-gray-600 mb-3">Deep cycle solar battery for energy storage and backup power.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(15 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 850,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Product 5 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fef9c3, #fef08a);">
+                                    <svg class="w-16 h-16 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Solar Controller 30A</h3>
+                                <p class="text-sm text-gray-600 mb-3">MPPT solar charge controller for optimal battery charging efficiency.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(12 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 350,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Product 6 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fee2e2, #fecaca);">
+                                    <svg class="w-16 h-16 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                </div>
+                                <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full bg-red-500">Sale</span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Complete Solar Kit</h3>
+                                <p class="text-sm text-gray-600 mb-3">All-in-one solar kit with panels, inverter, battery and mounting hardware.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(45 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="text-sm text-gray-400 line-through">TZS 5,000,000</span>
+                                        <span class="text-xl font-bold ml-2" style="color: #FF8C00;">TZS 4,200,000</span>
+                                    </div>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Product 7 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe);">
+                                    <svg class="w-16 h-16 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Submersible Pump 3HP</h3>
+                                <p class="text-sm text-gray-600 mb-3">Deep well submersible pump for agricultural and domestic water supply.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(21 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 1,800,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Product 8 --}}
+                        <div class="product-card bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                            <div class="relative h-56 bg-gradient-to-br from-pink-50 to-pink-100 flex items-center justify-center">
+                                <div class="w-32 h-32 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">
+                                    <svg class="w-16 h-16 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Mounting Structure</h3>
+                                <p class="text-sm text-gray-600 mb-3">Durable aluminum mounting structure for solar panel installation.</p>
+                                <div class="flex items-center mb-3">
+                                    <span class="text-yellow-400">★★★★</span><span class="text-gray-300">★</span>
+                                    <span class="text-sm text-gray-500 ml-2">(9 reviews)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold" style="color: #FF8C00;">TZS 280,000</span>
+                                    <button class="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-200 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </section>
-
-        {{-- CTA Section --}}
-        <section class="py-16" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-            <div class="max-w-screen-xl mx-auto px-4 lg:px-8 text-center">
-                <h2 class="text-3xl font-extrabold text-white mb-4">Need a Custom Solution?</h2>
-                <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Contact us for customized solar and water pumping solutions tailored to your specific needs.</p>
-                <a href="#contact" class="inline-flex items-center px-8 py-4 text-lg font-semibold text-white rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                    Get a Quote
-                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-            </div>
-        </section>
+        </div>
     </main>
 
     @include('partials.landing-footer')
 
     <script>
+        // Mobile filter sidebar toggle
+        const mobileFilterBtn = document.getElementById('mobileFilterBtn');
+        const filterSidebar = document.getElementById('filterSidebar');
+        const closeFilterBtn = document.getElementById('closeFilterBtn');
+        const filterOverlay = document.getElementById('filterOverlay');
+
+        mobileFilterBtn.addEventListener('click', () => {
+            filterSidebar.classList.add('open');
+            filterOverlay.classList.remove('hidden');
+        });
+
+        closeFilterBtn.addEventListener('click', () => {
+            filterSidebar.classList.remove('open');
+            filterOverlay.classList.add('hidden');
+        });
+
+        filterOverlay.addEventListener('click', () => {
+            filterSidebar.classList.remove('open');
+            filterOverlay.classList.add('hidden');
+        });
+
+        // View toggle (grid/card)
+        const gridViewBtn = document.getElementById('gridViewBtn');
+        const cardViewBtn = document.getElementById('cardViewBtn');
+        const productsContainer = document.getElementById('productsContainer');
+
+        gridViewBtn.addEventListener('click', () => {
+            productsContainer.classList.remove('product-card-view');
+            productsContainer.classList.add('product-grid-view');
+            gridViewBtn.style.borderColor = '#FF8C00';
+            gridViewBtn.style.background = '#fff7ed';
+            gridViewBtn.querySelector('svg').style.color = '#FF8C00';
+            cardViewBtn.style.borderColor = '#e5e7eb';
+            cardViewBtn.style.background = 'white';
+            cardViewBtn.querySelector('svg').style.color = '#9ca3af';
+        });
+
+        cardViewBtn.addEventListener('click', () => {
+            productsContainer.classList.remove('product-grid-view');
+            productsContainer.classList.add('product-card-view');
+            cardViewBtn.style.borderColor = '#FF8C00';
+            cardViewBtn.style.background = '#fff7ed';
+            cardViewBtn.querySelector('svg').style.color = '#FF8C00';
+            gridViewBtn.style.borderColor = '#e5e7eb';
+            gridViewBtn.style.background = 'white';
+            gridViewBtn.querySelector('svg').style.color = '#9ca3af';
+        });
+
         // Product card animations
         const productCards = document.querySelectorAll('.product-card');
         const observer = new IntersectionObserver((entries) => {
@@ -340,23 +534,7 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
-
-        // Category button active state
-        const categoryButtons = document.querySelectorAll('section.py-12 button');
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                categoryButtons.forEach(btn => {
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.classList.remove('text-white');
-                    btn.classList.add('text-gray-600');
-                });
-                this.style.background = 'linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%)';
-                this.style.color = 'white';
-                this.classList.remove('text-gray-600');
-                this.classList.add('text-white');
-            });
-        });
     </script>
 </body>
 </html>
+

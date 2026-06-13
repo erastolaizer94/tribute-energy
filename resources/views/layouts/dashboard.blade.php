@@ -312,11 +312,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             border-radius: calc(var(--radius) - 2px);
-            border: none;
-            background: transparent;
+            border: 1px solid var(--border);
+            background: var(--card);
             color: var(--muted-foreground);
             cursor: pointer;
             transition: all 0.15s ease;
@@ -325,11 +325,16 @@
         .header-toggle:hover {
             background: var(--accent);
             color: var(--accent-foreground);
+            border-color: var(--primary);
+        }
+
+        .header-toggle:active {
+            transform: scale(0.95);
         }
 
         .header-toggle svg {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
         }
 
         @media (min-width: 768px) {
@@ -566,7 +571,7 @@
             background: var(--card);
             color: var(--muted-foreground);
             cursor: pointer;
-            border-radius: calc(var(--radius) - 2px);
+            border-radius: var(--radius);
             transition: all 0.15s ease;
         }
 
@@ -577,8 +582,15 @@
         }
 
         .mobile-close svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 767px) {
+            .mobile-sidebar {
+                width: 100%;
+                max-width: 320px;
+            }
         }
     </style>
 </head>

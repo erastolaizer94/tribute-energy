@@ -18,8 +18,8 @@ class ProductSeeder extends Seeder
             'description' => 'High-efficiency monocrystalline solar panel designed for both residential and commercial applications. Features advanced PERC technology for maximum power output and durability in all weather conditions.',
             'price' => 450000.00,
             'color' => 'linear-gradient(135deg, #fff7ed, #ffedd5)',
-            'rating' => '★★★★★',
-            'reviews' => '(24 reviews)',
+            'rating' => 5,
+            'reviews' => 24,
             'specs' => json_encode([
                 'Power Output: 300W',
                 'Type: Monocrystalline',

@@ -154,16 +154,6 @@
                     </a>
                 </nav>
             </div>
-
-            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-orange-100 bg-white/50">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 w-full transition-all duration-200 font-semibold">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                        <span>Logout</span>
-                    </button>
-                </form>
-            </div>
         </aside>
 
         {{-- Main Content --}}
@@ -171,8 +161,6 @@
             @yield('content')
         </main>
     </div>
-
-    @include('partials.landing-footer')
 
     {{-- Mobile Menu Button --}}
     <button id="mobileMenuBtn" class="lg:hidden fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
@@ -217,16 +205,6 @@
                         <span class="font-semibold">Profile</span>
                     </a>
                 </nav>
-            </div>
-
-            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-orange-100 bg-white/50">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 w-full transition-all duration-200 font-semibold">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                        <span>Logout</span>
-                    </button>
-                </form>
             </div>
         </div>
     </div>

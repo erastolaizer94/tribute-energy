@@ -54,9 +54,9 @@
             <div class="pt-3 space-y-1">
                 <a href="/" class="block px-4 py-2.5 text-sm font-medium rounded-lg" style="color: #FF8C00; background: #fff7ed;">Home</a>
                 <a href="#features" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Features</a>
-                <a href="#why-choose-us" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Why Us</a>
-                <a href="#pricing" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Pricing</a>
-                <a href="#testimonials" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Reviews</a>
+                <a href="#projects" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Projects</a>
+                <a href="#partnerships" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Partners</a>
+                <a href="#contact" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">Contact</a>
                 <div class="pt-2 border-t border-gray-100 flex items-center space-x-3 px-1">
                     <a href="{{ route('login') }}" class="flex-1 text-center py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">Login</a>
                     <a href="{{ route('register') }}" class="flex-1 text-center py-2.5 text-sm font-semibold text-white rounded-lg transition-colors" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">Sign up</a>

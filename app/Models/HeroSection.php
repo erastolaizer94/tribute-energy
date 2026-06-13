@@ -15,6 +15,7 @@ class HeroSection extends Model
         'button_text',
         'button_link',
         'background_image',
+        'video_url',
         'is_active',
         'sort_order',
     ];

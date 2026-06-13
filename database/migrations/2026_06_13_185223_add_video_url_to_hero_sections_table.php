@@ -14,7 +14,7 @@ class AddVideoUrlToHeroSectionsTable extends Migration
     public function up()
     {
         Schema::table('hero_sections', function (Blueprint $table) {
-            //
+            $table->string('video_url')->nullable()->after('background_image');
         });
     }
 
@@ -26,7 +26,7 @@ class AddVideoUrlToHeroSectionsTable extends Migration
     public function down()
     {
         Schema::table('hero_sections', function (Blueprint $table) {
-            //
+            $table->dropColumn('video_url');
         });
     }
 }

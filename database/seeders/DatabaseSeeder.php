@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             ProductSeeder::class,
             GallerySeeder::class,
+            HeroSectionSeeder::class,
+            FeatureSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

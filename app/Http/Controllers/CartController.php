@@ -101,9 +101,9 @@ class CartController extends Controller
         }
         
         $validated = $request->validate([
-            'shipping_address' => 'required|string',
-            'phone' => 'required|string',
-            'notes' => 'nullable|string',
+            'shipping_address' => 'required|string|min:10',
+            'phone' => 'required|string|min:10|regex:/^[0-9+\s-]+$/',
+            'notes' => 'nullable|string|max:500',
         ]);
         
         $total = 0;

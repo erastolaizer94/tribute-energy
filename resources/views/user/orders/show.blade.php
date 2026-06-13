@@ -116,6 +116,121 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-white rounded-2xl shadow-lg border border-orange-100 mt-6 card-hover">
+            <div class="p-6 border-b border-orange-100">
+                <h2 class="text-2xl font-bold text-gray-900">Order Tracking</h2>
+            </div>
+            <div class="p-6">
+                @if($order->tracking_number)
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-white rounded-xl border border-orange-100">
+                            <div>
+                                <div class="text-sm text-gray-500 font-medium">Tracking Number</div>
+                                <div class="font-bold text-gray-900 text-lg">{{ $order->tracking_number }}</div>
+                            </div>
+                            @if($order->carrier)
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-500 font-medium">Carrier</div>
+                                    <div class="font-bold text-gray-900 text-lg">{{ $order->carrier }}</div>
+                                </div>
+                            @endif
+                        </div>
+                        @if($order->estimated_delivery)
+                            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-white rounded-xl border border-blue-100">
+                                <div>
+                                    <div class="text-sm text-gray-500 font-medium">Estimated Delivery</div>
+                                    <div class="font-bold text-gray-900 text-lg">{{ $order->estimated_delivery->format('M d, Y') }}</div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                @else
+                    <div class="text-center py-8 text-gray-500">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-orange-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-lg font-medium mb-2">Tracking not available yet</p>
+                        <p class="text-sm">Your order is being processed</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg border border-orange-100 mt-6 card-hover">
+            <div class="p-6 border-b border-orange-100">
+                <h2 class="text-2xl font-bold text-gray-900">Order Timeline</h2>
+            </div>
+            <div class="p-6">
+                <div class="space-y-6">
+                    {{-- Order Placed --}}
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg bg-green-500">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-gray-900">Order Placed</div>
+                            <div class="text-sm text-gray-500">{{ $order->created_at->format('M d, Y - H:i') }}</div>
+                        </div>
+                    </div>
+
+                    {{-- Processing --}}
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg @if(in_array($order->status, ['processing', 'shipped', 'delivered', 'completed'])) bg-green-500 @else bg-gray-300 @endif">
+                            @if(in_array($order->status, ['processing', 'shipped', 'delivered', 'completed']))
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            @else
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            @endif
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-gray-900 @if(!in_array($order->status, ['processing', 'shipped', 'delivered', 'completed'])) text-gray-400 @endif">Processing</div>
+                            <div class="text-sm text-gray-500">Your order is being prepared</div>
+                        </div>
+                    </div>
+
+                    {{-- Shipped --}}
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg @if(in_array($order->status, ['shipped', 'delivered', 'completed'])) bg-green-500 @else bg-gray-300 @endif">
+                            @if(in_array($order->status, ['shipped', 'delivered', 'completed']))
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            @else
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            @endif
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-gray-900 @if(!in_array($order->status, ['shipped', 'delivered', 'completed'])) text-gray-400 @endif">Shipped</div>
+                            <div class="text-sm text-gray-500">
+                                @if($order->shipped_at)
+                                    {{ $order->shipped_at->format('M d, Y - H:i') }}
+                                @else
+                                    Not shipped yet
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Delivered --}}
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg @if(in_array($order->status, ['delivered', 'completed'])) bg-green-500 @else bg-gray-300 @endif">
+                            @if(in_array($order->status, ['delivered', 'completed']))
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            @else
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            @endif
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-gray-900 @if(!in_array($order->status, ['delivered', 'completed'])) text-gray-400 @endif">Delivered</div>
+                            <div class="text-sm text-gray-500">
+                                @if($order->delivered_at)
+                                    {{ $order->delivered_at->format('M d, Y - H:i') }}
+                                @else
+                                    Not delivered yet
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

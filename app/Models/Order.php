@@ -18,6 +18,11 @@ class Order extends Model
         'shipping_address',
         'phone',
         'notes',
+        'tracking_number',
+        'estimated_delivery',
+        'shipped_at',
+        'delivered_at',
+        'carrier',
     ];
 
     public function user()

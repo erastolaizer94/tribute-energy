@@ -563,7 +563,7 @@
             <div class="auth-brand-inner">
                 <div class="auth-brand-top" data-aos="fade-right" data-aos-duration="1000">
                     <div class="brand-icon" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="{{ asset('icons8-dynamics-365-96.png') }}" alt="Tribute Energy Logo" class="brand-logo-image">
+                        <img src="{{ asset('logo.png') }}" alt="Tribute Energy Logo" class="brand-logo-image">
                     </div>
                     <span class="brand-name" data-aos="fade-up" data-aos-delay="400">{{ config('app.name', 'Tribute Energy Limited') }}</span>
                     <span class="brand-slogan" data-aos="fade-up" data-aos-delay="600">Smart Energy Everywhere</span>

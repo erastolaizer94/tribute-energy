@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityHistory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'activity_type',
+        'description',
+        'related_type',
+        'related_id',
+        'metadata',
+        'ip_address',
+        'user_agent',
+    ];
+
+    protected $casts = [
+        'metadata' => 'array',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

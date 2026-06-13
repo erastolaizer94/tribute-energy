@@ -782,8 +782,9 @@
         });
         
         // Add event listeners to all "Add to Cart" buttons
-        document.querySelectorAll('.product-card button').forEach(btn => {
-            btn.addEventListener('click', function() {
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const card = this.closest('.product-card');
                 const name = card.querySelector('h3').textContent;
                 const priceText = card.querySelector('.text-xl.font-bold').textContent.replace('TZS ', '').replace(/,/g, '');
@@ -793,7 +794,224 @@
                 addToCart(name, price, color);
             });
         });
-        
+
+        // Product Details Modal
+        const productModal = document.getElementById('productModal');
+        const closeProductModal = document.getElementById('closeProductModal');
+        const productModalOverlay = document.getElementById('productModalOverlay');
+        let currentProduct = null;
+        let productQuantity = 1;
+
+        // Product data (simulated database)
+        const productsData = {
+            1: {
+                name: 'Solar Panel 300W',
+                price: 450000,
+                color: 'linear-gradient(135deg, #fff7ed, #ffedd5)',
+                rating: '★★★★★',
+                reviews: '(24 reviews)',
+                description: 'High-efficiency monocrystalline solar panel designed for both residential and commercial applications. Features advanced PERC technology for maximum power output and durability in all weather conditions.',
+                specs: [
+                    'Power Output: 300W',
+                    'Type: Monocrystalline',
+                    'Efficiency: 18.5%',
+                    'Dimensions: 1650 x 992 x 35mm',
+                    'Weight: 18.5kg',
+                    'Warranty: 25 years'
+                ]
+            },
+            2: {
+                name: 'Solar Water Pump 2HP',
+                price: 1200000,
+                color: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+                rating: '★★★★★',
+                reviews: '(18 reviews)',
+                description: 'Efficient solar-powered water pump perfect for irrigation and domestic water supply. Works directly with solar panels without batteries, making it cost-effective and environmentally friendly.',
+                specs: [
+                    'Power: 2HP',
+                    'Flow Rate: 10-15 m³/h',
+                    'Head: 30-50m',
+                    'Voltage: 24V DC',
+                    'IP Rating: IP68',
+                    'Warranty: 2 years'
+                ]
+            },
+            3: {
+                name: 'Hybrid Inverter 5kW',
+                price: 2500000,
+                color: 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
+                rating: '★★★★★',
+                reviews: '(32 reviews)',
+                description: 'Advanced hybrid inverter for seamless switching between solar and grid power. Features MPPT technology for maximum solar harvest and pure sine wave output for sensitive electronics.',
+                specs: [
+                    'Capacity: 5kW',
+                    'Type: Hybrid',
+                    'Input Voltage: 48V DC',
+                    'Output: 230V AC',
+                    'Efficiency: 95%',
+                    'Warranty: 5 years'
+                ]
+            },
+            4: {
+                name: 'Solar Battery 200Ah',
+                price: 850000,
+                color: 'linear-gradient(135deg, #f3e8ff, #e9d5ff)',
+                rating: '★★★★',
+                reviews: '(15 reviews)',
+                description: 'Deep cycle solar battery designed for energy storage and backup power. Features long cycle life and maintenance-free operation for reliable performance.',
+                specs: [
+                    'Capacity: 200Ah',
+                    'Voltage: 12V',
+                    'Type: Deep Cycle',
+                    'Cycle Life: 1500 cycles',
+                    'Weight: 55kg',
+                    'Warranty: 3 years'
+                ]
+            },
+            5: {
+                name: 'Solar Controller 30A',
+                price: 350000,
+                color: 'linear-gradient(135deg, #fef9c3, #fef08a)',
+                rating: '★★★★',
+                reviews: '(12 reviews)',
+                description: 'MPPT solar charge controller for optimal battery charging efficiency. Maximizes power harvest from solar panels and protects batteries from overcharging.',
+                specs: [
+                    'Current: 30A',
+                    'Type: MPPT',
+                    'Voltage: 12V/24V',
+                    'Efficiency: 98%',
+                    'Display: LCD',
+                    'Warranty: 2 years'
+                ]
+            },
+            6: {
+                name: 'Complete Solar Kit',
+                price: 4200000,
+                color: 'linear-gradient(135deg, #fee2e2, #fecaca)',
+                rating: '★★★★★',
+                reviews: '(45 reviews)',
+                description: 'All-in-one solar kit with everything you need for a complete solar installation. Includes panels, inverter, battery, controller, and mounting hardware.',
+                specs: [
+                    'Solar Panels: 4x 300W',
+                    'Inverter: 3kW Hybrid',
+                    'Battery: 200Ah',
+                    'Controller: 40A MPPT',
+                    'Mounting: Complete set',
+                    'Warranty: 2-5 years'
+                ]
+            },
+            7: {
+                name: 'Submersible Pump 3HP',
+                price: 1800000,
+                color: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
+                rating: '★★★★',
+                reviews: '(21 reviews)',
+                description: 'Deep well submersible pump designed for agricultural and domestic water supply. Highly efficient and reliable for deep water extraction.',
+                specs: [
+                    'Power: 3HP',
+                    'Flow Rate: 15-20 m³/h',
+                    'Head: 50-80m',
+                    'Voltage: 380V AC',
+                    'IP Rating: IP68',
+                    'Warranty: 2 years'
+                ]
+            },
+            8: {
+                name: 'Mounting Structure',
+                price: 280000,
+                color: 'linear-gradient(135deg, #fce7f3, #fbcfe8)',
+                rating: '★★★★',
+                reviews: '(9 reviews)',
+                description: 'Durable aluminum mounting structure for solar panel installation. Corrosion-resistant and designed for easy installation on various roof types.',
+                specs: [
+                    'Material: Aluminum',
+                    'Panels: Up to 6x',
+                    'Type: Roof Mount',
+                    'Weight Capacity: 200kg',
+                    'Finish: Anodized',
+                    'Warranty: 10 years'
+                ]
+            }
+        };
+
+        // Open product modal
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const product = productsData[productId];
+                
+                if (product) {
+                    currentProduct = product;
+                    productQuantity = 1;
+                    
+                    // Populate modal
+                    document.getElementById('productModalTitle').textContent = product.name;
+                    document.getElementById('productModalRating').textContent = product.rating;
+                    document.getElementById('productModalReviews').textContent = product.reviews;
+                    document.getElementById('productModalPrice').textContent = `TZS ${product.price.toLocaleString()}`;
+                    document.getElementById('productModalDescription').textContent = product.description;
+                    document.getElementById('productModalImageBg').style.background = product.color;
+                    document.getElementById('productQty').textContent = productQuantity;
+                    
+                    // Populate specs
+                    const specsList = document.getElementById('productModalSpecs');
+                    specsList.innerHTML = product.specs.map(spec => `<li>• ${spec}</li>`).join('');
+                    
+                    // Update social sharing links
+                    const productUrl = window.location.href + '?product=' + productId;
+                    const shareText = `Check out ${product.name} at Tribute Energy - TZS ${product.price.toLocaleString()}`;
+                    
+                    document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`;
+                    document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(productUrl)}`;
+                    document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + productUrl)}`;
+                    
+                    // Show modal
+                    productModal.classList.remove('hidden');
+                    productModal.classList.add('flex');
+                }
+            });
+        });
+
+        // Close product modal
+        closeProductModal.addEventListener('click', () => {
+            productModal.classList.add('hidden');
+            productModal.classList.remove('flex');
+        });
+
+        productModalOverlay.addEventListener('click', () => {
+            productModal.classList.add('hidden');
+            productModal.classList.remove('flex');
+        });
+
+        // Quantity controls
+        document.getElementById('decreaseQty').addEventListener('click', () => {
+            if (productQuantity > 1) {
+                productQuantity--;
+                document.getElementById('productQty').textContent = productQuantity;
+            }
+        });
+
+        document.getElementById('increaseQty').addEventListener('click', () => {
+            productQuantity++;
+            document.getElementById('productQty').textContent = productQuantity;
+        });
+
+        // Add to cart from modal
+        document.getElementById('productModalAddToCart').addEventListener('click', () => {
+            if (currentProduct) {
+                for (let i = 0; i < productQuantity; i++) {
+                    addToCart(currentProduct.name, currentProduct.price, currentProduct.color);
+                }
+                
+                // Close modal
+                productModal.classList.add('hidden');
+                productModal.classList.remove('flex');
+                
+                // Show success message
+                alert(`${productQuantity} x ${currentProduct.name} added to cart!`);
+            }
+        });
+
         // Initialize cart on page load
         updateCartCount();
         updateCartDisplay();

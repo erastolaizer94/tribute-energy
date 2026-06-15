@@ -22,8 +22,6 @@
                    class="nav-link {{ request()->routeIs('home') ? 'active text-white' : '' }}">Home</a>
                 <a href="{{ route('features') }}"
                    class="nav-link {{ request()->routeIs('features') ? 'active text-white' : '' }}">Features</a>
-                <a href="{{ route('products') }}"
-                   class="nav-link {{ request()->routeIs('products') ? 'active text-white' : '' }}">Products</a>
                 <a href="{{ route('pricing') }}"
                    class="nav-link {{ request()->routeIs('pricing') ? 'active text-white' : '' }}">Pricing</a>
                 <a href="{{ route('about') }}"
@@ -38,24 +36,13 @@
                     <i class="fas fa-search"></i>
                 </button>
 
-                {{-- Cart --}}
-                <button x-on:click="open = !open"
-                        class="relative flex items-center gap-2 w-9 h-9 justify-center rounded-full bg-[#1A1A1A] hover:bg-[#FF6B00] text-gray-400 hover:text-white transition-all duration-300 text-sm">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span x-show="count > 0"
-                          class="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] bg-[#FF6B00] rounded-full text-[9px] font-bold flex items-center justify-center text-white leading-none"
-                          x-text="count > 9 ? '9+' : count"></span>
-                </button>
 
-                {{-- Auth --}}
+
+                {{-- Talk to Sales --}}
                 @guest
-                    <a href="{{ route('login') }}"
-                       class="hidden md:inline-flex btn-outline !py-2.5 !px-5 !text-sm">
-                        Login
-                    </a>
-                    <a href="{{ route('register') }}"
+                    <a href="tel:+255000000000"
                        class="hidden md:inline-flex btn-primary !py-2.5 !px-5 !text-sm">
-                        <span>Get Started</span>
+                        <i class="fas fa-phone mr-2"></i>Talk to Sales
                     </a>
                 @else
                     <div class="relative" x-data="{ userOpen: false }">
@@ -108,14 +95,12 @@
         <nav class="flex flex-col space-y-1">
             <a href="{{ route('home') }}"     class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('home') ? 'text-white' : '' }}">Home</a>
             <a href="{{ route('features') }}" class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('features') ? 'text-white' : '' }}">Features</a>
-            <a href="{{ route('products') }}" class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('products') ? 'text-white' : '' }}">Products</a>
             <a href="{{ route('pricing') }}"  class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('pricing') ? 'text-white' : '' }}">Pricing</a>
             <a href="{{ route('about') }}"    class="nav-link block py-3 !text-base {{ request()->routeIs('about') ? 'text-white' : '' }}">About</a>
         </nav>
         @guest
             <div class="flex gap-3 mt-5">
-                <a href="{{ route('login') }}"    class="btn-outline flex-1 !py-3">Login</a>
-                <a href="{{ route('register') }}" class="btn-primary flex-1 !py-3"><span>Register</span></a>
+                <a href="tel:+255000000000" class="btn-primary flex-1 !py-3"><i class="fas fa-phone mr-2"></i>Talk to Sales</a>
             </div>
         @endguest
     </div>

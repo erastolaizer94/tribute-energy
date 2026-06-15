@@ -93,17 +93,17 @@
 
         {{-- CTA Buttons --}}
         <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="{{ route('register') }}" class="group w-full sm:w-auto inline-flex justify-center items-center py-3.5 px-8 text-base font-semibold text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
-                Get Started Free
-                <svg class="ml-2 w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
+            <a href="tel:+255000000000" class="group w-full sm:w-auto inline-flex justify-center items-center py-3.5 px-8 text-base font-semibold text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
+                <span class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                <svg class="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                Talk to Sales
             </a>
-            <a href="#features" class="group w-full sm:w-auto inline-flex justify-center items-center py-3.5 px-8 text-base font-semibold text-white rounded-xl border border-white/20 hover:border-white/40 hover:-translate-y-0.5 transition-all duration-200" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);">
-                <svg class="mr-2 w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20">
+            <a href="#features" class="group w-full sm:w-auto inline-flex justify-center items-center py-3.5 px-8 text-base font-semibold text-white rounded-xl border border-white/20 hover:border-[#FF8C00]/50 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#FF8C00]/10 transition-all duration-300" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);">
+                <svg class="mr-2 w-5 h-5 text-orange-300 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
                 </svg>
                 See How It Works
+                <i class="fas fa-arrow-down ml-2 text-xs group-hover:translate-y-1 transition-transform duration-300"></i>
             </a>
         </div>
 
@@ -230,6 +230,31 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        background-size: 200% 100%;
+        animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    /* Glow pulse on CTA */
+    .hero-cta a:first-child {
+        animation: ctaGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes ctaGlow {
+        0%, 100% { box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3); }
+        50% { box-shadow: 0 4px 40px rgba(255, 107, 0, 0.6); }
+    }
+
+    /* Hero title letter shimmer */
+    .hero-title {
+        animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+    .hero-title span {
+        display: inline-block;
     }
 
     /* Scroll dot animation */
@@ -256,10 +281,15 @@
         animation: fadeInUp 0.7s ease-out 0.45s both;
     }
     .hero-stats {
-        animation: fadeInUp 0.7s ease-out 0.6s both;
+        animation: fadeInUp 0.7s ease-out 0.6s both, floatY 6s ease-in-out 0.7s infinite;
     }
     .scroll-indicator {
         animation: fadeIn 1s ease-out 1s both;
+    }
+
+    @keyframes floatY {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
     }
 
     @keyframes fadeInDown {

@@ -324,7 +324,7 @@ document.getElementById('modalAddToCartBtn')?.addEventListener('click', function
   const alpineBody = document.querySelector('[x-data="cartApp()"]');
   if (alpineBody && alpineBody.__x) {
     for (let i = 0; i < modalQty; i++) {
-      alpineBody.__x.$data.add({
+      alpineBody.__x.\$data.add({
         id: currentModalProduct.id,
         name: currentModalProduct.name,
         price: currentModalProduct.price,

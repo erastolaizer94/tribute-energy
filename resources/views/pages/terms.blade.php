@@ -54,7 +54,7 @@
                     return '<h2 id="' . $id . '" class="font-bebas text-4xl text-gradient mb-5 scroll-mt-28">' . $title . '</h2><div class="divider mb-7"></div>';
                 }
                 function prose_h3($title) {
-                    return '<h3 class="font-rajdhani font-700 text-lg text-white mt-7 mb-3">' . $title . '</h3>';
+                    return '<h3 class="font-rajdhani font-700 text-lg text-gray-900 mt-7 mb-3">' . $title . '</h3>';
                 }
                 @endphp
 
@@ -62,25 +62,25 @@
                 <div id="terms" class="scroll-mt-28" data-aos="fade-up">
                     <h2 class="font-bebas text-4xl text-gradient mb-5">TERMS OF SERVICE</h2>
                     <div class="divider mb-7"></div>
-                    <div class="prose-content space-y-5 text-gray-400 text-sm leading-relaxed">
+                    <div class="prose-content space-y-5 text-gray-600 text-sm leading-relaxed">
                         <p>Welcome to Tribute Energy ("Company", "we", "us", or "our"). By accessing or using our website at tributeenergy.com and purchasing our products, you agree to be bound by these Terms of Service. Please read them carefully.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">1. Acceptance of Terms</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">1. Acceptance of Terms</h3>
                         <p>By placing an order or creating an account, you confirm that you are at least 18 years of age, have read and agree to these terms, and are legally capable of entering into binding contracts. If you do not agree to any part of these terms, please do not use our services.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">2. Products & Orders</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">2. Products & Orders</h3>
                         <p>All product descriptions, pricing, and availability are subject to change without notice. We reserve the right to refuse or cancel any order at our discretion. Promotional pricing and discount codes cannot be combined unless explicitly stated. Prices are listed in USD and do not include applicable taxes and shipping unless noted.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">3. Health Disclaimer</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">3. Health Disclaimer</h3>
                         <p>Tribute Energy products contain caffeine and other bioactive compounds. They are intended for healthy adults only. Do not consume if pregnant, nursing, under 18, sensitive to caffeine, or if you have any pre-existing medical conditions without consulting a healthcare professional. Keep out of reach of children. Our products are not intended to diagnose, treat, cure, or prevent any disease.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">4. Subscriptions</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">4. Subscriptions</h3>
                         <p>Subscription plans automatically renew at the end of each billing cycle. You may cancel anytime through your account dashboard or by contacting support. Cancellations must be made at least 5 days before the next billing date to avoid being charged for the following cycle. Refunds for subscription charges are issued within 30 days of purchase.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">5. Intellectual Property</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">5. Intellectual Property</h3>
                         <p>All content on this website — including logos, trademarks, formulas, copy, and design elements — is the exclusive property of Tribute Energy LLC and protected by applicable intellectual property laws. Unauthorized use, reproduction, or distribution is strictly prohibited.</p>
 
-                        <h3 class="font-rajdhani font-700 text-base text-white mt-6 mb-2">6. Limitation of Liability</h3>
+                        <h3 class="font-rajdhani font-700 text-base text-gray-900 mt-6 mb-2">6. Limitation of Liability</h3>
                         <p>To the maximum extent permitted by law, Tribute Energy shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our products or services. Our total liability shall not exceed the amount paid by you in the 12 months preceding the claim.</p>
                     </div>
                 </div>

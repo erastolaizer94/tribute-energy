@@ -413,7 +413,7 @@
     });
 
     // Category doughnut chart
-    const catData  = @json(\App\Models\Product::where('is_active',true)->with('category')->get()->groupBy('category.name')->map->count());
+    const catData  = @json(\App\Models\Product::where('is_active',true)->get()->groupBy('category')->map->count());
     const catLabels = Object.keys(catData).map(k => k || 'Uncategorized');
     const catVals   = Object.values(catData);
     const colors    = ['#FF8C00','#6366f1','#10b981','#0ea5e9','#f59e0b','#ef4444','#8b5cf6','#ec4899'];

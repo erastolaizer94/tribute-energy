@@ -28,7 +28,8 @@
             </li>
           </ol>
         </nav>
-        <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">Our Products</h2>
+        <h2 class="mt-2 text-3xl font-bold text-gray-900">Our Products</h2>
+        <p class="text-sm text-gray-500 mt-1">High-quality solar energy solutions</p>
       </div>
       <div class="flex items-center space-x-4">
         <button id="filterToggleBtn" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto transition-colors">

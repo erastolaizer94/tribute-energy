@@ -5,14 +5,14 @@
 @section('content')
 <section class="bg-gray-50 py-8 antialiased md:py-12">
   <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-    <!-- Heading & Filters -->
+    {{-- Heading & Filters --}}
     <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
       <div>
         <nav class="flex" aria-label="Breadcrumb">
-          <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <ol class="inline-flex items-center space-x-1 md:space-x-2">
             <li class="inline-flex items-center">
-              <a href="{{ route('home') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-                <svg class="me-2.5 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <a href="{{ route('home') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#FF6B00] transition-colors">
+                <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
                 Home
@@ -31,7 +31,7 @@
         <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">Our Products</h2>
       </div>
       <div class="flex items-center space-x-4">
-        <button data-modal-toggle="filterModal" data-modal-target="filterModal" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto">
+        <button id="filterToggleBtn" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto transition-colors">
           <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z" />
           </svg>
@@ -40,7 +40,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
           </svg>
         </button>
-        <button id="sortDropdownButton" data-dropdown-toggle="dropdownSort" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto">
+        <button id="sortDropdownBtn" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto transition-colors">
           <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
           </svg>
@@ -49,154 +49,209 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
           </svg>
         </button>
-        <div id="dropdownSort" class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow">
-          <ul class="p-2 text-left text-sm font-medium text-gray-500" aria-labelledby="sortDropdownButton">
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> The most popular </a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> Newest </a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> Increasing price </a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> Decreasing price </a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> No. reviews </a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"> Discount % </a></li>
+        {{-- Sort dropdown --}}
+        <div id="sortDropdown" class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow absolute top-full right-0 mt-1">
+          <ul class="p-2 text-left text-sm font-medium text-gray-500">
+            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">The most popular</a></li>
+            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Newest</a></li>
+            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Price: Low to High</a></li>
+            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Price: High to Low</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+    {{-- Products Grid --}}
+    <div class="mb-4 grid gap-5 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
       @forelse($products as $product)
-      <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-        <div class="h-56 w-full">
-          <a href="#">
-            <div class="mx-auto h-full flex items-center justify-center text-gray-300">
-              <svg class="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-              </svg>
-            </div>
-          </a>
-        </div>
-        <div class="pt-6">
-          <div class="mb-4 flex items-center justify-between gap-4">
-            @if($product->is_sale)
-            <span class="me-2 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"> Sale </span>
-            @elseif($product->is_new)
-            <span class="me-2 rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800"> New </span>
-            @else
-            <span></span>
+      <div class="product-card group rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+           x-data="{ open: false }">
+        {{-- Image area --}}
+        <div class="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden cursor-pointer"
+             @@click="open = true; $dispatch('open-product', { id: {{ $product->id }} })">
+          @if($product->image)
+            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500">
+          @else
+            <svg class="w-20 h-20 text-gray-300 group-hover:text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          @endif
+          {{-- Badges --}}
+          <div class="absolute top-3 left-3 flex flex-col gap-1">
+            @if($product->is_featured)
+              <span class="px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 shadow-sm">FEATURED</span>
             @endif
-            <div class="flex items-center justify-end gap-1">
-              <button type="button" class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
-                  <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg>
-              </button>
-              <button type="button" class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                </svg>
-              </button>
-            </div>
+            @if($product->is_sale && $product->original_price)
+              <span class="px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-red-500 shadow-sm">-{{ round((1 - $product->price / $product->original_price) * 100) }}%</span>
+            @endif
           </div>
-
-          <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline">{{ $product->name }}</a>
-
-          <div class="mt-2 flex items-center gap-2">
+          @if($product->is_new)
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-green-500 shadow-sm">NEW</span>
+          @endif
+          {{-- Quick actions overlay --}}
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
+            <button @@click="open = true; $dispatch('open-product', { id: {{ $product->id }} })"
+                    class="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform -translate-y-2 group-hover:translate-y-0 duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            </button>
+            <button @@click="add({ id: {{ $product->id }}, name: '{{ $product->name }}', price: {{ $product->price }} })"
+                    class="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform translate-y-2 group-hover:translate-y-0 duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        {{-- Product Info --}}
+        <div class="p-4">
+          <p class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1">{{ $product->category ?? 'General' }}</p>
+          <a href="#" @@click.prevent="open = true; $dispatch('open-product', { id: {{ $product->id }} })"
+             class="text-sm font-semibold text-gray-900 hover:text-[#FF6B00] transition-colors line-clamp-2 leading-snug">
+            {{ $product->name }}
+          </a>
+          {{-- Rating --}}
+          <div class="mt-1.5 flex items-center gap-1.5">
             <div class="flex items-center">
               @for($i = 0; $i < 5; $i++)
-                <svg class="h-4 w-4 {{ $i < 4 ? 'text-yellow-400' : 'text-gray-300' }}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                </svg>
+                @if($i < (int)($product->rating ?? 4))
+                  <svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                @else
+                  <svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                @endif
               @endfor
             </div>
-            <p class="text-sm font-medium text-gray-500">({{ $product->reviews ?? '0' }})</p>
+            <span class="text-[11px] text-gray-400">({{ $product->reviews ?? 0 }})</span>
           </div>
-
-          <ul class="mt-2 flex items-center gap-4">
-            <li class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+          {{-- Price & Add to Cart --}}
+          <div class="mt-3 flex items-center justify-between">
+            <div>
+              @if($product->original_price && $product->is_sale)
+                <span class="text-xs text-gray-400 line-through mr-1">TZS {{ number_format($product->original_price) }}</span>
+              @endif
+              <p class="text-lg font-bold text-gray-900">TZS {{ number_format($product->price) }}</p>
+            </div>
+            <button @@click="add({ id: {{ $product->id }}, name: '{{ $product->name }}', price: {{ $product->price }} })"
+                    class="w-9 h-9 rounded-lg bg-[#FF6B00] hover:bg-[#e06000] text-white flex items-center justify-center transition-colors shadow-sm hover:shadow-md active:scale-95">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
               </svg>
-              <p class="text-sm font-medium text-gray-500">Fast Delivery</p>
-            </li>
-            <li class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
-              </svg>
-              <p class="text-sm font-medium text-gray-500">Best Price</p>
-            </li>
-          </ul>
-
-          <div class="mt-4 flex items-center justify-between gap-4">
-            <p class="text-2xl font-extrabold leading-tight text-gray-900">TZS {{ number_format($product->price) }}</p>
-            <button type="button" class="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
-              <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
-              </svg>
-              Add to cart
             </button>
           </div>
         </div>
       </div>
       @empty
-      <div class="col-span-full text-center py-12">
+      <div class="col-span-full text-center py-16">
+        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+        </svg>
         <p class="text-gray-500 text-lg">No products found.</p>
+        <a href="{{ route('products') }}" class="mt-2 inline-block text-sm text-[#FF6B00] hover:underline">Clear filters</a>
       </div>
       @endforelse
     </div>
 
     @if(count($products) > 0)
     <div class="w-full text-center">
-      <button type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100">Show more</button>
+      <button type="button" class="rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 transition-colors">Show more products</button>
     </div>
     @endif
   </div>
 </section>
 
-<!-- Filter modal -->
-<div id="filterModal" tabindex="-1" aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
-  <div class="relative h-full w-full max-w-xl md:h-auto">
-    <div class="relative rounded-lg bg-white shadow">
-      <div class="flex items-start justify-between rounded-t p-4 md:p-5">
-        <h3 class="text-lg font-normal text-gray-500">Filters</h3>
-        <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-100 hover:text-gray-900" data-modal-toggle="filterModal">
-          <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
+{{-- Product Details Modal --}}
+<template x-data="{ product: null, open: false }" x-init="
+  $el.remove();
+  window.addEventListener('open-product', (e) => {
+    product = e.detail;
+    open = true;
+  });
+">
+</template>
+<div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+     x-data="{ product: null, qty: 1 }"
+     x-show="product"
+     x-cloak
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0">
+  <div class="absolute inset-0 bg-black/60" @@click="product = null"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+       x-show="product"
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+       x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 scale-100"
+       x-transition:leave-end="opacity-0 scale-95">
+    <button @@click="product = null" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="grid md:grid-cols-2">
+      {{-- Product Image --}}
+      <div class="relative h-72 md:h-auto bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
+        <img x-bind:src="product?.image || ''" x-show="product?.image" class="w-full h-full object-contain">
+        <svg x-show="!product?.image" class="w-32 h-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
       </div>
-      <div class="px-4 md:px-5">
-        <form action="{{ route('products') }}" method="GET">
-          <div class="mb-4 border-b border-gray-200">
-            <ul class="-mb-px flex flex-wrap text-center text-sm font-medium" id="filterTab" role="tablist">
-              <li class="mr-1" role="presentation">
-                <button class="inline-block pb-2 pr-1 border-b-2 border-blue-600 text-blue-600" id="brand-tab" type="button" role="tab">Category</button>
+      {{-- Product Details --}}
+      <div class="p-6 md:p-8">
+        <p class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1" x-text="product?.category"></p>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2" x-text="product?.name"></h2>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-center" x-html="product?.stars || '★★★★★'"></div>
+          <span class="text-sm text-gray-500" x-text="'(' + (product?.reviews || 0) + ')'"></span>
+        </div>
+        <div class="mb-4">
+          <span class="text-2xl font-bold text-[#FF6B00]" x-text="'TZS ' + Number(product?.price || 0).toLocaleString()"></span>
+          <span class="text-sm text-gray-400 line-through ml-2" x-show="product?.original_price" x-text="'TZS ' + Number(product?.original_price || 0).toLocaleString()"></span>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6" x-text="product?.description || 'No description available.'"></p>
+        {{-- Specs --}}
+        <div class="mb-6" x-show="product?.specs?.length">
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">Specifications</h3>
+          <ul class="space-y-1.5 text-sm text-gray-600">
+            <template x-for="spec in (product?.specs || [])" :key="spec">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span x-text="spec"></span>
               </li>
-              <li class="mr-1" role="presentation">
-                <button class="inline-block px-2 pb-2 hover:text-gray-600" id="advanced-filers-tab" type="button" role="tab">Advanced</button>
-              </li>
-            </ul>
+            </template>
+          </ul>
+        </div>
+        {{-- Quantity --}}
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-sm font-medium text-gray-900">Qty:</span>
+          <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+            <button @@click="qty = Math.max(1, qty - 1)" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">-</button>
+            <span class="w-10 text-center font-semibold text-sm" x-text="qty"></span>
+            <button @@click="qty = Math.min(99, qty + 1)" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
           </div>
-
-          <div class="space-y-4 max-h-96 overflow-y-auto">
-            <div>
-              <h5 class="text-sm font-medium text-gray-900 mb-2">Category</h5>
-              <div class="space-y-2">
-                @foreach($categories as $cat)
-                <div class="flex items-center">
-                  <input id="cat-{{ $loop->index }}" type="checkbox" name="category[]" value="{{ $cat }}" class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500">
-                  <label for="cat-{{ $loop->index }}" class="ml-2 text-sm font-medium text-gray-900">{{ $cat }}</label>
-                </div>
-                @endforeach
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center space-x-4 rounded-b p-4 md:p-5">
-            <button type="submit" class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Apply Filters</button>
-            <a href="{{ route('products') }}" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Reset</a>
-          </div>
-        </form>
+        </div>
+        {{-- Actions --}}
+        <div class="flex gap-3">
+          <button @@click="add({ id: product.id, name: product.name, price: product.price }); product = null"
+                  class="flex-1 py-3 bg-[#FF6B00] hover:bg-[#e06000] text-white font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            Add to Cart
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -205,42 +260,56 @@
 
 @push('scripts')
 <script>
-// Sort dropdown toggle
-document.getElementById('sortDropdownButton')?.addEventListener('click', function(e) {
-  e.stopPropagation();
-  const menu = document.getElementById('dropdownSort');
-  menu.classList.toggle('hidden');
-});
-document.addEventListener('click', function() {
-  document.getElementById('dropdownSort')?.classList.add('hidden');
-});
+// Fetch product JSON on modal open
+let productsCache = null;
 
-// Filter modal toggle
-document.querySelectorAll('[data-modal-toggle="filterModal"]').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.getElementById('filterModal').classList.toggle('hidden');
-    document.getElementById('filterModal').classList.toggle('flex');
-  });
-});
-document.querySelectorAll('[data-modal-toggle="filterModal"], #filterModal').forEach(el => {
-  el.addEventListener('click', function(e) {
-    if (e.target === this || e.target.hasAttribute('data-modal-toggle')) {
-      if (e.target.classList.contains('fixed')) {
-        document.getElementById('filterModal').classList.add('hidden');
-        document.getElementById('filterModal').classList.remove('flex');
+document.addEventListener('open-product', async function(e) {
+  const modal = document.getElementById('productModal');
+  if (!modal) return;
+
+  try {
+    if (!productsCache) {
+      const resp = await fetch('/api/products');
+      productsCache = await resp.json();
+    }
+    const product = productsCache.find(p => p.id === e.detail.id);
+    if (product) {
+      const alpine = modal.__x;
+      if (alpine) {
+        // Build star HTML
+        const rating = Math.round(product.rating || 4);
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+          stars += i < rating
+            ? '<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>'
+            : '<svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+        }
+        product.stars = stars;
+        alpine.$data.product = product;
+        alpine.$data.qty = 1;
       }
     }
-  });
+  } catch (err) {
+    console.error('Failed to fetch product details:', err);
+  }
 });
 
-// Filter tabs
-document.getElementById('brand-tab')?.addEventListener('click', function() {
-  this.classList.add('border-blue-600', 'text-blue-600');
-  document.getElementById('advanced-filers-tab')?.classList.remove('border-blue-600', 'text-blue-600');
+// Sort dropdown
+document.getElementById('sortDropdownBtn')?.addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('sortDropdown')?.classList.toggle('hidden');
 });
-document.getElementById('advanced-filers-tab')?.addEventListener('click', function() {
-  this.classList.add('border-blue-600', 'text-blue-600');
-  document.getElementById('brand-tab')?.classList.remove('border-blue-600', 'text-blue-600');
+document.addEventListener('click', function() {
+  document.getElementById('sortDropdown')?.classList.add('hidden');
+});
+
+// Filter modal
+document.getElementById('filterToggleBtn')?.addEventListener('click', function() {
+  const modal = document.getElementById('filterModal');
+  if (modal) {
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
 });
 </script>
 @endpush

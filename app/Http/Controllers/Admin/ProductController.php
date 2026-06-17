@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->latest()->paginate(20);
+        $products = Product::latest()->paginate(20);
         return view('admin.products.index', compact('products'));
     }
 
@@ -70,14 +70,12 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load('category');
         return view('admin.products.show', compact('product'));
     }
 
     public function edit(Product $product)
     {
         $categories = Category::where('is_active', true)->orderBy('name')->get();
-        $product->load('category');
         return view('admin.products.edit', compact('product', 'categories'));
     }
 

@@ -12,33 +12,28 @@
         <h2 class="mt-2 text-4xl font-bold text-gray-900 font-bebas tracking-wide">Products</h2>
         <p class="text-sm text-gray-500 mt-1">High-quality solar energy solutions for every need</p>
       </div>
-      <div class="flex items-center space-x-4">
-        <button id="filterToggleBtn" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto transition-colors">
-          <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <div class="flex items-center gap-3">
+        <button id="filterToggleBtn" type="button" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-rajdhani font-700 text-gray-700 tracking-wider hover:border-[#FF6B00]/30 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-orange-100 transition-all duration-200 uppercase">
+          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z" />
           </svg>
           Filters
-          <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-          </svg>
         </button>
-        <button id="sortDropdownBtn" type="button" class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto transition-colors">
-          <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
-          </svg>
-          Sort
-          <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-          </svg>
-        </button>
-        {{-- Sort dropdown --}}
-        <div id="sortDropdown" class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow absolute top-full right-0 mt-1">
-          <ul class="p-2 text-left text-sm font-medium text-gray-500">
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">The most popular</a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Newest</a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Price: Low to High</a></li>
-            <li><a href="#" class="group inline-flex w-full items-center rounded-md px-3 py-2 hover:bg-gray-100 hover:text-gray-900">Price: High to Low</a></li>
-          </ul>
+        <div class="relative">
+          <button id="sortDropdownBtn" type="button" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-rajdhani font-700 text-gray-700 tracking-wider hover:border-[#FF6B00]/30 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-orange-100 transition-all duration-200 uppercase">
+            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
+            </svg>
+            Sort
+          </button>
+          <div id="sortDropdown" class="z-50 hidden absolute right-0 top-full mt-2 w-44 rounded-xl bg-white border border-gray-100 shadow-xl overflow-hidden">
+            <ul class="py-2 text-sm text-gray-600">
+              <li><a href="#" class="block px-4 py-2.5 hover:bg-orange-50 hover:text-[#FF6B00] transition-colors font-medium">Most Popular</a></li>
+              <li><a href="#" class="block px-4 py-2.5 hover:bg-orange-50 hover:text-[#FF6B00] transition-colors font-medium">Newest</a></li>
+              <li><a href="#" class="block px-4 py-2.5 hover:bg-orange-50 hover:text-[#FF6B00] transition-colors font-medium">Price: Low to High</a></li>
+              <li><a href="#" class="block px-4 py-2.5 hover:bg-orange-50 hover:text-[#FF6B00] transition-colors font-medium">Price: High to Low</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

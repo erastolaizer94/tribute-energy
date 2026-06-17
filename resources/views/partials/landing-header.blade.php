@@ -108,8 +108,7 @@
                 @else
                     <div class="pt-2 border-t border-gray-100">
                         <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white rounded-lg" style="background: linear-gradient(135deg, #FF6B00, #FF9000);">
-                            <i class="fas fa-user"></i>
-                            Sign In
+                            <i class="fas fa-user-circle text-lg"></i> Sign In
                         </a>
                     </div>
                 @endauth

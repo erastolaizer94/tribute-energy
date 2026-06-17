@@ -166,86 +166,47 @@
 </section>
 
 {{-- Product Details Modal --}}
-<template x-data="{ product: null, open: false }" x-init="
-  $el.remove();
-  window.addEventListener('open-product', (e) => {
-    product = e.detail;
-    open = true;
-  });
-">
-</template>
-<div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
-     x-data="{ product: null, qty: 1 }"
-     x-show="product"
-     x-cloak
-     x-transition:enter="transition ease-out duration-300"
-     x-transition:enter-start="opacity-0"
-     x-transition:enter-end="opacity-100"
-     x-transition:leave="transition ease-in duration-200"
-     x-transition:leave-start="opacity-100"
-     x-transition:leave-end="opacity-0">
-  <div class="absolute inset-0 bg-black/60" @@click="product = null"></div>
-  <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-       x-show="product"
-       x-transition:enter="transition ease-out duration-300"
-       x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-       x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-       x-transition:leave="transition ease-in duration-200"
-       x-transition:leave-start="opacity-100 scale-100"
-       x-transition:leave-end="opacity-0 scale-95">
-    <button @@click="product = null" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors">
+<div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/60" id="productModalOverlay"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="productModalContent">
+    <button id="closeProductModal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
     <div class="grid md:grid-cols-2">
-      {{-- Product Image --}}
       <div class="relative h-72 md:h-auto bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
-        <img x-bind:src="product?.image || ''" x-show="product?.image" class="w-full h-full object-contain">
-        <svg x-show="!product?.image" class="w-32 h-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <img id="modalProductImage" class="w-full h-full object-contain hidden">
+        <svg id="modalProductImagePlaceholder" class="w-32 h-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
         </svg>
       </div>
-      {{-- Product Details --}}
       <div class="p-6 md:p-8">
-        <p class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1" x-text="product?.category"></p>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2" x-text="product?.name"></h2>
+        <p id="modalProductCategory" class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1"></p>
+        <h2 id="modalProductName" class="text-2xl font-bold text-gray-900 mb-2"></h2>
         <div class="flex items-center gap-2 mb-4">
-          <div class="flex items-center" x-html="product?.stars || '★★★★★'"></div>
-          <span class="text-sm text-gray-500" x-text="'(' + (product?.reviews || 0) + ')'"></span>
+          <div id="modalProductStars" class="flex items-center"></div>
+          <span id="modalProductReviews" class="text-sm text-gray-500"></span>
         </div>
         <div class="mb-4">
-          <span class="text-2xl font-bold text-[#FF6B00]" x-text="'TZS ' + Number(product?.price || 0).toLocaleString()"></span>
-          <span class="text-sm text-gray-400 line-through ml-2" x-show="product?.original_price" x-text="'TZS ' + Number(product?.original_price || 0).toLocaleString()"></span>
+          <span id="modalProductPrice" class="text-2xl font-bold text-[#FF6B00]"></span>
+          <span id="modalProductOriginalPrice" class="text-sm text-gray-400 line-through ml-2 hidden"></span>
         </div>
-        <p class="text-gray-600 text-sm leading-relaxed mb-6" x-text="product?.description || 'No description available.'"></p>
-        {{-- Specs --}}
-        <div class="mb-6" x-show="product?.specs?.length">
+        <p id="modalProductDescription" class="text-gray-600 text-sm leading-relaxed mb-6"></p>
+        <div id="modalProductSpecs" class="mb-6 hidden">
           <h3 class="text-sm font-semibold text-gray-900 mb-2">Specifications</h3>
-          <ul class="space-y-1.5 text-sm text-gray-600">
-            <template x-for="spec in (product?.specs || [])" :key="spec">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span x-text="spec"></span>
-              </li>
-            </template>
-          </ul>
+          <ul id="modalProductSpecsList" class="space-y-1.5 text-sm text-gray-600"></ul>
         </div>
-        {{-- Quantity --}}
         <div class="flex items-center gap-3 mb-6">
           <span class="text-sm font-medium text-gray-900">Qty:</span>
           <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-            <button @@click="qty = Math.max(1, qty - 1)" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">-</button>
-            <span class="w-10 text-center font-semibold text-sm" x-text="qty"></span>
-            <button @@click="qty = Math.min(99, qty + 1)" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
+            <button id="modalQtyDec" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">-</button>
+            <span id="modalQtyValue" class="w-10 text-center font-semibold text-sm">1</span>
+            <button id="modalQtyInc" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
           </div>
         </div>
-        {{-- Actions --}}
         <div class="flex gap-3">
-          <button @@click="add({ id: product.id, name: product.name, price: product.price }); product = null"
-                  class="flex-1 py-3 bg-[#FF6B00] hover:bg-[#e06000] text-white font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
+          <button id="modalAddToCartBtn" class="flex-1 py-3 bg-[#FF6B00] hover:bg-[#e06000] text-white font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
             </svg>

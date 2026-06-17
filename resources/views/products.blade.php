@@ -44,43 +44,43 @@
     </div>
 
     {{-- Products Grid --}}
-    <div class="mb-4 grid gap-5 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="mb-4 grid gap-6 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
       @forelse($products as $product)
-      <div class="product-card group rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+      <div class="product-card group rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 overflow-hidden"
            x-data="{ open: false }">
-        {{-- Image area --}}
-        <div class="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden cursor-pointer"
+        {{-- Image area with orange top accent --}}
+        <div class="relative h-56 bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center overflow-hidden cursor-pointer"
              @@click="open = true; $dispatch('open-product', { id: {{ $product->id }} })">
           @if($product->image)
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500">
+            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-700 ease-out">
           @else
-            <svg class="w-20 h-20 text-gray-300 group-hover:text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-20 h-20 text-gray-300 group-hover:text-[#FF6B00] transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
           @endif
           {{-- Badges --}}
-          <div class="absolute top-3 left-3 flex flex-col gap-1">
+          <div class="absolute top-3 left-3 flex flex-col gap-1.5">
             @if($product->is_featured)
-              <span class="px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 shadow-sm">FEATURED</span>
+              <span class="px-3 py-1 text-[10px] font-rajdhani font-700 text-white tracking-widest rounded-full bg-gradient-to-r from-amber-400 to-orange-500 shadow-lg shadow-orange-200">FEATURED</span>
             @endif
             @if($product->is_sale && $product->original_price)
-              <span class="px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-red-500 shadow-sm">-{{ round((1 - $product->price / $product->original_price) * 100) }}%</span>
+              <span class="px-3 py-1 text-[10px] font-rajdhani font-700 text-white tracking-widest rounded-full bg-gradient-to-r from-red-500 to-rose-600 shadow-lg shadow-red-200">-{{ round((1 - $product->price / $product->original_price) * 100) }}%</span>
             @endif
           </div>
           @if($product->is_new)
-            <span class="absolute top-3 right-3 px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full bg-green-500 shadow-sm">NEW</span>
+            <span class="absolute top-3 right-3 px-3 py-1 text-[10px] font-rajdhani font-700 text-white tracking-widest rounded-full bg-gradient-to-r from-emerald-400 to-green-500 shadow-lg shadow-green-200">NEW</span>
           @endif
           {{-- Quick actions overlay --}}
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center gap-3">
             <button @@click="open = true; $dispatch('open-product', { id: {{ $product->id }} })"
-                    class="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform -translate-y-2 group-hover:translate-y-0 duration-300">
+                    class="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-xl flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform -translate-y-4 group-hover:translate-y-0 duration-500">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
               </svg>
             </button>
             <button @@click="add({ id: {{ $product->id }}, name: '{{ $product->name }}', price: {{ $product->price }} })"
-                    class="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform translate-y-2 group-hover:translate-y-0 duration-300">
+                    class="w-11 h-11 rounded-full bg-white/95 backdrop-blur shadow-xl flex items-center justify-center text-gray-700 hover:text-[#FF6B00] transition-colors transform translate-y-4 group-hover:translate-y-0 duration-500">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
@@ -88,40 +88,42 @@
           </div>
         </div>
         {{-- Product Info --}}
-        <div class="p-4">
-          <p class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1">{{ $product->category ?? 'General' }}</p>
+        <div class="p-5">
+          <span class="text-[11px] font-rajdhani font-700 text-[#FF6B00] tracking-[3px] uppercase block mb-1">{{ $product->category ?? 'Solar' }}</span>
           <a href="#" @@click.prevent="open = true; $dispatch('open-product', { id: {{ $product->id }} })"
-             class="text-sm font-semibold text-gray-900 hover:text-[#FF6B00] transition-colors line-clamp-2 leading-snug">
+             class="text-base font-semibold text-gray-900 hover:text-[#FF6B00] transition-colors line-clamp-2 leading-snug block">
             {{ $product->name }}
           </a>
           {{-- Rating --}}
-          <div class="mt-1.5 flex items-center gap-1.5">
+          <div class="mt-2 flex items-center gap-1.5">
             <div class="flex items-center">
               @for($i = 0; $i < 5; $i++)
                 @if($i < (int)($product->rating ?? 4))
-                  <svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
                 @else
-                  <svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <svg class="w-3.5 h-3.5 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
                 @endif
               @endfor
             </div>
-            <span class="text-[11px] text-gray-400">({{ $product->reviews ?? 0 }})</span>
+            <span class="text-[11px] text-gray-400 font-medium">({{ $product->reviews ?? 0 }})</span>
           </div>
+          {{-- Divider --}}
+          <div class="my-3 border-t border-gray-100"></div>
           {{-- Price & Add to Cart --}}
-          <div class="mt-3 flex items-center justify-between">
+          <div class="flex items-center justify-between">
             <div>
               @if($product->original_price && $product->is_sale)
-                <span class="text-xs text-gray-400 line-through mr-1">TZS {{ number_format($product->original_price) }}</span>
+                <span class="text-[11px] text-gray-400 line-through mr-1 font-medium">TZS {{ number_format($product->original_price) }}</span>
               @endif
-              <p class="text-lg font-bold text-gray-900">TZS {{ number_format($product->price) }}</p>
+              <p class="text-lg font-bold text-gradient">{{ number_format($product->price) }}<span class="text-sm font-normal text-gray-500 ml-0.5">TZS</span></p>
             </div>
             <button @@click="add({ id: {{ $product->id }}, name: '{{ $product->name }}', price: {{ $product->price }} })"
-                    class="w-9 h-9 rounded-lg bg-[#FF6B00] hover:bg-[#e06000] text-white flex items-center justify-center transition-colors shadow-sm hover:shadow-md active:scale-95">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#FF8C00] hover:from-[#e06000] hover:to-[#e67e00] text-white flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg active:scale-90">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
               </svg>
             </button>

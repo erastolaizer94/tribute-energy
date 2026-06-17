@@ -37,14 +37,17 @@
                 </p>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li class="flex items-center gap-3"><i class="fas fa-location-dot text-orange-500 w-4"></i> Dar es Salaam, Tanzania</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-phone text-orange-500 w-4"></i> <a href="tel:+255713808848" class="hover:text-white transition-colors">+255 713 808 848</a></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-phone text-orange-500 w-4"></i> <a href="tel:+255787822735" class="hover:text-white transition-colors">+255 787 822 735</a></li>
+                    <li class="flex items-center gap-3"><i class="fab fa-whatsapp text-orange-500 w-4"></i> <a href="https://wa.me/255787822735" target="_blank" class="hover:text-white transition-colors">+255 787 822 735</a></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-envelope text-orange-500 w-4"></i> <a href="mailto:info@tributenergy.com" class="hover:text-white transition-colors">info@tributenergy.com</a></li>
                     <li class="flex items-center gap-3"><i class="fas fa-envelope text-orange-500 w-4"></i> <a href="mailto:tributenergy@gmail.com" class="hover:text-white transition-colors">tributenergy@gmail.com</a></li>
                 </ul>
                 <div class="flex items-center gap-3 mt-6">
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/tributenergy__?igsh=Y3lvYWY2NjN2a2Jx&utm_source=qr" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/255787822735" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-green-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-blue-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-blue-400 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
 

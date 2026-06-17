@@ -47,8 +47,7 @@ class LoginController extends Controller
     {
         $user = auth()->user();
 
-        // Check if user has admin role
-        if ($user && $user->roles()->where('name', 'admin')->exists()) {
+        if ($user && $user->isAdmin()) {
             return '/dashboard';
         }
 

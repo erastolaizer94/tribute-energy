@@ -95,6 +95,11 @@ Route::post('/cart/update/{id}', [App\Http\Controllers\CartController::class, 'u
 Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
 Route::post('/checkout', [App\Http\Controllers\CartController::class, 'placeOrder'])->name('checkout.place');
 
+// API routes
+Route::get('/api/products', function () {
+    return response()->json(\App\Models\Product::where('is_active', true)->get());
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     

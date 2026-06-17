@@ -223,19 +223,6 @@
 </head>
 <body x-data="cartApp()" x-cloak class="bg-white text-gray-900 antialiased">
 
-    {{-- Cookie Overlay --}}
-    <div id="cookie-overlay" class="cookie-overlay">
-        <div class="cookie-overlay-bg"></div>
-    </div>
-    <script>
-    (function(){
-        if (localStorage.getItem('te_cookie_consent')) {
-            var el = document.getElementById('cookie-overlay');
-            if (el) el.style.display = 'none';
-        }
-    })();
-    </script>
-
     @include('partials.landing-header')
 
     <main class="pt-20">

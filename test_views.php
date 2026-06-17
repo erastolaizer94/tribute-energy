@@ -1,15 +1,10 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-$app = require __DIR__ . '/bootstrap/app.php';
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$views = ['pages.careers','pages.blog','pages.contact','pages.privacy','pages.cookie-policy','pages.gdpr','pages.about','pages.terms'];
-foreach ($views as $v) {
+$pages = ["about","features","pricing","projects","partners","careers"];
+foreach ($pages as $v) {
     try {
-        echo $v . ' : ';
-        view($v)->render();
-        echo "OK\n";
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage() . "\n";
+        view("pages." . $v)->render();
+        echo "OK: pages.$v" . PHP_EOL;
+    } catch (\Exception $e) {
+        echo "FAIL: pages.$v - " . $e->getMessage() . PHP_EOL;
     }
 }

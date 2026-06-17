@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <section class="py-16 bg-[#0D0D0D] border-y border-[#1A1A1A]">
+    <section class="py-16 bg-gray-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto px-5 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 @php
@@ -89,7 +89,7 @@
                 @endphp
                 @foreach($faqs as $f)
                 <div>
-                    <p class="font-rajdhani font-700 text-sm text-white mb-1">{{ $f['q'] }}</p>
+                    <p class="font-rajdhani font-700 text-sm text-gray-900 mb-1">{{ $f['q'] }}</p>
                     <p class="text-gray-500 text-xs">{{ $f['a'] }}</p>
                 </div>
                 @endforeach

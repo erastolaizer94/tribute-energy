@@ -1,4 +1,32 @@
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+<div id="topbar" class="fixed top-0 left-0 right-0 z-[60] transition-all duration-500" style="background: linear-gradient(135deg, #0a0a0a, #1a1a1a); border-bottom: 1px solid rgba(255,107,0,0.1);">
+    <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-[36px]">
+        <div class="flex items-center gap-4 text-xs">
+            <a href="mailto:info@tributenergy.com" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
+                <i class="fas fa-envelope text-[10px]"></i>
+                <span class="hidden sm:inline">info@tributenergy.com</span>
+            </a>
+            <span class="text-gray-700 hidden sm:block">|</span>
+            <a href="mailto:tributenergy@gmail.com" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
+                <i class="fas fa-envelope text-[10px]"></i>
+                <span class="hidden sm:inline">tributenergy@gmail.com</span>
+            </a>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+            <a href="tel:+255787822735" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
+                <i class="fas fa-phone text-[10px]"></i>
+                <span class="hidden sm:inline">+255 787 822 735</span>
+            </a>
+            <span class="text-gray-700 hidden sm:block">|</span>
+            <a href="https://wa.me/255787822735" target="_blank" class="flex items-center gap-1.5 text-gray-400 hover:text-[#25D366] transition-colors">
+                <i class="fab fa-whatsapp text-[11px]"></i>
+                <span class="hidden sm:inline">WhatsApp</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<header id="main-header" class="fixed left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm"
+        style="top: 36px;">
     @if(session('success'))
         <div class="bg-green-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('success') }}</div>
     @endif

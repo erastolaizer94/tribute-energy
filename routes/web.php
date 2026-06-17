@@ -68,7 +68,24 @@ Route::get('/product/{id}', function ($id) {
     return view('product-detail', compact('product'));
 })->name('product.detail');
 
+// Static pages
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/features', 'pages.features')->name('features');
+Route::view('/projects', 'pages.projects')->name('projects');
+Route::view('/partners', 'pages.partners')->name('partners');
+Route::view('/pricing', 'pages.pricing')->name('pricing');
+Route::view('/terms', 'pages.terms')->name('terms');
+Route::view('/careers', 'pages.careers')->name('careers');
+Route::view('/blog', 'pages.blog')->name('blog');
+Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/privacy-policy', 'pages.privacy')->name('privacy');
+Route::view('/cookie-policy', 'pages.cookie-policy')->name('cookie.policy');
+Route::view('/gdpr', 'pages.gdpr')->name('gdpr');
+
 Auth::routes();
+
+// Newsletter
+Route::post('/newsletter/subscribe', [App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 // Cart routes
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');

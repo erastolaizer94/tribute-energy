@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="@yield('meta_description', 'Tribute Energy — Premium energy supplements engineered for peak performance. Fuel your potential.')">
-    <title>@yield('title', 'Home') | Tribute Energy</title>
-
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
+    <meta name="description" content="@yield('meta_description', 'Tribute Energy — solar water pumping, hybrid power systems and water supply solutions for communities across Tanzania.')">
+    <title>@yield('title', 'Tribute Energy') | Tribute Energy</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -19,12 +18,21 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
+                    colors: {
+                        primary: {
+                            "50":"#fff7ed","100":"#ffedd5","200":"#fed7aa","300":"#fdba74",
+                            "400":"#fb923c","500":"#f97316","600":"#ea580c","700":"#c2410c",
+                            "800":"#9a3412","900":"#7c2d12","950":"#431407"
+                        }
+                    },
                     fontFamily: {
                         bebas: ['"Bebas Neue"', 'cursive'],
                         rajdhani: ['Rajdhani', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
+                        body: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif'],
+                        sans: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
                     }
                 }
             }
@@ -35,31 +43,20 @@
         :root {
             --orange: #FF6B00;
             --gold:   #FFB800;
-            --dark:   #0A0A0A;
-            --card:   #111111;
-            --surf:   #1A1A1A;
-            --bdr:    #252525;
+            --card:   #ffffff;
+            --bdr:    #e5e7eb;
         }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
         ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 4px; }
 
-        /* Typography helpers */
         .font-bebas   { font-family: 'Bebas Neue', cursive; }
         .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
 
-        /* Gradient text */
         .text-gradient {
             background: linear-gradient(135deg, #FF6B00 0%, #FFB800 100%);
             -webkit-background-clip: text;
@@ -67,7 +64,6 @@
             background-clip: text;
         }
 
-        /* Section label */
         .section-label {
             font-family: 'Rajdhani', sans-serif;
             font-size: 12px;
@@ -77,7 +73,6 @@
             color: var(--orange);
         }
 
-        /* Buttons */
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -118,7 +113,7 @@
             gap: 10px;
             padding: 12px 34px;
             background: transparent;
-            color: #fff;
+            color: #333;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
             font-size: 15px;
@@ -132,24 +127,24 @@
         }
         .btn-outline:hover {
             border-color: var(--orange);
-            background: rgba(255,107,0,0.1);
+            background: rgba(255,107,0,0.08);
+            color: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(255,107,0,0.2);
         }
 
-        /* Cards */
         .card {
             background: var(--card);
             border: 1px solid var(--bdr);
+            border-radius: 16px;
             transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
         }
         .card:hover {
-            border-color: rgba(255,107,0,0.45);
-            transform: translateY(-6px);
-            box-shadow: 0 24px 60px rgba(255,107,0,0.12);
+            border-color: rgba(255,107,0,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
         }
 
-        /* Nav link underline animation */
         .nav-link {
             position: relative;
             font-family: 'Rajdhani', sans-serif;
@@ -157,7 +152,7 @@
             font-size: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.75);
+            color: rgba(0,0,0,0.6);
             text-decoration: none;
             transition: color 0.25s ease;
         }
@@ -169,26 +164,26 @@
             background: var(--orange);
             transition: width 0.3s ease;
         }
-        .nav-link:hover { color: #fff; }
+        .nav-link:hover { color: #000; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link.active { color: #fff; }
+        .nav-link.active { color: #000; }
 
-        /* Cart sidebar */
         .cart-panel {
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .cart-panel.open { transform: translateX(0); }
 
-        /* Toast */
         #te-toast {
             position: fixed;
             bottom: 28px; right: 28px;
             z-index: 9999;
-            background: var(--surf);
+            background: #fff;
             border-left: 3px solid var(--orange);
             padding: 14px 22px;
             min-width: 280px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
             transform: translateY(80px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
@@ -196,14 +191,10 @@
         }
         #te-toast.show { transform: translateY(0); opacity: 1; }
 
-        /* Glow effects */
         .glow-orange { box-shadow: 0 0 40px rgba(255,107,0,0.25); }
         .text-glow   { text-shadow: 0 0 40px rgba(255,107,0,0.5); }
-
-        /* Stars */
         .stars { color: #FFB800; font-size: 12px; letter-spacing: 1px; }
 
-        /* Tag badges */
         .product-tag {
             font-family: 'Rajdhani', sans-serif;
             font-size: 11px;
@@ -215,14 +206,12 @@
 
         [x-cloak] { display: none !important; }
 
-        /* Animated gradient background for hero fallback */
         @keyframes gradientShift {
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Divider line */
         .divider {
             width: 60px; height: 3px;
             background: linear-gradient(90deg, var(--orange), var(--gold));
@@ -232,9 +221,9 @@
 
     @yield('head')
 </head>
-<body x-data="cartApp()" x-cloak class="bg-[#0A0A0A] text-white font-inter antialiased">
+<body x-data="cartApp()" x-cloak class="bg-white text-gray-900 antialiased">
 
-    {{-- Cookie Overlay — starts visible, hides immediately if already accepted --}}
+    {{-- Cookie Overlay --}}
     <div id="cookie-overlay" class="cookie-overlay">
         <div class="cookie-overlay-bg"></div>
     </div>
@@ -247,17 +236,17 @@
     })();
     </script>
 
-    @include('partials.header')
+    @include('partials.landing-header')
 
-    <main>
+    <main class="pt-20">
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @include('partials.landing-footer')
 
     {{-- Cart Sidebar --}}
     <div x-show="open" class="fixed inset-0 z-[60]" x-cloak>
-        <div class="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"
              x-on:click="open = false"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
@@ -266,15 +255,15 @@
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"></div>
 
-        <div class="absolute right-0 top-0 h-full w-full max-w-[420px] bg-[#0F0F0F] border-l border-[#252525] flex flex-col cart-panel"
+        <div class="absolute right-0 top-0 h-full w-full max-w-[420px] bg-white border-l border-gray-200 flex flex-col cart-panel"
              :class="{'open': open}">
 
-            <div class="flex items-center justify-between p-6 border-b border-[#252525]">
-                <h2 class="font-bebas text-2xl tracking-widest">
+            <div class="flex items-center justify-between p-6 border-b border-gray-100">
+                <h2 class="font-bebas text-2xl tracking-widest text-gray-900">
                     CART <span class="text-[#FF6B00]" x-text="'(' + count + ')'"></span>
                 </h2>
                 <button x-on:click="open = false"
-                        class="w-9 h-9 rounded-full bg-[#1A1A1A] hover:bg-[#FF6B00] transition-colors flex items-center justify-center text-sm">
+                        class="w-9 h-9 rounded-full bg-gray-100 hover:bg-[#FF6B00] hover:text-white transition-colors flex items-center justify-center text-sm">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -282,10 +271,10 @@
             <div class="flex-1 overflow-y-auto p-6 space-y-4">
                 <template x-if="items.length === 0">
                     <div class="text-center py-16">
-                        <div class="w-16 h-16 rounded-full bg-[#1A1A1A] flex items-center justify-center mx-auto mb-5">
-                            <i class="fas fa-shopping-bag text-2xl text-[#333]"></i>
+                        <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
+                            <i class="fas fa-shopping-bag text-2xl text-gray-300"></i>
                         </div>
-                        <p class="text-gray-500 font-rajdhani font-600 text-lg mb-6">Your cart is empty</p>
+                        <p class="text-gray-400 font-rajdhani font-600 text-lg mb-6">Your cart is empty</p>
                         <a href="{{ route('products') }}" x-on:click="open = false" class="btn-primary">
                             <span>Shop Now</span> <i class="fas fa-arrow-right"></i>
                         </a>
@@ -293,23 +282,23 @@
                 </template>
 
                 <template x-for="(item, i) in items" :key="i">
-                    <div class="flex gap-4 p-4 bg-[#1A1A1A] border border-[#252525] group">
-                        <div class="w-18 h-18 flex-shrink-0 w-[72px] h-[72px] flex items-center justify-center text-white font-bebas text-xl"
+                    <div class="flex gap-4 p-4 bg-gray-50 border border-gray-100 group rounded-xl">
+                        <div class="w-[72px] h-[72px] flex-shrink-0 flex items-center justify-center text-white font-bebas text-xl rounded-lg"
                              :style="'background: linear-gradient(135deg,' + item.cs + ',' + item.ce + ')'">
                             TE
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p class="font-rajdhani font-700 text-sm truncate" x-text="item.name"></p>
-                            <p class="text-gray-400 text-xs" x-text="item.flavor"></p>
+                            <p class="font-rajdhani font-700 text-sm text-gray-900 truncate" x-text="item.name"></p>
+                            <p class="text-gray-500 text-xs" x-text="item.flavor"></p>
                             <p class="text-[#FF6B00] font-rajdhani font-bold mt-1" x-text="'$' + item.price.toFixed(2)"></p>
                             <div class="flex items-center gap-2 mt-2">
                                 <button x-on:click="dec(i)"
-                                        class="w-6 h-6 bg-[#252525] hover:bg-[#FF6B00] transition-colors text-xs flex items-center justify-center">−</button>
-                                <span class="font-bold text-sm w-5 text-center" x-text="item.qty"></span>
+                                        class="w-6 h-6 bg-gray-100 hover:bg-[#FF6B00] hover:text-white transition-colors text-xs flex items-center justify-center rounded">-</button>
+                                <span class="font-bold text-sm w-5 text-center text-gray-900" x-text="item.qty"></span>
                                 <button x-on:click="inc(i)"
-                                        class="w-6 h-6 bg-[#252525] hover:bg-[#FF6B00] transition-colors text-xs flex items-center justify-center">+</button>
+                                        class="w-6 h-6 bg-gray-100 hover:bg-[#FF6B00] hover:text-white transition-colors text-xs flex items-center justify-center rounded">+</button>
                                 <button x-on:click="remove(i)"
-                                        class="ml-auto text-gray-600 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
+                                        class="ml-auto text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
                                     <i class="fas fa-trash text-xs"></i>
                                 </button>
                             </div>
@@ -318,9 +307,9 @@
                 </template>
             </div>
 
-            <div x-show="items.length > 0" class="p-6 border-t border-[#252525] space-y-4">
+            <div x-show="items.length > 0" class="p-6 border-t border-gray-100 space-y-4">
                 <div class="flex justify-between items-center">
-                    <span class="font-rajdhani font-700 text-base text-gray-400 tracking-wider uppercase">Total</span>
+                    <span class="font-rajdhani font-700 text-base text-gray-500 tracking-wider uppercase">Total</span>
                     <span class="font-bebas text-4xl text-[#FF6B00]" x-text="'$' + total.toFixed(2)"></span>
                 </div>
                 <a href="{{ route('login') }}" class="btn-primary w-full">
@@ -331,11 +320,11 @@
         </div>
     </div>
 
-    {{-- Toast Notification --}}
+    {{-- Toast --}}
     <div id="te-toast">
         <div class="flex items-center gap-3">
             <i class="fas fa-check-circle text-[#FF6B00]"></i>
-            <span id="te-toast-msg" class="font-rajdhani font-600 text-sm"></span>
+            <span id="te-toast-msg" class="font-rajdhani font-600 text-sm text-gray-800"></span>
         </div>
     </div>
 
@@ -393,9 +382,6 @@
             overflow: hidden !important;
             height: 100vh !important;
         }
-        .cookie-overlay.show {
-            display: flex !important;
-        }
         .swal2-popup.cookie-swal {
             border: 1px solid rgba(255,107,0,0.2) !important;
             box-shadow: 0 0 80px rgba(255,107,0,0.15) !important;
@@ -447,60 +433,55 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const COOKIE_KEY = 'te_cookie_consent';
-
         if (localStorage.getItem(COOKIE_KEY)) return;
-
         document.body.classList.add('cookie-blocked');
-
         Swal.fire({
-                html: `
-                    <div class="cookie-icon">
-                        <i class="fas fa-cookie-bite"></i>
-                    </div>
-                    <h2 class="cookie-swal-title" style="margin-top:1rem;background:linear-gradient(135deg,#FF6B00,#FFB800);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                        THIS SITE USES COOKIES
-                    </h2>
-                    <p class="cookie-swal-text" style="margin-top:0.5rem;max-width:420px;margin-left:auto;margin-right:auto;">
-                        We use cookies to enhance your browsing experience, analyze site traffic,
-                        and deliver personalized content. By clicking <strong style="color:#fff;">Accept</strong>,
-                        you consent to our use of cookies.
-                    </p>
-                    <div style="margin-top:1rem;display:flex;gap:0.75rem;justify-content:center;font-size:0.75rem;color:#555;font-family:Inter,sans-serif;">
-                        <a href="{{ route('terms') }}" style="color:#6b7280;text-decoration:underline;transition:color 0.3s;" onmouseover="this.style.color='#FF6B00'" onmouseout="this.style.color='#6b7280'">Privacy Policy</a>
-                        <span style="color:#333;">|</span>
-                        <a href="{{ route('terms') }}" style="color:#6b7280;text-decoration:underline;transition:color 0.3s;" onmouseover="this.style.color='#FF6B00'" onmouseout="this.style.color='#6b7280'">Terms of Service</a>
-                    </div>
-                `,
-                icon: null,
-                showConfirmButton: true,
-                showDenyButton: false,
-                showCancelButton: false,
-                confirmButtonText: '<i class="fas fa-check-circle mr-2"></i> ACCEPT & CONTINUE',
-                confirmButtonColor: '#FF6B00',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: true,
-                backdrop: false,
-                background: '#0F0F0F',
-                color: '#fff',
-                customClass: {
-                    popup: 'cookie-swal',
-                    confirmButton: 'cookie-swal-btn',
-                },
-                showClass: {
-                    popup: 'animate__animated animate__zoomIn animate__faster'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__zoomOut animate__faster'
-                },
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    localStorage.setItem(COOKIE_KEY, 'accepted');
-                    document.body.classList.remove('cookie-blocked');
-                    const overlay = document.getElementById('cookie-overlay');
-                    if (overlay) overlay.style.display = 'none';
-                }
-            });
+            html: `
+                <div class="cookie-icon">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+                <h2 class="cookie-swal-title" style="margin-top:1rem;background:linear-gradient(135deg,#FF6B00,#FFB800);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                    THIS SITE USES COOKIES
+                </h2>
+                <p class="cookie-swal-text" style="margin-top:0.5rem;max-width:420px;margin-left:auto;margin-right:auto;">
+                    We use cookies to enhance your browsing experience, analyze site traffic,
+                    and deliver personalized content. By clicking <strong style="color:#fff;">Accept</strong>,
+                    you consent to our use of cookies.
+                </p>
+                <div style="margin-top:1rem;display:flex;gap:0.75rem;justify-content:center;font-size:0.75rem;color:#555;font-family:Inter,sans-serif;">
+                    <a href="{{ route('terms') }}" style="color:#6b7280;text-decoration:underline;transition:color 0.3s;" onmouseover="this.style.color='#FF6B00'" onmouseout="this.style.color='#6b7280'">Privacy Policy</a>
+                    <span style="color:#333;">|</span>
+                    <a href="{{ route('terms') }}" style="color:#6b7280;text-decoration:underline;transition:color 0.3s;" onmouseover="this.style.color='#FF6B00'" onmouseout="this.style.color='#6b7280'">Terms of Service</a>
+                </div>
+            `,
+            icon: null,
+            showConfirmButton: true,
+            confirmButtonText: '<i class="fas fa-check-circle mr-2"></i> ACCEPT & CONTINUE',
+            confirmButtonColor: '#FF6B00',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: true,
+            backdrop: false,
+            background: '#0F0F0F',
+            color: '#fff',
+            customClass: {
+                popup: 'cookie-swal',
+                confirmButton: 'cookie-swal-btn',
+            },
+            showClass: {
+                popup: 'animate__animated animate__zoomIn animate__faster'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__zoomOut animate__faster'
+            },
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                localStorage.setItem(COOKIE_KEY, 'accepted');
+                document.body.classList.remove('cookie-blocked');
+                const overlay = document.getElementById('cookie-overlay');
+                if (overlay) overlay.style.display = 'none';
+            }
+        });
     });
     </script>
 

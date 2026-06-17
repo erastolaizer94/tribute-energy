@@ -22,6 +22,8 @@
                    class="nav-link {{ request()->routeIs('home') ? 'active text-white' : '' }}">Home</a>
                 <a href="{{ route('features') }}"
                    class="nav-link {{ request()->routeIs('features') ? 'active text-white' : '' }}">Features</a>
+                <a href="{{ route('products') }}"
+                   class="nav-link {{ request()->routeIs('products') ? 'active text-white' : '' }}">Products</a>
                 <a href="{{ route('pricing') }}"
                    class="nav-link {{ request()->routeIs('pricing') ? 'active text-white' : '' }}">Pricing</a>
                 <a href="{{ route('about') }}"
@@ -95,6 +97,7 @@
         <nav class="flex flex-col space-y-1">
             <a href="{{ route('home') }}"     class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('home') ? 'text-white' : '' }}">Home</a>
             <a href="{{ route('features') }}" class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('features') ? 'text-white' : '' }}">Features</a>
+            <a href="{{ route('products') }}" class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('products') ? 'text-white' : '' }}"><span class="flex items-center gap-2">Products <span class="text-[10px] font-rajdhani font-700 text-[#FF6B00] tracking-widest">LIVE</span></span></a>
             <a href="{{ route('pricing') }}"  class="nav-link block py-3 !text-base border-b border-[#1A1A1A] {{ request()->routeIs('pricing') ? 'text-white' : '' }}">Pricing</a>
             <a href="{{ route('about') }}"    class="nav-link block py-3 !text-base {{ request()->routeIs('about') ? 'text-white' : '' }}">About</a>
         </nav>

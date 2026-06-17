@@ -1,12 +1,11 @@
-@extends('layouts.landing')
+@extends('layouts.site')
 
 @section('title', 'Contact Us')
 @section('meta_description', 'Get in touch with the Tribute Energy team. We\'d love to hear from you.')
 
 @section('content')
 
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, #0A0A0A 0%, #150800 50%, #0A0A0A 100%);"></div>
+    <section class="relative pt-32 pb-20 overflow-hidden bg-white">
         <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8">
             <div class="max-w-2xl">
                 <div class="section-label mb-4">Get In Touch</div>
@@ -15,7 +14,7 @@
                     <span class="text-gradient">HEAR FROM YOU</span>
                 </h1>
                 <div class="divider mt-4 mb-6"></div>
-                <p class="text-gray-400 text-lg leading-relaxed max-w-lg">Questions about our products, your order, or anything else? Our team is ready to help.</p>
+                <p class="text-gray-600 text-lg leading-relaxed max-w-lg">Questions about our products, your order, or anything else? Our team is ready to help.</p>
             </div>
         </div>
     </section>

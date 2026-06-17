@@ -6,14 +6,14 @@
 @section('content')
 
     {{-- Hero --}}
-    <section class="relative pt-20 pb-20 overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-        <div class="absolute inset-0 opacity-10" style="background: url('{{ asset('hero-bg.jpg') }}') center/cover no-repeat;"></div>
+    <section class="relative pt-20 pb-20 overflow-hidden bg-white">
+        <div class="absolute inset-0 opacity-5" style="background: url('{{ asset('hero-bg.jpg') }}') center/cover no-repeat;"></div>
         <div class="relative z-10 max-w-screen-xl mx-auto px-4 lg:px-8 text-center">
-            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full mb-5" style="background: rgba(255,140,0,0.15); color: #FF8C00; border: 1px solid rgba(255,140,0,0.3);">What We Do</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-5">
+            <span class="inline-block px-4 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full mb-5" style="background: #fff7ed; color: #FF8C00; border: 1px solid #ffedd5;">What We Do</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-5">
                 Complete Energy &amp;<br><span style="background: linear-gradient(90deg,#FFB347,#FF8C00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Water Solutions</span>
             </h1>
-            <p class="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
                 From solar water pumping to hybrid power systems — everything we offer, built on 15+ years of field experience in Tanzania.
             </p>
         </div>

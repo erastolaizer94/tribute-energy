@@ -13,7 +13,7 @@
                 <span class="text-gradient">PEAK PERFORMERS</span>
             </h1>
             <div class="divider mx-auto mt-5 mb-6"></div>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Science-backed articles, athlete stories, and tips to fuel your journey.</p>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">Science-backed articles, athlete stories, and tips to fuel your journey.</p>
         </div>
     </section>
 
@@ -37,7 +37,7 @@
             @foreach($categories as $c)
             <button x-on:click="active = '{{ $c }}'"
                     class="px-5 py-2 text-sm font-rajdhani font-700 tracking-wider uppercase rounded-full transition-all border"
-                    :class="active === '{{ $c }}' ? 'bg-[#FF6B00] border-[#FF6B00] text-white' : 'bg-transparent border-[#252525] text-gray-500 hover:border-[#FF6B00]/50 hover:text-white'">
+                    :class="active === '{{ $c }}' ? 'bg-[#FF6B00] border-[#FF6B00] text-white' : 'bg-transparent border-gray-200 text-gray-500 hover:border-[#FF6B00]/50 hover:text-gray-900'">
                 {{ $c }}
             </button>
             @endforeach
@@ -55,8 +55,8 @@
                         <span class="text-[10px] font-rajdhani font-700 tracking-wider uppercase px-2 py-1 rounded" style="background: {{ $p['color'] }}22; color: {{ $p['color'] }}">{{ $p['cat'] }}</span>
                         <span class="text-gray-600 text-xs">{{ $p['read'] }}</span>
                     </div>
-                    <h3 class="font-rajdhani font-700 text-sm text-white group-hover:text-[#FF6B00] transition-colors leading-snug">{{ $p['title'] }}</h3>
-                    <p class="text-gray-600 text-xs mt-2">{{ $p['date'] }}</p>
+                    <h3 class="font-rajdhani font-700 text-sm text-gray-900 group-hover:text-[#FF6B00] transition-colors leading-snug">{{ $p['title'] }}</h3>
+                    <p class="text-gray-400 text-xs mt-2">{{ $p['date'] }}</p>
                 </div>
             </a>
             @endforeach
@@ -67,16 +67,16 @@
         </div>
     </section>
 
-    <section class="py-20 bg-[#0D0D0D] border-y border-[#1A1A1A]">
+    <section class="py-20 bg-gray-50 border-y border-gray-200">
         <div class="max-w-3xl mx-auto px-5 text-center" data-aos="fade-up">
             <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 bg-[#FF6B00]/10 border border-[#FF6B00]/20">
                 <i class="fas fa-envelope-open-text text-2xl text-[#FF6B00]"></i>
             </div>
             <h2 class="font-bebas text-5xl mb-3">GET THE <span class="text-gradient">EDGE</span></h2>
-            <p class="text-gray-400 text-sm max-w-md mx-auto mb-6">Subscribe to our newsletter for exclusive performance tips, product drops, and insider content.</p>
+            <p class="text-gray-600 text-sm max-w-md mx-auto mb-6">Subscribe to our newsletter for exclusive performance tips, product drops, and insider content.</p>
             <div class="max-w-md mx-auto">
-                <div class="flex gap-2 bg-[#111] border border-[#252525] p-1.5 rounded-full">
-                    <input type="email" placeholder="Your email" class="flex-1 bg-transparent border-none px-4 py-2 text-sm text-white placeholder-gray-600 outline-none">
+                <div class="flex gap-2 bg-white border border-gray-200 p-1.5 rounded-full">
+                    <input type="email" placeholder="Your email" class="flex-1 bg-transparent border-none px-4 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none">
                     <button class="bg-gradient-to-r from-[#FF6B00] to-[#FF8C00] text-white px-6 py-2 rounded-full text-sm font-rajdhani font-700 tracking-wider uppercase hover:shadow-lg hover:shadow-[#FF6B00]/30 transition-all">Subscribe</button>
                 </div>
             </div>

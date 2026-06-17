@@ -221,41 +221,136 @@
 
 @push('scripts')
 <script>
-// Fetch product JSON on modal open
+// --- Product Modal ---
 let productsCache = null;
+let currentModalProduct = null;
+let modalQty = 1;
+const modal = document.getElementById('productModal');
+const modalContent = document.getElementById('productModalContent');
+
+function showModal() {
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  requestAnimationFrame(() => {
+    modalContent.classList.remove('scale-95', 'opacity-0');
+    modalContent.classList.add('scale-100', 'opacity-100');
+  });
+}
+
+function hideModal() {
+  modalContent.classList.remove('scale-100', 'opacity-100');
+  modalContent.classList.add('scale-95', 'opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }, 300);
+}
+
+document.getElementById('closeProductModal')?.addEventListener('click', hideModal);
+document.getElementById('productModalOverlay')?.addEventListener('click', hideModal);
 
 document.addEventListener('open-product', async function(e) {
-  const modal = document.getElementById('productModal');
-  if (!modal) return;
-
   try {
     if (!productsCache) {
       const resp = await fetch('/api/products');
       productsCache = await resp.json();
     }
     const product = productsCache.find(p => p.id === e.detail.id);
-    if (product) {
-      const alpine = modal.__x;
-      if (alpine) {
-        // Build star HTML
-        const rating = Math.round(product.rating || 4);
-        let stars = '';
-        for (let i = 0; i < 5; i++) {
-          stars += i < rating
-            ? '<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>'
-            : '<svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
-        }
-        product.stars = stars;
-        alpine.$data.product = product;
-        alpine.$data.qty = 1;
-      }
+    if (!product) return;
+    currentModalProduct = product;
+    modalQty = 1;
+
+    // Image
+    const img = document.getElementById('modalProductImage');
+    const placeholder = document.getElementById('modalProductImagePlaceholder');
+    if (product.image) {
+      img.src = product.image.startsWith('http') ? product.image : '/' + product.image;
+      img.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+    } else {
+      img.classList.add('hidden');
+      placeholder.classList.remove('hidden');
     }
+
+    document.getElementById('modalProductCategory').textContent = product.category || 'General';
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductPrice').textContent = 'TZS ' + Number(product.price).toLocaleString();
+    document.getElementById('modalProductDescription').textContent = product.description || 'No description available.';
+    document.getElementById('modalQtyValue').textContent = '1';
+
+    // Original price
+    const origPrice = document.getElementById('modalProductOriginalPrice');
+    if (product.original_price && product.is_sale) {
+      origPrice.textContent = 'TZS ' + Number(product.original_price).toLocaleString();
+      origPrice.classList.remove('hidden');
+    } else {
+      origPrice.classList.add('hidden');
+    }
+
+    // Stars
+    const rating = Math.round(product.rating || 4);
+    let starsHtml = '';
+    for (let i = 0; i < 5; i++) {
+      starsHtml += i < rating
+        ? '<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>'
+        : '<svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+    }
+    document.getElementById('modalProductStars').innerHTML = starsHtml;
+    document.getElementById('modalProductReviews').textContent = '(' + (product.reviews || 0) + ')';
+
+    // Specs
+    const specsContainer = document.getElementById('modalProductSpecs');
+    const specsList = document.getElementById('modalProductSpecsList');
+    if (product.specs && product.specs.length) {
+      specsList.innerHTML = product.specs.map(s =>
+        '<li class="flex items-center gap-2">' +
+        '<svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">' +
+        '<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' +
+        '<span>' + s + '</span></li>'
+      ).join('');
+      specsContainer.classList.remove('hidden');
+    } else {
+      specsContainer.classList.add('hidden');
+    }
+
+    showModal();
   } catch (err) {
     console.error('Failed to fetch product details:', err);
   }
 });
 
-// Sort dropdown
+// Modal quantity
+document.getElementById('modalQtyDec')?.addEventListener('click', function() {
+  if (modalQty > 1) {
+    modalQty--;
+    document.getElementById('modalQtyValue').textContent = modalQty;
+  }
+});
+document.getElementById('modalQtyInc')?.addEventListener('click', function() {
+  if (modalQty < 99) {
+    modalQty++;
+    document.getElementById('modalQtyValue').textContent = modalQty;
+  }
+});
+
+// Add to cart from modal
+document.getElementById('modalAddToCartBtn')?.addEventListener('click', function() {
+  if (!currentModalProduct) return;
+  const alpineBody = document.querySelector('[x-data="cartApp()"]');
+  if (alpineBody && alpineBody.__x) {
+    for (let i = 0; i < modalQty; i++) {
+      alpineBody.__x.$data.add({
+        id: currentModalProduct.id,
+        name: currentModalProduct.name,
+        price: currentModalProduct.price,
+        image: currentModalProduct.image
+      });
+    }
+    hideModal();
+  }
+});
+
+// --- Sort dropdown ---
 document.getElementById('sortDropdownBtn')?.addEventListener('click', function(e) {
   e.stopPropagation();
   document.getElementById('sortDropdown')?.classList.toggle('hidden');
@@ -264,12 +359,12 @@ document.addEventListener('click', function() {
   document.getElementById('sortDropdown')?.classList.add('hidden');
 });
 
-// Filter modal
+// --- Filter modal toggle ---
 document.getElementById('filterToggleBtn')?.addEventListener('click', function() {
-  const modal = document.getElementById('filterModal');
-  if (modal) {
-    modal.classList.toggle('hidden');
-    modal.classList.toggle('flex');
+  const m = document.getElementById('filterModal');
+  if (m) {
+    m.classList.toggle('hidden');
+    m.classList.toggle('flex');
   }
 });
 </script>

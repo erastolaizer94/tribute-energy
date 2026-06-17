@@ -21,7 +21,7 @@ class DashboardController extends Controller
             'total_users'     => User::count(),
             'total_orders'    => Order::count(),
             'pending_orders'  => Order::where('status', 'pending')->count(),
-            'total_revenue'   => Order::whereIn('status', ['completed', 'delivered'])->sum('total') ?? 0,
+            'total_revenue'   => Order::whereIn('status', ['completed', 'delivered'])->sum('total_amount') ?? 0,
         ];
 
         $recent_users    = User::latest()->take(6)->get();
@@ -34,7 +34,7 @@ class DashboardController extends Controller
             $months[] = [
                 'label'   => $d->format('M Y'),
                 'orders'  => Order::whereYear('created_at', $d->year)->whereMonth('created_at', $d->month)->count(),
-                'revenue' => (float) Order::whereYear('created_at', $d->year)->whereMonth('created_at', $d->month)->sum('total'),
+                'revenue' => (float) Order::whereYear('created_at', $d->year)->whereMonth('created_at', $d->month)->sum('total_amount'),
                 'users'   => User::whereYear('created_at', $d->year)->whereMonth('created_at', $d->month)->count(),
             ];
         }

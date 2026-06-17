@@ -225,7 +225,7 @@
 
     @include('partials.landing-header')
 
-    <main class="pt-20">
+    <main class="pt-[104px] lg:pt-[104px]">
         @yield('content')
     </main>
 

@@ -142,13 +142,18 @@
         });
     });
     var header = document.getElementById('main-header');
+    var topbar = document.getElementById('topbar');
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 20) {
             header.classList.add('shadow-md');
             header.classList.remove('shadow-sm');
+            header.style.top = '0px';
+            if (topbar) topbar.style.transform = 'translateY(-100%)';
         } else {
             header.classList.remove('shadow-md');
             header.classList.add('shadow-sm');
+            header.style.top = '36px';
+            if (topbar) topbar.style.transform = 'translateY(0)';
         }
     }, { passive: true });
 })();

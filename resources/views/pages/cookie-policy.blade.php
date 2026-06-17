@@ -18,7 +18,7 @@
     </section>
 
     <section class="py-16 max-w-4xl mx-auto px-5 lg:px-8">
-        <div class="space-y-8 text-gray-400 text-sm leading-relaxed" data-aos="fade-up">
+        <div class="space-y-8 text-gray-600 text-sm leading-relaxed" data-aos="fade-up">
             <p>We use cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, and personalize content.</p>
 
             <div>
@@ -29,16 +29,16 @@
             <div>
                 <h2 class="font-bebas text-3xl text-gradient mb-4">TYPES OF COOKIES WE USE</h2>
                 <div class="space-y-4">
-                    <div class="bg-[#111] border border-[#252525] p-5">
-                        <h3 class="font-rajdhani font-700 text-sm text-white mb-2"><i class="fas fa-lock text-[#FF6B00] mr-2"></i>Essential Cookies</h3>
+                    <div class="bg-gray-50 border border-gray-200 p-5">
+                        <h3 class="font-rajdhani font-700 text-sm text-gray-900 mb-2"><i class="fas fa-lock text-[#FF6B00] mr-2"></i>Essential Cookies</h3>
                         <p class="text-xs">Required for basic site functionality including shopping cart, account login, and security. These cannot be disabled. Without them, the site simply won't work as intended.</p>
                     </div>
-                    <div class="bg-[#111] border border-[#252525] p-5">
-                        <h3 class="font-rajdhani font-700 text-sm text-white mb-2"><i class="fas fa-chart-bar text-[#FF6B00] mr-2"></i>Analytics Cookies</h3>
+                    <div class="bg-gray-50 border border-gray-200 p-5">
+                        <h3 class="font-rajdhani font-700 text-sm text-gray-900 mb-2"><i class="fas fa-chart-bar text-[#FF6B00] mr-2"></i>Analytics Cookies</h3>
                         <p class="text-xs">Help us understand how visitors interact with our site — which pages are popular, where users drop off, and how we can improve. Data is collected anonymously via Google Analytics.</p>
                     </div>
-                    <div class="bg-[#111] border border-[#252525] p-5">
-                        <h3 class="font-rajdhani font-700 text-sm text-white mb-2"><i class="fas fa-ad text-[#FF6B00] mr-2"></i>Marketing Cookies</h3>
+                    <div class="bg-gray-50 border border-gray-200 p-5">
+                        <h3 class="font-rajdhani font-700 text-sm text-gray-900 mb-2"><i class="fas fa-ad text-[#FF6B00] mr-2"></i>Marketing Cookies</h3>
                         <p class="text-xs">Used to show you relevant advertisements on other platforms and measure the effectiveness of our campaigns. You can opt out through your browser settings.</p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     ];
                     @endphp
                     @foreach($browsers as $b)
-                    <a href="{{ $b['url'] }}" target="_blank" class="bg-[#111] border border-[#252525] hover:border-[#FF6B00]/40 px-4 py-3 text-sm text-gray-400 hover:text-white transition-all flex items-center gap-2">
+                    <a href="{{ $b['url'] }}" target="_blank" class="bg-gray-50 border border-gray-200 hover:border-[#FF6B00]/40 px-4 py-3 text-sm text-gray-600 hover:text-gray-900 transition-all flex items-center gap-2">
                         <i class="fas fa-external-link-alt text-xs text-[#FF6B00]"></i>
                         {{ $b['name'] }}
                     </a>
@@ -65,8 +65,8 @@
                 </div>
             </div>
 
-            <div class="bg-[#111] border border-[#252525] p-6">
-                <p class="font-rajdhani font-700 text-sm text-white mb-2"><i class="fas fa-cookie-bite text-[#FF6B00] mr-2"></i>Cookie Consent</p>
+            <div class="bg-gray-50 border border-gray-200 p-6">
+                <p class="font-rajdhani font-700 text-sm text-gray-900 mb-2"><i class="fas fa-cookie-bite text-[#FF6B00] mr-2"></i>Cookie Consent</p>
                 <p class="text-xs">When you first visit our site, you'll see a cookie consent banner. By clicking "Accept", you consent to the use of all cookies. You can change your preferences at any time through your browser settings.</p>
             </div>
         </div>

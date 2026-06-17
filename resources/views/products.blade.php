@@ -142,8 +142,13 @@
     </div>
 
     @if(count($products) > 0)
-    <div class="w-full text-center">
-      <button type="button" class="rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-[#FF6B00] focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 transition-colors">Show more products</button>
+    <div class="w-full text-center mt-10">
+      <button type="button" class="inline-flex items-center gap-2 rounded-xl border-2 border-[#FF6B00]/20 bg-white px-8 py-3 text-sm font-rajdhani font-700 text-[#FF6B00] tracking-widest hover:bg-[#FF6B00] hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-orange-100 transition-all duration-300 uppercase">
+        Show More
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
     </div>
     @endif
   </div>
@@ -151,52 +156,53 @@
 
 {{-- Product Details Modal --}}
 <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
-  <div class="absolute inset-0 bg-black/60" id="productModalOverlay"></div>
-  <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="productModalContent">
-    <button id="closeProductModal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="productModalOverlay"></div>
+  <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="productModalContent">
+    {{-- Top accent bar --}}
+    <div class="h-1.5 bg-gradient-to-r from-[#FF6B00] via-[#FF8C00] to-[#FFB800] rounded-t-3xl"></div>
+    <button id="closeProductModal" class="absolute top-6 right-6 z-20 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-400 hover:text-gray-700 hover:shadow-xl transition-all">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
     <div class="grid md:grid-cols-2">
-      <div class="relative h-72 md:h-auto bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
-        <img id="modalProductImage" class="w-full h-full object-contain hidden">
+      <div class="relative h-72 md:h-auto bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center p-10 rounded-bl-3xl">
+        <img id="modalProductImage" class="w-full h-full object-contain hidden drop-shadow-xl">
         <svg id="modalProductImagePlaceholder" class="w-32 h-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
         </svg>
       </div>
-      <div class="p-6 md:p-8">
-        <p id="modalProductCategory" class="text-xs font-medium text-[#FF6B00] uppercase tracking-wider mb-1"></p>
-        <h2 id="modalProductName" class="text-2xl font-bold text-gray-900 mb-2"></h2>
+      <div class="p-8 md:p-10">
+        <span id="modalProductCategory" class="section-label block mb-1"></span>
+        <h2 id="modalProductName" class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight"></h2>
         <div class="flex items-center gap-2 mb-4">
           <div id="modalProductStars" class="flex items-center"></div>
-          <span id="modalProductReviews" class="text-sm text-gray-500"></span>
+          <span id="modalProductReviews" class="text-sm text-gray-400 font-medium"></span>
         </div>
-        <div class="mb-4">
-          <span id="modalProductPrice" class="text-2xl font-bold text-[#FF6B00]"></span>
-          <span id="modalProductOriginalPrice" class="text-sm text-gray-400 line-through ml-2 hidden"></span>
+        <div class="mb-5">
+          <span id="modalProductPrice" class="text-3xl font-bold text-gradient"></span>
+          <span id="modalProductOriginalPrice" class="text-sm text-gray-400 line-through ml-3 hidden"></span>
         </div>
         <p id="modalProductDescription" class="text-gray-600 text-sm leading-relaxed mb-6"></p>
         <div id="modalProductSpecs" class="mb-6 hidden">
-          <h3 class="text-sm font-semibold text-gray-900 mb-2">Specifications</h3>
-          <ul id="modalProductSpecsList" class="space-y-1.5 text-sm text-gray-600"></ul>
+          <h3 class="text-sm font-rajdhani font-700 text-gray-900 tracking-wider uppercase mb-3">Specifications</h3>
+          <ul id="modalProductSpecsList" class="space-y-2 text-sm text-gray-600"></ul>
         </div>
-        <div class="flex items-center gap-3 mb-6">
-          <span class="text-sm font-medium text-gray-900">Qty:</span>
-          <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-            <button id="modalQtyDec" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">-</button>
-            <span id="modalQtyValue" class="w-10 text-center font-semibold text-sm">1</span>
-            <button id="modalQtyInc" class="w-9 h-9 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
+        {{-- Quantity + Add to Cart --}}
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-sm font-rajdhani font-700 text-gray-900 tracking-wider uppercase">Qty:</span>
+          <div class="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden">
+            <button id="modalQtyDec" class="w-10 h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-[#FF6B00] transition-colors font-bold text-lg">-</button>
+            <span id="modalQtyValue" class="w-12 text-center font-bold text-gray-900 text-base">1</span>
+            <button id="modalQtyInc" class="w-10 h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-[#FF6B00] transition-colors font-bold text-lg">+</button>
           </div>
         </div>
-        <div class="flex gap-3">
-          <button id="modalAddToCartBtn" class="flex-1 py-3 bg-[#FF6B00] hover:bg-[#e06000] text-white font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-            Add to Cart
-          </button>
-        </div>
+        <button id="modalAddToCartBtn" class="w-full py-3.5 bg-gradient-to-r from-[#FF6B00] to-[#FF8C00] hover:from-[#e06000] hover:to-[#e67e00] text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-[0.98] flex items-center justify-center gap-3 text-base">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>

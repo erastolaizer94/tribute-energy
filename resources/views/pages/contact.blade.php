@@ -47,30 +47,30 @@
                 <div class="divider mb-6"></div>
                 <form class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Your Name" class="w-full bg-[#111] border border-[#252525] px-4 py-3 text-sm text-white placeholder-gray-600 outline-none focus:border-[#FF6B00] transition-colors">
-                        <input type="email" placeholder="Your Email" class="w-full bg-[#111] border border-[#252525] px-4 py-3 text-sm text-white placeholder-gray-600 outline-none focus:border-[#FF6B00] transition-colors">
+                        <input type="text" placeholder="Your Name" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#FF6B00] transition-colors">
+                        <input type="email" placeholder="Your Email" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#FF6B00] transition-colors">
                     </div>
-                    <select class="w-full bg-[#111] border border-[#252525] px-4 py-3 text-sm text-gray-400 outline-none focus:border-[#FF6B00] transition-colors">
+                    <select class="w-full bg-white border border-gray-200 px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#FF6B00] transition-colors">
                         <option>General Inquiry</option>
                         <option>Order Support</option>
                         <option>Wholesale</option>
                         <option>Partnerships</option>
                         <option>Press &amp; Media</option>
                     </select>
-                    <textarea rows="5" placeholder="Your Message" class="w-full bg-[#111] border border-[#252525] px-4 py-3 text-sm text-white placeholder-gray-600 outline-none focus:border-[#FF6B00] transition-colors resize-none"></textarea>
+                    <textarea rows="5" placeholder="Your Message" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#FF6B00] transition-colors resize-none"></textarea>
                     <button type="submit" class="btn-primary"><span>Send Message</span> <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
-            <div class="bg-[#0D0D0D] border border-[#1A1A1A] p-8 flex flex-col items-center justify-center text-center">
+            <div class="bg-gray-50 border border-gray-200 p-8 flex flex-col items-center justify-center text-center">
                 <div class="w-20 h-20 rounded-full flex items-center justify-center mb-5 bg-gradient-to-br from-[#FF6B00]/20 to-[#FFB800]/10 border border-[#FF6B00]/20">
                     <i class="fas fa-rocket text-3xl text-[#FF6B00]"></i>
                 </div>
                 <h3 class="font-bebas text-3xl mb-2">HERE FOR <span class="text-gradient">YOU</span></h3>
                 <p class="text-gray-500 text-sm max-w-xs">Whether you have a question about your order, our ingredients, or just want to say hi — we're all ears.</p>
                 <div class="flex gap-4 mt-6">
-                    <a href="#" class="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#FF6B00] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#1DA1F2] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#1877F2] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 hover:bg-[#FF6B00] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 hover:bg-[#1DA1F2] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-200 hover:bg-[#1877F2] flex items-center justify-center text-gray-500 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>

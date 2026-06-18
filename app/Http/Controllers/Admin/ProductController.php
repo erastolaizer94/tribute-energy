@@ -26,8 +26,8 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
             'category_id' => 'nullable|exists:categories,id',
             'color' => 'nullable|string',
             'rating' => 'nullable|string|max:10',
@@ -45,6 +45,15 @@ class ProductController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+
+        if ($request->filled('category_id')) {
+            $category = \App\Models\Category::find($request->category_id);
+            if ($category) {
+                $validated['category'] = $category->name;
+            }
+        } else {
+            $validated['category'] = 'Solar Component';
+        }
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -83,8 +92,8 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
             'category_id' => 'nullable|exists:categories,id',
             'color' => 'nullable|string',
             'rating' => 'nullable|string|max:10',
@@ -102,6 +111,15 @@ class ProductController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+
+        if ($request->filled('category_id')) {
+            $category = \App\Models\Category::find($request->category_id);
+            if ($category) {
+                $validated['category'] = $category->name;
+            }
+        } else {
+            $validated['category'] = 'Solar Component';
+        }
 
         if ($request->hasFile('image')) {
             if ($product->image && file_exists(public_path($product->image))) {

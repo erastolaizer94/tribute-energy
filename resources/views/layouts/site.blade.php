@@ -221,7 +221,7 @@
 
     @yield('head')
 </head>
-<body x-data="cartApp()" x-cloak class="bg-white text-gray-900 antialiased">
+<body x-data="cartApp()" x-cloak x-on:add-to-cart.window="add($event.detail, $event.detail.qty ?? 1)" class="bg-white text-gray-900 antialiased">
 
     @include('partials.landing-header')
 
@@ -328,10 +328,10 @@
                 get count() { return this.items.reduce((s, i) => s + i.qty, 0); },
                 get total() { return this.items.reduce((s, i) => s + i.price * i.qty, 0); },
 
-                add(product) {
+                add(product, qty = 1) {
                     const found = this.items.find(i => i.id === product.id);
-                    if (found) { found.qty++; }
-                    else { this.items.push({ ...product, qty: 1 }); }
+                    if (found) { found.qty += qty; }
+                    else { this.items.push({ ...product, qty: qty }); }
                     this.save();
                     this.toast(product.name + ' added to cart!');
                 },
@@ -510,16 +510,16 @@
     }
     </style>
 
-    {{-- Floating WhatsApp --}}
-    <a href="https://wa.me/255787822735" target="_blank"
-       class="fixed bottom-6 right-6 z-[999] w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 animate__animated animate__fadeInUp animate__delay-1s"
-       style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 8px 32px rgba(37,211,102,0.4);"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp text-3xl text-white"></i>
-        <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate__animated animate__pulse animate__infinite animate__slower">
-            <span class="text-white text-[9px] font-bold">&#9679;</span>
-        </span>
-    </a>
+    {{-- Floating Help / WhatsApp Launcher --}}
+    <button class="launcher-btn fixed bottom-6 right-6 z-[999] w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110" 
+            id="launcher-btn" 
+            aria-label="Get help"
+            style="background: linear-gradient(135deg, #FF8C00, #FF6B00); box-shadow: 0 8px 32px rgba(255,140,0,0.4); color: white;"
+            onclick="window.open('https://wa.me/255787822735', '_blank')"> 
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.5 8.5 0 018 8z"></path>
+        </svg> 
+    </button>
 
     @yield('scripts')
 </body>

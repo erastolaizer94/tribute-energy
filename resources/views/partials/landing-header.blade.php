@@ -54,13 +54,12 @@
             </div>
 
             <div class="flex items-center space-x-0.5">
-                <button class="hidden lg:flex p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors" onclick="document.getElementById('search-input').focus()">
-                    <i class="fas fa-search text-lg"></i>
-                </button>
+                <a href="https://wa.me/255787822735" target="_blank" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-[#25D366] border border-[#25D366] rounded-full hover:bg-[#25D366] hover:text-white transition-all">
+                    <i class="fab fa-whatsapp text-xs"></i> WhatsApp Us
+                </a>
 
-                <button x-on:click="open = !open" class="relative p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors">
-                    <i class="fas fa-shopping-bag text-lg"></i>
-                    <span x-show="count > 0" class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-[#FF6B00] text-white text-[10px] font-bold rounded-full flex items-center justify-center" x-text="count"></span>
+                <button x-on:click="open = !open" class="relative p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors group">
+                    <i class="fas fa-shopping-cart text-lg group-hover:scale-110 transition-transform"></i>
                 </button>
 
                 <a href="https://wa.me/255787822735" target="_blank" class="p-2 text-gray-500 hover:text-[#25D366] rounded-lg hover:bg-green-50 transition-colors">

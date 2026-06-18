@@ -16,9 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category');
-            $table->text('description');
-            $table->decimal('price', 15, 2);
+            $table->string('category')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('price', 15, 2)->nullable();
             $table->string('color')->nullable();
             $table->string('color_start')->nullable();
             $table->string('color_end')->nullable();

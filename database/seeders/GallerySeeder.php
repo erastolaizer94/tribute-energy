@@ -14,113 +14,85 @@ class GallerySeeder extends Seeder
     public function run()
     {
         \App\Models\Gallery::create([
-            'title' => 'Solar Panel Installation',
-            'description' => 'Residential solar panel installation in Dar es Salaam',
-            'image' => 'gallery/solar-panel-installation.jpg',
-            'category' => 'installations',
+            'title' => 'Utility-Scale Solar Farm',
+            'description' => 'Large scale solar farm installation powering commercial grid networks in Tanzania.',
+            'image' => 'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000',
+            'category' => 'commercial',
             'is_featured' => true,
             'order' => 1,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Water Pump System',
-            'description' => 'Solar water pump for agricultural irrigation',
-            'image' => 'gallery/water-pump-system.jpg',
-            'category' => 'installations',
+            'title' => 'Solar Water Pump System',
+            'description' => 'Solar-powered submersible borehole water pump irrigating community crops in Dodoma.',
+            'image' => 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1000',
+            'category' => 'agricultural',
             'order' => 2,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Inverter Installation',
-            'description' => 'Hybrid inverter setup for commercial building',
-            'image' => 'gallery/inverter-installation.jpg',
-            'category' => 'installations',
+            'title' => 'Industrial Solar Rooftop',
+            'description' => 'Large scale rooftop panel arrays delivering continuous power for manufacturing factory in Mwanza.',
+            'image' => 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1000',
+            'category' => 'industrial',
             'order' => 3,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Battery Storage',
-            'description' => 'Battery bank installation for energy storage',
-            'image' => 'gallery/battery-storage.jpg',
-            'category' => 'installations',
+            'title' => 'Residential Off-Grid Storage',
+            'description' => 'Pure sine-wave inverter and battery storage installation supplying zero-outage electricity to homes.',
+            'image' => 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=1000',
+            'category' => 'residential',
             'order' => 4,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Solar Controller',
-            'description' => 'MPPT controller installation and configuration',
-            'image' => 'gallery/solar-controller.jpg',
+            'title' => 'Smart MPPT Controller Setup',
+            'description' => 'Precision MPPT solar controllers and smart wiring array configured for a school installation.',
+            'image' => 'https://images.unsplash.com/photo-1620038634433-2895fe8057be?q=80&w=1000',
             'category' => 'installations',
             'order' => 5,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Commercial Project',
-            'description' => 'Large-scale solar installation for factory',
-            'image' => 'gallery/commercial-project.jpg',
-            'category' => 'commercial',
-            'is_featured' => true,
+            'title' => 'Rural Irrigation Suction Pump',
+            'description' => 'Suction centrifugal solar water pump setup on a farm near Morogoro.',
+            'image' => 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000',
+            'category' => 'agricultural',
             'order' => 6,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Residential Installation',
-            'description' => 'Home solar system installation',
-            'image' => 'gallery/residential-installation.jpg',
-            'category' => 'residential',
+            'title' => 'Commercial Facility Solar',
+            'description' => 'Sleek monocrystalline solar panels mounted on premium flat-roof structures.',
+            'image' => 'https://images.unsplash.com/photo-1548613053-22087dd8edb8?q=80&w=1000',
+            'category' => 'commercial',
+            'is_featured' => true,
             'order' => 7,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Community Project',
-            'description' => 'Solar power for community center',
-            'image' => 'gallery/community-project.jpg',
-            'category' => 'community',
+            'title' => 'Home Solar Panel Mounting',
+            'description' => 'Solar panels installed on an sloped roof with premium aluminium mounting rails.',
+            'image' => 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1000',
+            'category' => 'residential',
             'order' => 8,
             'is_active' => true
         ]);
 
         \App\Models\Gallery::create([
-            'title' => 'Agricultural Project',
-            'description' => 'Solar irrigation system for farm',
-            'image' => 'gallery/agricultural-project.jpg',
-            'category' => 'agricultural',
-            'order' => 9,
-            'is_active' => true
-        ]);
-
-        \App\Models\Gallery::create([
-            'title' => 'Industrial Installation',
-            'description' => 'Industrial solar power system',
-            'image' => 'gallery/industrial-installation.jpg',
+            'title' => 'High-Voltage Inverter Panel',
+            'description' => 'Industrial-grade grid-tied three-phase solar inverter configuration.',
+            'image' => 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1000',
             'category' => 'industrial',
-            'order' => 10,
-            'is_active' => true
-        ]);
-
-        \App\Models\Gallery::create([
-            'title' => 'Solar Farm',
-            'description' => 'Large solar farm installation',
-            'image' => 'gallery/solar-farm.jpg',
-            'category' => 'commercial',
-            'is_featured' => true,
-            'order' => 11,
-            'is_active' => true
-        ]);
-
-        \App\Models\Gallery::create([
-            'title' => 'Night Installation',
-            'description' => 'Solar system with battery backup at night',
-            'image' => 'gallery/night-installation.jpg',
-            'category' => 'residential',
-            'order' => 12,
+            'order' => 9,
             'is_active' => true
         ]);
     }

@@ -89,13 +89,13 @@
                         <input type="text" name="name" class="form-input" value="{{ old('name', $product->name) }}" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Description <span class="req">*</span></label>
-                        <textarea name="description" class="form-textarea" required>{{ old('description', $product->description) }}</textarea>
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-textarea">{{ old('description', $product->description) }}</textarea>
                     </div>
                     <div class="form-grid-2">
                         <div class="form-group">
-                            <label class="form-label">Sale Price (TZS) <span class="req">*</span></label>
-                            <input type="number" name="price" class="form-input" value="{{ old('price', $product->price) }}" step="1" required>
+                            <label class="form-label">Sale Price (TZS)</label>
+                            <input type="number" name="price" class="form-input" value="{{ old('price', $product->price) }}" step="1">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Original Price</label>

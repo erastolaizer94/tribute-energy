@@ -102,17 +102,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Description <span class="req">*</span></label>
+                        <label class="form-label">Description</label>
                         <textarea name="description" class="form-textarea @error('description') input-error @enderror"
-                                  placeholder="Describe the product — ingredients, benefits, how to use…" required>{{ old('description') }}</textarea>
+                                  placeholder="Describe the product — specs, highlights (optional)">{{ old('description') }}</textarea>
                         @error('description') <div class="error-msg">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="form-grid-2">
                         <div class="form-group">
-                            <label class="form-label">Sale Price (TZS) <span class="req">*</span></label>
+                            <label class="form-label">Sale Price (TZS)</label>
                             <input type="number" name="price" class="form-input @error('price') input-error @enderror"
-                                   value="{{ old('price') }}" placeholder="0" step="1" required>
+                                   value="{{ old('price') }}" placeholder="e.g. 150000 (optional)" step="1">
                             @error('price') <div class="error-msg">{{ $message }}</div> @enderror
                         </div>
                         <div class="form-group">

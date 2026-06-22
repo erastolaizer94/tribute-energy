@@ -26,10 +26,7 @@
                     @elseif($p['type'] === 'tanzania')
                         <img src="{{ asset('partners/image.png') }}" alt="Coat of arms of Tanzania" class="w-full h-full object-contain p-1">
                     @else
-                        <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0f4c81] to-[#0a3a63] text-white">
-                            <span class="text-[9px] font-bold tracking-wider uppercase leading-tight text-center">Rural Water<br>& Sanitation</span>
-                            <span class="text-[7px] font-bold tracking-[0.15em] mt-0.5 opacity-80">AUTHORITY</span>
-                        </div>
+                       <img src="{{ asset('partners/ruwasa.jpeg') }}" alt="RUWASA" class="w-full h-full object-contain p-1">
                     @endif
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $p['name'] }}</h3>

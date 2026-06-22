@@ -26,7 +26,7 @@
                     @elseif($p['type'] === 'tanzania')
                         <img src="{{ asset('partners/image.png') }}" alt="Coat of arms of Tanzania" class="w-full h-full object-contain p-1">
                     @else
-                       <img src="{{ asset('partners/ruwasa.jpeg') }}" alt="RUWASA" class="w-full h-full object-contain p-1">
+                       <img src="{{ asset('partners/RUWASA.png') }}" alt="RUWASA" class="w-full h-full object-contain p-1">
                     @endif
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $p['name'] }}</h3>

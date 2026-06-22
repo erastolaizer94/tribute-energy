@@ -43,7 +43,7 @@
                     <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-
+            <!--
             <div>
                 <h4 class="text-sm font-bold tracking-wider uppercase text-white mb-5">Company</h4>
                 <ul class="space-y-3 text-sm">
@@ -73,7 +73,7 @@
                     <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="border-t border-white/10">

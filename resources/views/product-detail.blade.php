@@ -77,30 +77,17 @@
                     </div>
                 @endif
 
-                {{-- Action Panel (WhatsApp Quote Trigger + Quantity selectors inside global Alpine Cart App) --}}
+                {{-- Action Panel: Request a Quote --}}
                 <div class="bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-4 mt-auto">
-                    
-                    {{-- Quantity Selector inside Alpine.js Cart app --}}
-                    <div x-data="{ qty: 1 }" class="flex items-center gap-4 shrink-0">
-                        <span class="text-xs font-bold text-gray-500 tracking-wider uppercase">Qty:</span>
-                        <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden bg-gray-50">
-                            <button @click="if(qty > 1) qty--" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[#FF6B00] hover:bg-gray-100 transition-colors font-bold text-sm">-</button>
-                            <span x-text="qty" class="w-10 text-center font-bold text-gray-900 text-sm">1</span>
-                            <button @click="qty++" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[#FF6B00] hover:bg-gray-100 transition-colors font-bold text-sm">+</button>
-                        </div>
-                        
-                        {{-- Add to Cart Action utilizing global layouts.site cartApp context --}}
-                        <button @click="$dispatch('add-to-cart', { id: {{ $product->id }}, name: '{{ addslashes($product->name) }}', price: {{ $product->price }}, image: '{{ $product->image }}', qty: qty })" 
-                                class="px-6 py-3 bg-gradient-to-r from-[#FF8C00] to-[#FF6B00] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:from-[#e06000] hover:to-[#e67e00] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                        </button>
-                    </div>
-
-                    {{-- Primary Action: Direct WhatsApp Quotation Quote Request --}}
                     <a href="https://wa.me/255787822735?text=Hello+Tribute+Energy,+I+would+like+to+request+a+quote+for:+{{ urlencode($product->name) }}" 
                        target="_blank" 
-                       class="w-full sm:w-auto sm:ml-auto flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 font-bold text-xs tracking-wider uppercase rounded-xl hover:shadow-md hover:-translate-y-0.5">
-                        <i class="fab fa-whatsapp text-sm"></i> Request Quote
+                       class="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="background: linear-gradient(135deg, #FF8C00, #FF6B00);">
+                        <i class="fas fa-file-invoice-dollar mr-1"></i> Request a Quote
+                    </a>
+                    <a href="https://wa.me/255787822735?text=Hello+Tribute+Energy,+I+would+like+to+inquire+about+specifications+for:+{{ urlencode($product->name) }}" 
+                       target="_blank" 
+                       class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 font-bold text-xs tracking-wider uppercase rounded-xl hover:shadow-md hover:-translate-y-0.5">
+                        <i class="fab fa-whatsapp text-sm"></i> WhatsApp Inquiry
                     </a>
                 </div>
             </div>

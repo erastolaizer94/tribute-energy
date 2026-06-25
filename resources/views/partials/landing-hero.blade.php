@@ -73,8 +73,8 @@
 
         {{-- Badge --}}
         <a href="#features" class="hero-badge inline-flex justify-between items-center py-1.5 px-2 pr-5 mb-8 text-sm text-orange-100 rounded-full border border-orange-400/30 hover:border-orange-400/60 transition-all duration-300" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);">
-            <span class="text-xs font-semibold rounded-full text-white px-3 py-1 mr-3" style="background: #FF8C00;">New</span>
-            <span class="font-medium">Tribute Energy Platform is live — See what's new</span>
+            <span class="text-xs font-semibold rounded-full text-white px-3 py-1 mr-3" style="background: #FF8C00;">Premier Contractor</span>
+            <span class="font-medium">Electromechanical & Engineering Solutions — Serving Tanzania Since 2009</span>
             <svg class="ml-2 w-4 h-4 text-orange-300" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
             </svg>
@@ -82,13 +82,13 @@
 
         {{-- Main Headline --}}
         <h1 class="hero-title mb-6 text-4xl font-extrabold tracking-tight leading-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
-            Transform Your Energy<br>
-            <span class="hero-gradient-text">with Tribute Energy</span>
+            Engineering Water & Energy<br>
+            <span class="hero-gradient-text">Infrastructure for Tanzania</span>
         </h1>
 
         {{-- Subheadline --}}
         <p class="hero-subtitle mb-10 text-lg font-normal text-orange-100/80 lg:text-xl max-w-2xl mx-auto leading-relaxed">
-            The complete energy management solution for modern businesses. Streamline operations, boost efficiency, and delight customers — all in one powerful platform.
+            Tribute Energy Limited is a premier electromechanical and engineering solutions provider in Tanzania. We specialize in the design, supply, installation, and optimization of large-scale water supply systems, industrial pumping stations, and smart renewable energy infrastructure.
         </p>
 
         {{-- CTA Buttons --}}
@@ -110,23 +110,23 @@
         {{-- Stats bar --}}
         <div class="hero-stats inline-flex flex-wrap justify-center gap-8 md:gap-12 py-6 px-8 rounded-2xl border border-white/10" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
             <div class="text-center">
-                <div class="text-2xl font-bold text-white">5,000+</div>
-                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Active Businesses</div>
+                <div class="text-2xl font-bold text-white">15+</div>
+                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Years Experience</div>
             </div>
             <div class="hidden sm:block w-px bg-white/10 self-stretch"></div>
             <div class="text-center">
-                <div class="text-2xl font-bold text-white">99.9%</div>
-                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Uptime SLA</div>
+                <div class="text-2xl font-bold text-white">7+</div>
+                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Regions Served</div>
             </div>
             <div class="hidden sm:block w-px bg-white/10 self-stretch"></div>
             <div class="text-center">
-                <div class="text-2xl font-bold text-white">2M+</div>
-                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Transactions/Month</div>
+                <div class="text-2xl font-bold text-white">RUWASA</div>
+                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Govt Partners</div>
             </div>
             <div class="hidden sm:block w-px bg-white/10 self-stretch"></div>
             <div class="text-center">
-                <div class="text-2xl font-bold text-white">4.9 ★</div>
-                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Customer Rating</div>
+                <div class="text-2xl font-bold text-white">Turnkey</div>
+                <div class="text-xs text-orange-200/70 mt-0.5 font-medium uppercase tracking-wide">Project Delivery</div>
             </div>
         </div>
     </div>

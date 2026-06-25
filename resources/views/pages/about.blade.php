@@ -13,10 +13,12 @@
             <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-5">
                 Powering Communities,<br><span style="background: linear-gradient(90deg,#FFB347,#FF8C00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">One Project at a Time</span>
             </h1>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-                For over 15 years, Tribute Energy has delivered solar water pumping, hybrid power systems
-                and water supply solutions to homes, farms and communities across Tanzania.
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+                Tribute Energy Limited is a premier electromechanical and engineering solutions provider in Tanzania. We specialize in the design, supply, installation, and optimization of large-scale water supply systems, industrial pumping stations, and smart renewable energy infrastructure.
             </p>
+            <a href="{{ asset('Tribute_Energy_Company_Profile.pdf') }}" target="_blank" download class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-xl" style="background: linear-gradient(135deg, #FF8C00, #FF6B00);">
+                <i class="fas fa-file-pdf"></i> Download Company Profile
+            </a>
         </div>
     </section>
 

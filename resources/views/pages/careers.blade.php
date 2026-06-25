@@ -82,7 +82,7 @@
 
             <div class="text-center mt-12 p-8 rounded-2xl bg-gray-50 border border-gray-100">
                 <p class="text-gray-600 text-sm">Don't see a role that fits? We're always looking for talented people.</p>
-                <a href="mailto:tributenergy@gmail.com" class="font-bold text-sm inline-flex items-center gap-2 mt-2" style="color:#FF6B00;"><i class="fas fa-envelope"></i> tributenergy@gmail.com</a>
+                <a href="mailto:info@tributenergy.com" class="font-bold text-sm inline-flex items-center gap-2 mt-2" style="color:#FF6B00;"><i class="fas fa-envelope"></i> info@tributenergy.com</a>
             </div>
         </div>
     </section>

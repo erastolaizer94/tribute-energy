@@ -9,9 +9,9 @@
     <div class="feat-container">
 
         <div class="feat-header">
-            <span class="feat-eyebrow">Everything You Need</span>
-            <h2 class="feat-title">Powerful Solutions for<br>Your <span class="feat-title-accent">Energy Needs</span></h2>
-            <p class="feat-subtitle">From solar water pumping to hybrid power systems — Tribute Energy delivers complete energy and water solutions for communities across Tanzania.</p>
+            <span class="feat-eyebrow">Our Expertise</span>
+            <h2 class="feat-title">Premier Electromechanical<br><span class="feat-title-accent">Engineering Services</span></h2>
+            <p class="feat-subtitle">Turnkey engineering solutions for national-scale water infrastructure, industrial pumping stations, and intelligent renewable energy systems across Tanzania.</p>
         </div>
 
         <div class="feat-grid">
@@ -19,61 +19,31 @@
             <div class="feat-card" data-color="blue">
                 <div class="feat-icon-wrap">
                     <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                     </svg>
                 </div>
-                <h3 class="feat-card-title">Solar Water Pumping</h3>
-                <p class="feat-card-desc">Reliable solar-powered water pumping systems for irrigation and domestic use. Sustainable energy for clean water access.</p>
+                <h3 class="feat-card-title">Industrial & Municipal Pumping Stations</h3>
+                <p class="feat-card-desc">Turnkey engineering solutions for large-scale water distribution. We specialize in the supply, installation, and commissioning of heavy-duty vertical turbine and horizontal split-case pumps, coupled with advanced pipe network configurations.</p>
             </div>
 
             <div class="feat-card" data-color="violet">
                 <div class="feat-icon-wrap">
                     <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
                 </div>
-                <h3 class="feat-card-title">Hybrid Power Systems</h3>
-                <p class="feat-card-desc">Combined solar and grid power solutions ensuring reliable energy supply 24/7 for homes and businesses.</p>
+                <h3 class="feat-card-title">Smart Solar Water Pumping Systems</h3>
+                <p class="feat-card-desc">Sustainable, high-efficiency solar-powered water solutions tailored for community water supply authorities, agricultural irrigation, and NGOs. We integrate permanent magnet brushless technology for maximum daily water output.</p>
             </div>
 
             <div class="feat-card" data-color="cyan">
                 <div class="feat-icon-wrap">
                     <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                    </svg>
-                </div>
-                <h3 class="feat-card-title">Water Supply Projects</h3>
-                <p class="feat-card-desc">Complete water supply solutions including pump installation, commissioning, and testing for communities.</p>
-            </div>
-
-            <div class="feat-card" data-color="orange">
-                <div class="feat-icon-wrap">
-                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                     </svg>
                 </div>
-                <h3 class="feat-card-title">Installation & Maintenance</h3>
-                <p class="feat-card-desc">Professional installation and ongoing maintenance services for all energy and water systems.</p>
-            </div>
-
-            <div class="feat-card" data-color="green">
-                <div class="feat-icon-wrap">
-                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </div>
-                <h3 class="feat-card-title">Rural Water Solutions</h3>
-                <p class="feat-card-desc">Specialized solutions for rural communities through partnerships with RUWASA and NGOs.</p>
-            </div>
-
-            <div class="feat-card" data-color="rose">
-                <div class="feat-icon-wrap">
-                    <svg class="feat-icon-img" style="width: 36px; height: 36px; color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </div>
-                <h3 class="feat-card-title">Expert Consultation</h3>
-                <p class="feat-card-desc">15+ years of experience in renewable energy and water management. Expert guidance for your projects.</p>
+                <h3 class="feat-card-title">Automation, VFDs, & Logic Configuration</h3>
+                <p class="feat-card-desc">Intelligent control systems featuring high-performance Variable Frequency Drives (VFDs) and Programmable Logic Controllers (PLCs). We deliver precision logic configuration, Modbus TCP/IP communication protocols, and Power Factor Correction (PFC) systems.</p>
             </div>
 
         </div>

@@ -87,67 +87,42 @@
             
             {{-- Landing Features Style Header --}}
             <div class="feat-header">
-                <span class="feat-eyebrow">High Quality Range</span>
-                <h2 class="feat-title">Powering Tanzania with<br>Our <span class="feat-title-accent">Premium Products</span></h2>
-                <p class="feat-subtitle">Clean, heavy-duty solar components built for unmatched endurance. Touch any item to inspect full details and technical specs.</p>
+                <span class="feat-eyebrow">Our Equipment</span>
+                <h2 class="feat-title">Our Core Specialized<br><span class="feat-title-accent">Equipment Range</span></h2>
+                <p class="feat-subtitle">Heavy-duty, industrial-grade electromechanical equipment sourced and supplied for large-scale water infrastructure and renewable energy projects across Tanzania.</p>
             </div>
 
-            {{-- Rebuilt Products Grid matching landing-features 3-column layouts --}}
+            {{-- Core Specialized Equipment Grid --}}
             <div class="feat-grid">
                 @php
-                    $colors = ['blue', 'violet', 'cyan', 'orange', 'green', 'rose'];
+                $equipment = [
+                    ['color' => 'blue', 'img' => 'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600', 'title' => 'High-Capacity Solar Water Pumps', 'desc' => 'Permanent magnet brushless DC and AC submersible pumps engineered for high-head, high-flow borehole applications. Designed for 24/7 operation in remote and off-grid environments.'],
+                    ['color' => 'violet', 'img' => 'https://images.unsplash.com/photo-1581092918056-0c4c7f3b6b6e?q=80&w=600', 'title' => 'Variable Frequency Drives & Control Panels', 'desc' => 'High-performance VFDs and custom-built PLC control panels with Modbus TCP/IP communication. Precision motor control, energy optimization, and remote monitoring capability.'],
+                    ['color' => 'cyan', 'img' => 'https://images.unsplash.com/photo-1620038634433-2895fe8057be?q=80&w=600', 'title' => 'Industrial Surface & Borehole Pumps', 'desc' => 'Vertical multistage, horizontal split-case, and end-suction centrifugal pumps for municipal water supply, irrigation, and industrial process applications.'],
+                    ['color' => 'orange', 'img' => 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=600', 'title' => 'Solar PV Modules & Inverters', 'desc' => 'Tier-1 monocrystalline and polycrystalline PV modules paired with grid-tie, off-grid, and hybrid inverters. Built for extreme tropical conditions with 25-year performance warranties.'],
+                ];
                 @endphp
-                @forelse($products as $idx => $product)
-                    @php
-                        $themeColor = $colors[$idx % count($colors)];
-                    @endphp
-                    
-                    {{-- Clickable entire card directing to Product Details Page --}}
-                    <a href="{{ route('product.detail', $product->id) }}" 
-                       class="feat-card block group hover:no-underline" 
-                       data-color="{{ $themeColor }}"
-                       data-aos="fade-up"
-                       data-aos-delay="{{ ($idx % 3) * 100 }}">
-                        
-                        {{-- Image area styled beautifully inside the card with gradient backing --}}
-                        <div class="feat-icon-wrap w-full h-56 rounded-2xl flex items-center justify-center p-6 mb-6 bg-gradient-to-br from-orange-50 to-amber-50 border border-gray-100 overflow-hidden relative transition-transform duration-500 group-hover:scale-[1.02]">
-                            @if($product->image)
-                                <img src="{{ Str::startsWith($product->image, ['http://', 'https://']) ? $product->image : asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
-                            @else
-                                <svg class="w-16 h-16 text-[#FF8C00] opacity-85" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                </svg>
-                            @endif
-
-                            {{-- Smooth glow effect --}}
-                            <div class="absolute inset-0 bg-[#FF6B00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span class="px-5 py-2.5 bg-white/95 text-gray-800 font-bold text-xs tracking-wider uppercase rounded-full shadow-lg transform translate-y-3 group-hover:translate-y-0 transition-all duration-300">
-                                    <i class="fas fa-arrow-right text-[#FF8C00] mr-1.5"></i> Inspect Details
-                                </span>
-                            </div>
-                        </div>
-
-                        {{-- Product category as fine eyebrow badge --}}
-                        <span class="text-[10px] font-bold tracking-wider text-[#FF8C00] uppercase mb-2 block">{{ $product->category ?? 'Solar Component' }}</span>
-                        
-                        {{-- Title --}}
-                        <h3 class="feat-card-title text-gray-900 group-hover:text-[#FF6B00] transition-colors leading-tight mb-2 line-clamp-1">
-                            {{ $product->name }}
-                        </h3>
-                        
-                        {{-- Short Description --}}
-                        <p class="feat-card-desc text-gray-500 line-clamp-2 leading-relaxed">
-                            {{ $product->description ?? 'Expertly engineered solar power unit built for ultimate high efficiency and durability.' }}
-                        </p>
-                    </a>
-                @empty
-                    <div class="col-span-full text-center py-20">
-                        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                        </svg>
-                        <p class="text-gray-500 text-lg font-medium">No products found in our database.</p>
+                @foreach($equipment as $idx => $item)
+                <div class="feat-card block group hover:no-underline" data-color="{{ $item['color'] }}">
+                    <div class="feat-icon-wrap w-full h-56 rounded-2xl flex items-center justify-center p-6 mb-6 bg-gradient-to-br from-orange-50 to-amber-50 border border-gray-100 overflow-hidden relative">
+                        <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover rounded-xl" loading="lazy">
                     </div>
-                @endforelse
+                    <span class="text-[10px] font-bold tracking-wider text-[#FF8C00] uppercase mb-2 block">Industrial Equipment</span>
+                    <h3 class="feat-card-title text-gray-900 leading-tight mb-2">{{ $item['title'] }}</h3>
+                    <p class="feat-card-desc text-gray-500 line-clamp-3 leading-relaxed mb-4">{{ $item['desc'] }}</p>
+                    <a href="https://wa.me/255787822735?text=Hello+Tribute+Energy,+I+would+like+to+request+a+quote+for:+{{ urlencode($item['title']) }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-white text-xs tracking-wider uppercase transition-all hover:-translate-y-0.5 hover:shadow-lg" style="background: linear-gradient(135deg, #FF8C00, #FF6B00);">
+                        <i class="fas fa-file-invoice-dollar mr-1"></i> Request a Quote
+                    </a>
+                </div>
+                @endforeach
+            </div>
+
+            {{-- Inquiry CTA --}}
+            <div class="text-center mt-16">
+                <p class="text-gray-500 mb-4">Looking for specific technical specifications or bulk procurement?</p>
+                <a href="https://wa.me/255787822735?text=Hello+Tribute+Energy,+I+would+like+to+inquire+about+equipment+specifications+and+availability." target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-gray-700 border border-gray-300 hover:border-[#FF8C00] hover:text-[#FF6B00] transition-all">
+                    <i class="fas fa-clipboard-list"></i> Inquire for Specifications
+                </a>
             </div>
         </div>
     </div>

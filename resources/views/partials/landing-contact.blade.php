@@ -35,7 +35,11 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Email</h3>
+<<<<<<< HEAD
                 <p class="text-gray-300">info@tributenergy.com</p>
+=======
+                <p class="text-gray-300">info@tributenergy.com </p>
+>>>>>>> 0d0b25ce7df5f12a734faf05c18505166bbb4438
             </div>
         </div>
     </div>

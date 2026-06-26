@@ -40,10 +40,10 @@
 
             <div class="hidden md:flex items-center space-x-1">
                 <a href="{{ route('home') }}" class="nav-link px-4 py-2 {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('features') }}" class="nav-link px-4 py-2 {{ request()->routeIs('features') ? 'active' : '' }}">Features</a>
+                <a href="{{ route('features') }}" class="nav-link px-4 py-2 {{ request()->routeIs('features') ? 'active' : '' }}">Services</a>
                 <a href="{{ route('products') }}" class="nav-link px-4 py-2 {{ request()->routeIs('products') ? 'active' : '' }}">Products</a>
                 <a href="{{ route('projects') }}" class="nav-link px-4 py-2 {{ request()->routeIs('projects') ? 'active' : '' }}">Projects</a>
-                <a href="{{ route('gallery') }}" class="nav-link px-4 py-2 {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
+                <a href="{{ route('gallery') }}" class="nav-link px-4 py-2 {{ request()->routeIs('gallery') ? 'active' : '' }}">Stock</a>
                 <a href="{{ route('partners') }}" class="nav-link px-4 py-2 {{ request()->routeIs('partners') ? 'active' : '' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="nav-link px-4 py-2 {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </div>
@@ -85,10 +85,10 @@
         <div class="md:hidden hidden pb-4 border-t border-gray-100 mt-1" id="mobile-menu">
             <div class="pt-3 space-y-1">
                 <a href="{{ route('home') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('features') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('features') ? 'active' : '' }}">Features</a>
+                <a href="{{ route('features') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('features') ? 'active' : '' }}">Services</a>
                 <a href="{{ route('products') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('products') ? 'active' : '' }}"><span class="flex items-center gap-2">Products <span class="text-[10px] font-rajdhani font-700 text-[#FF6B00] tracking-widest">LIVE</span></span></a>
                 <a href="{{ route('projects') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('projects') ? 'active' : '' }}">Projects</a>
-                <a href="{{ route('gallery') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
+                <a href="{{ route('gallery') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('gallery') ? 'active' : '' }}">Stock</a>
                 <a href="{{ route('partners') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('partners') ? 'active' : '' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
                 @auth

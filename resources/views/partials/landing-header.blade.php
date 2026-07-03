@@ -12,24 +12,25 @@
                 <span class="hidden sm:inline">+255 787 822 735</span>
             </a>
             <span class="text-gray-700 hidden sm:block">|</span>
-            <a href="https://wa.me/255787822735" target="_blank" class="flex items-center gap-1.5 text-gray-400 hover:text-[#25D366] transition-colors">
-                <i class="fab fa-whatsapp text-[11px]"></i>
-                <span class="hidden sm:inline">WhatsApp</span>
+            <a href="/public/tribute energy.pdf"
+                download="tribute-company-profile.pdf"
+                class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200">
+                Download Company Profile
             </a>
         </div>
     </div>
 </div>
 
 <header id="main-header" class="fixed left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm"
-        style="top: 36px;">
+    style="top: 36px;">
     @if(session('success'))
-        <div class="bg-green-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('success') }}</div>
+    <div class="bg-green-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-        <div class="bg-red-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('error') }}</div>
+    <div class="bg-red-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('error') }}</div>
     @endif
     @if(session('info'))
-        <div class="bg-blue-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('info') }}</div>
+    <div class="bg-blue-500 text-white px-4 py-2 text-center text-sm font-semibold">{{ session('info') }}</div>
     @endif
     <nav class="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div class="flex items-center justify-between h-16 lg:h-[68px]">
@@ -57,26 +58,22 @@
                     <i class="fas fa-shopping-cart text-lg group-hover:scale-110 transition-transform"></i>
                 </button>
 
-                <a href="https://wa.me/255787822735" target="_blank" class="p-2 text-gray-500 hover:text-[#25D366] rounded-lg hover:bg-green-50 transition-colors">
-                    <i class="fab fa-whatsapp text-lg"></i>
-                </a>
-
                 @auth
-                    <a href="{{ route('user.dashboard') }}" class="p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors">
-                        <i class="fas fa-user text-lg"></i>
-                    </a>
+                <a href="{{ route('user.dashboard') }}" class="p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors">
+                    <i class="fas fa-user text-lg"></i>
+                </a>
                 @else
-                    <a href="{{ route('login') }}" class="p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors">
-                        <i class="fas fa-user text-lg"></i>
-                    </a>
+                <a href="{{ route('login') }}" class="p-2 text-gray-500 hover:text-[#FF6B00] rounded-lg hover:bg-orange-50 transition-colors">
+                    <i class="fas fa-user text-lg"></i>
+                </a>
                 @endauth
 
                 <button id="mobileMenuToggle" type="button" class="md:hidden p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors ml-1">
                     <svg class="w-5 h-5" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                     <svg class="w-5 h-5 hidden" id="menu-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -92,19 +89,19 @@
                 <a href="{{ route('partners') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('partners') ? 'active' : '' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
                 @auth
-                    <div class="pt-2 border-t border-gray-100 space-y-1">
-                        <a href="{{ route('user.dashboard') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-[#FF6B00] rounded-lg transition-colors"><i class="fas fa-user mr-2"></i>Dashboard</a>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="w-full text-left px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
-                        </form>
-                    </div>
+                <div class="pt-2 border-t border-gray-100 space-y-1">
+                    <a href="{{ route('user.dashboard') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-[#FF6B00] rounded-lg transition-colors"><i class="fas fa-user mr-2"></i>Dashboard</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+                    </form>
+                </div>
                 @else
-                    <div class="pt-2 border-t border-gray-100">
-                        <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white rounded-lg" style="background: linear-gradient(135deg, #FF6B00, #FF9000);">
-                            <i class="fas fa-user-circle text-lg"></i> Sign In
-                        </a>
-                    </div>
+                <div class="pt-2 border-t border-gray-100">
+                    <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white rounded-lg" style="background: linear-gradient(135deg, #FF6B00, #FF9000);">
+                        <i class="fas fa-user-circle text-lg"></i> Sign In
+                    </a>
+                </div>
                 @endauth
             </div>
         </div>
@@ -112,37 +109,39 @@
 </header>
 
 <script>
-(function(){
-    var toggle = document.getElementById('mobileMenuToggle');
-    var menu = document.getElementById('mobile-menu');
-    var openIcon = document.getElementById('menu-open-icon');
-    var closeIcon = document.getElementById('menu-close-icon');
-    toggle && toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        openIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-    });
-    menu && menu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            menu.classList.add('hidden');
-            openIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
+    (function() {
+        var toggle = document.getElementById('mobileMenuToggle');
+        var menu = document.getElementById('mobile-menu');
+        var openIcon = document.getElementById('menu-open-icon');
+        var closeIcon = document.getElementById('menu-close-icon');
+        toggle && toggle.addEventListener('click', function() {
+            menu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
         });
-    });
-    var header = document.getElementById('main-header');
-    var topbar = document.getElementById('topbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 20) {
-            header.classList.add('shadow-md');
-            header.classList.remove('shadow-sm');
-            header.style.top = '0px';
-            if (topbar) topbar.style.transform = 'translateY(-100%)';
-        } else {
-            header.classList.remove('shadow-md');
-            header.classList.add('shadow-sm');
-            header.style.top = '36px';
-            if (topbar) topbar.style.transform = 'translateY(0)';
-        }
-    }, { passive: true });
-})();
+        menu && menu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+        var header = document.getElementById('main-header');
+        var topbar = document.getElementById('topbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+                header.style.top = '0px';
+                if (topbar) topbar.style.transform = 'translateY(-100%)';
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+                header.style.top = '36px';
+                if (topbar) topbar.style.transform = 'translateY(0)';
+            }
+        }, {
+            passive: true
+        });
+    })();
 </script>

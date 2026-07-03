@@ -7,8 +7,7 @@
             </a>
                 <span class="text-gray-700 hidden sm:block">|</span>
              <a href="https://hostinger.titan.email/login/" target="_blank" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
-                <i class="fas fa-envelope text-[15px]"></i>
-                <span class="hidden sm:inline">Staff Mail</span>
+                <i class="fas fa-envelope text-[15px]"></i> Staff Mail
             </a>
         </div>
         <div class="flex items-center gap-4 text-xs">

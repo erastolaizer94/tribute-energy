@@ -2,12 +2,12 @@
     <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-[36px]">
         <div class="flex items-center gap-4 text-xs">
             <a href="mailto:info@tributenergy.com" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
-                <i class="fas fa-envelope text-[20px]"></i>
+                <i class="fas fa-envelope text-[15px]"></i>
                 <span class="hidden sm:inline">info@tributenergy.com</span>
             </a>
                 <span class="text-gray-700 hidden sm:block">|</span>
              <a href="https://hostinger.titan.email/login/" target="_blank" class="flex items-center gap-1.5 text-gray-400 hover:text-[#FF6B00] transition-colors">
-                <i class="fas fa-envelope text-[20px]"></i>
+                <i class="fas fa-envelope text-[15px]"></i>
                 <span class="hidden sm:inline">Staff Mail</span>
             </a>
         </div>

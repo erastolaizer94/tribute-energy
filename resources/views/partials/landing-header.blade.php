@@ -18,7 +18,7 @@
             <span class="text-gray-700 hidden sm:block">|</span>
             <a href="/public/tribute energy.pdf"
                 download="tribute-company-profile.pdf"
-                class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200">
+                class="inline-flex items-center justify-center px-4 py-2" style="background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);">
                 Download Company Profile
             </a>
         </div>

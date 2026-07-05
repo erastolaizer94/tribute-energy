@@ -73,7 +73,7 @@ Route::get('/product/{id}', function ($id) {
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/features', 'pages.features')->name('features');
 Route::view('/projects', 'pages.projects')->name('projects');
-Route::view('/partners', 'pages.our_partners')->name('partners');
+Route::view('/our_partners', 'pages.our_partners')->name('our_partners');
 Route::view('/pricing', 'pages.pricing')->name('pricing');
 Route::view('/terms', 'pages.terms')->name('terms');
 Route::view('/careers', 'pages.careers')->name('careers');

@@ -49,7 +49,7 @@
                 <a href="{{ route('products') }}" class="nav-link px-4 py-2 {{ request()->routeIs('products') ? 'active' : '' }}">Products</a>
                 <a href="{{ route('projects') }}" class="nav-link px-4 py-2 {{ request()->routeIs('projects') ? 'active' : '' }}">Projects</a>
                 <a href="{{ route('gallery') }}" class="nav-link px-4 py-2 {{ request()->routeIs('gallery') ? 'active' : '' }}">Stock</a>
-                <a href="{{ route('partners') }}" class="nav-link px-4 py-2 {{ request()->routeIs('partners') ? 'active' : '' }}">Partners</a>
+                <a href="{{ route('our_partners') }}" class="nav-link px-4 py-2 {{ request()->routeIs('our_partners') ? 'active' : '' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="nav-link px-4 py-2 {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </div>
 
@@ -90,7 +90,7 @@
                 <a href="{{ route('products') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('products') ? 'active' : '' }}"><span class="flex items-center gap-2">Products <span class="text-[10px] font-rajdhani font-700 text-[#FF6B00] tracking-widest">LIVE</span></span></a>
                 <a href="{{ route('projects') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('projects') ? 'active' : '' }}">Projects</a>
                 <a href="{{ route('gallery') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('gallery') ? 'active' : '' }}">Stock</a>
-                <a href="{{ route('partners') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('partners') ? 'active' : '' }}">Partners</a>
+                <a href="{{ route('our_partners') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('our_partners') ? 'active' : '' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="nav-link block px-4 py-2.5 {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
                 @auth
                 <div class="pt-2 border-t border-gray-100 space-y-1">

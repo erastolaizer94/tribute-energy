@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // Landing page
 Route::get('/', function () {
@@ -72,7 +73,7 @@ Route::get('/product/{id}', function ($id) {
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/features', 'pages.features')->name('features');
 Route::view('/projects', 'pages.projects')->name('projects');
-Route::view('/partners', 'pages.partners')->name('partners');
+Route::view('/partners', 'pages.our_partners')->name('partners');
 Route::view('/pricing', 'pages.pricing')->name('pricing');
 Route::view('/terms', 'pages.terms')->name('terms');
 Route::view('/careers', 'pages.careers')->name('careers');
